@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.netlify/
+*.log
+docs/qa-*.png
+marcho-portfolio-netlify-drop.zip
+public/portfolio-assets/videos/*.mp4

@@ -1,0 +1,531 @@
+{
+  "generatedAt": "2026-06-16",
+  "sourceRoot": "C:\\Users\\march\\OneDrive\\Documents\\Website Portofolio & Project",
+  "concept": "/portfolio-assets/system/visual-concept.png",
+  "profile": {
+    "name": "Marcho",
+    "location": "Jakarta, Indonesia",
+    "email": "marchoict@gmail.com",
+    "phone": "081311993778",
+    "positioning": "Medical Scientific x Product Strategy",
+    "headline": "I turn clinical evidence into clear product stories, useful market insight, and healthcare education that people can actually act on.",
+    "summary": "I am a medical doctor and Master of Management candidate working at the intersection of Medical Affairs, product training, healthcare content, market intelligence, and AI-assisted workflow speed. My edge is simple: I can read the science, understand the field reality, and shape it into communication that helps teams move with confidence.",
+    "currentRole": "Medical Scientific & Product Trainer - PT Novell Pharmaceutical Laboratories",
+    "coreCompetencies": [
+      "Medical Affairs",
+      "Product Training",
+      "Scientific Communication",
+      "KOL & stakeholder engagement",
+      "Scientific deck development",
+      "Evidence interpretation",
+      "Market & competitor intelligence",
+      "Product strategy",
+      "Sales enablement",
+      "Healthcare content writing",
+      "Public education carousel design",
+      "AI-assisted research workflow"
+    ],
+    "skillGroups": [
+      {
+        "title": "Clinical & Medical Affairs",
+        "pitch": "I bring physician-level judgment into evidence review, claims, field discussion, and ethical healthcare communication.",
+        "items": [
+          "General consultation & treatment",
+          "Emergency triage",
+          "BLS/ACLS foundation",
+          "Clinical communication",
+          "Evidence interpretation",
+          "Regulatory-compliant product claims",
+          "KOL scientific liaison"
+        ]
+      },
+      {
+        "title": "Product, Market & Commercial",
+        "pitch": "I can connect the science with business reality, then turn it into field-ready assets for sales, marketing, and medical teams.",
+        "items": [
+          "Product Training",
+          "Product strategy",
+          "GTM asset development",
+          "Sales enablement",
+          "Market & competitor mapping",
+          "Claim and positioning analysis",
+          "Stakeholder engagement"
+        ]
+      },
+      {
+        "title": "Content, Design & Education",
+        "pitch": "I build the communication layer: decks, articles, carousels, videos, and visuals that make health topics easier to understand.",
+        "items": [
+          "Scientific deck development",
+          "Healthcare article writing",
+          "Public education carousel design",
+          "Poster and bulletin design",
+          "Educational video scripting",
+          "Photoshop, Canva, CapCut",
+          "Photography and visual editing"
+        ]
+      },
+      {
+        "title": "Data, Digital & AI Workflow",
+        "pitch": "I use digital and AI tools to research faster, organize evidence better, and turn raw information into practical output.",
+        "items": [
+          "Excel intermediate",
+          "Google Workspace",
+          "Notion workflow",
+          "Google Analytics",
+          "Metricool and Business Suite",
+          "ChatGPT, Gemini, Claude",
+          "Perplexity, Elicit, Consensus"
+        ]
+      },
+      {
+        "title": "Operational & Professional Edge",
+        "pitch": "My clinical background is supported by operational discipline, safety awareness, and the ability to work across functions.",
+        "items": [
+          "HSE / K3 knowledge",
+          "Industrial hygiene awareness",
+          "MCU coordination",
+          "Basic accounting & finance support",
+          "Public speaking",
+          "Teamwork",
+          "PC assembly & troubleshooting"
+        ]
+      }
+    ],
+    "softSkills": [
+      "Structured clinical reasoning",
+      "Decision-making under pressure",
+      "Cross-functional collaboration",
+      "Public speaking",
+      "Teamwork",
+      "Stakeholder communication",
+      "Documentation discipline",
+      "Learning agility",
+      "Ethical communication"
+    ],
+    "experience": [
+      {
+        "role": "Medical Scientific & Product Trainer",
+        "company": "PT Novell Pharmaceutical Laboratories",
+        "period": "May 2024 - Now",
+        "focus": [
+          "KOL engagement",
+          "Scientific narrative",
+          "GTM assets",
+          "Market intelligence",
+          "Regulatory-compliant claims"
+        ]
+      },
+      {
+        "role": "Company Doctor & Administration",
+        "company": "PT Sator Delta Lucktrus",
+        "period": "February 2024 - May 2024",
+        "focus": [
+          "Employee wellness",
+          "MCU coordination",
+          "Industrial hygiene",
+          "Cross-functional administration"
+        ]
+      },
+      {
+        "role": "General Practitioner",
+        "company": "RS Hermina Tangerang",
+        "period": "June 2023 - February 2024",
+        "focus": [
+          "Emergency triage",
+          "BLS/ACLS",
+          "Inpatient rounds",
+          "Continuity of care"
+        ]
+      },
+      {
+        "role": "General Practitioner",
+        "company": "Puskesmas Jatiuwung",
+        "period": "January 2023 - June 2023",
+        "focus": [
+          "Primary care",
+          "Public health programs",
+          "Health promotion",
+          "Minor procedures"
+        ]
+      },
+      {
+        "role": "General Practitioner",
+        "company": "Klinik Berkah Cengkareng",
+        "period": "October 2022 - January 2023",
+        "focus": [
+          "General consultation",
+          "Prescription standards",
+          "Clinical documentation"
+        ]
+      }
+    ],
+    "education": [
+      "Master of Management, Marketing concentration - in progress",
+      "Product Management - Purwadhika Digital Technology School, Oct 2025 - Dec 2025",
+      "Faculty of Medicine - Christian Krida Wacana University (UKRIDA), Aug 2015 - Aug 2019",
+      "Clinical Clerkship / Co-Ass, Oct 2019 - Apr 2022"
+    ],
+    "skills": [
+      "Medical Affairs",
+      "Product Training",
+      "Medical & scientific communication",
+      "Evidence interpretation",
+      "Product strategy",
+      "KOL engagement",
+      "Stakeholder communication",
+      "Market and competitor analysis",
+      "GTM and sales enablement assets",
+      "Scientific deck development",
+      "Healthcare article writing",
+      "Public health education design",
+      "Digital marketing and analytics",
+      "Google Analytics, Metricool, Business Suite",
+      "Data productivity with Excel, Notion, Google Workspace",
+      "Design and editing with Photoshop, Canva, CapCut",
+      "Public speaking and teamwork",
+      "HSE / K3 and occupational health awareness",
+      "Basic accounting and finance support",
+      "PC assembly and troubleshooting",
+      "AI productivity power use"
+    ],
+    "languages": [
+      "Bahasa Indonesia - Native",
+      "English - Working proficiency"
+    ]
+  },
+  "profileMedia": {
+    "portrait": {
+      "title": "Marcho formal portrait",
+      "file": "/portfolio-assets/profile/marcho-formal-portrait.jpg",
+      "preview": "/portfolio-assets/thumbs/profile/marcho-formal-portrait.webp"
+    },
+    "fieldMoments": [
+      {
+        "title": "Leading a focused scientific discussion",
+        "file": "/portfolio-assets/profile/leading-a-focused-scientific-discussion.png",
+        "preview": "/portfolio-assets/thumbs/profile/field-discussion.webp"
+      },
+      {
+        "title": "Product training in a formal healthcare forum",
+        "file": "/portfolio-assets/profile/product-training-in-a-formal-healthcare-forum.png",
+        "preview": "/portfolio-assets/thumbs/profile/stage-product-training.webp"
+      },
+      {
+        "title": "Turning evidence into a practical recommendation",
+        "file": "/portfolio-assets/profile/turning-evidence-into-a-practical-recommendation.png",
+        "preview": "/portfolio-assets/thumbs/profile/scientific-discussion.webp"
+      }
+    ]
+  },
+  "cv": {
+    "title": "Marcho Original CV",
+    "file": "/portfolio-assets/cv/cv-marcho.pdf",
+    "thumb": "/portfolio-assets/thumbs/cv/cv-marcho.webp",
+    "pages": 2,
+    "text": "M A R C H O S U M M A R Y M e d i c a l D o c t o r a n d M a s t e r o f M a n a g e m e n t c a n d i d a t e w i t h a s t r o n g t r a c k r e c o r d i n t r a n s l a t i n g c o m p l e x c l i n i c a l d a t a i n t o a c t i o n a b l e b u s i n e s s s t r a t e g i e s. C u r r e n t l y s e r v i n g a s a M e d i c a l S c i e n t i f i c e x p e r t a t a l e a d i n g p h a r m a c e u t i c a l f i r m, s p e c i a l i z i n g i n m a r k e t a n a l y s i s, s t a k e h o l d e r e n g a g e m e n t, a n d p r o d u c t e n a b l e m e n t.\n\nP r o v e n a b i l i t y t o l e a d c r o s s-f u n c t i o n a l i n i t i a t i v e s a c r o s s M a r k e t i n g, S a l e s, a n d M e d i c a l d e p a r t m e n t s t o d r i v e p r o d u c t a d o p t i o n a n d m a r k e t s h a r e. P a s s i o n a t e a b o u t l e v e r a g i n g d a t a-d r i v e n i n s i g h t s a n d A I p r o d u c t i v i t y t o o l s t o o p t i m i z e p r o d u c t l i f e c y c l e s i n t h e H e a l t h c a r e, T e c h, a n d P h a r m a s e c t o r s W O R K E X P E R I E N C E J a k a r t a-0 8 1 3 1 1 9 9 3 7 7 8-m a r c h o i c t @ g m a i l.\n\nc o m M E D I C A L S C I E N T I F I C M E D I C A L A F F A I R S M E D I C A L D O C T O R M e d i c a l S c i e n t i f i c & P r o d u c t T r a i n e r-P T N o v e l l P h a r m a c e u t i c a l L a b o r a t o r i e s M a y 2 0 2 4-N o w S t a k e h o l d e r M a n a g e m e n t: S e r v e a s t h e p r i m a r y s c i e n t i f i c l i a i s o n f o r K e y O p i n i o n L e a d e r s (K O L s) a n d c l i n i c i a n s a c r o s s h i g h-i m p a c t t h e r a p e u t i c a r e a s, i n c l u d i n g O n c o l o g y, R e n a l, a n d P e d i a t r i c s P r o d u c t S t r a t e g y: C o l l a b o r a t e w i t h M a r k e t i n g a n d S a l e s t o a r c h i t e c t s c i e n t i f i c n a r r a t i v e s a n d v a l u e p r o p o s i t i o n s t h a t d i f f e r e n t i a t e p r o d u c t s i n c o m p e t i t i v e m a r k e t s S a l e s E n a b l e m e n t: D e v e l o p e d c o m p r e h e n s i v e G T M (G o-T o-M a r k e t) a s s e t s, i n c l u d i n g c o r e d e c k s, o b j e c t i o n - h a n d l i n g f r a m e w o r k s, a n d e v i d e n c e s u m m a r i e s t o s t a n d a r d i z e f i e l d e x e c u t i o n M a r k e t I n t e l l i g e n c e: E x e c u t e r i g o r o u s m a r k e t a n d c o m p e t i t o r m a p p i n g (p o s i t i o n i n g a n d c l a i m a n a l y s i s) t o i d e n t i f y g r o w t h o p p o r t u n i t i e s a n d r e f i n e c a m p a i g n m e s s a g i n g R e g u l a t o r y C o m p l i a n c e: E n s u r e a l l s c i e n t i f i c c o m m u n i c a t i o n s a n d p r o d u c t c l a i m s a d h e r e t o s t r i c t i n d u s t r y r e g u l a t i o n s a n d e t h i c a l s t a n d a r d s C o m p a n y D o c t o r & A d m i n i s t r a t i o n-P T S a t o r D e l t a L u c k t r u s F e b r u a r y 2 0 2 4-M e i 2 0 2 4 M a n a g e d c o m p r e h e n s i v e c o m p a n y h e a l t h p r o g r a m s, i n c l u d i n g p r e-e m p l o y m e n t a n d r o u t i n e m e d i c a l c h e c k-u p s (M C U), f i r s t a i d p r o v i s i o n, a n d i n d u s t r i a l h y g i e n e c o m p l i a n c e t o e n s u r e e m p l o y e e w e l l n e s s a n d s a f e t y H a n d l e d c o r e a d m i n i s t r a t i v e t a s k s, i n c l u d i n g s c h e d u l i n g, d o c u m e n t a t i o n f i l i n g, a n d c o m m u n i c a t i o n c o o r d i n a t i o n b e t w e e n e x p o r t-i m p o r t l o g i s t i c s, H R, a n d f i n a n c e d e p a r t m e n t s A s s i s t e d t h e f i n a n c e t e a m w i t h p r e l i m i n a r y a c c o u n t i n g d u t i e s, s u c h a s p r o c e s s i n g p e t t y c a s h, v e r i f y i n g e x p e n s e r e p o r t s, a n d r e c o n c i l i n g m i n o r o p e r a t i o n a l c o s t s r e l e v a n t t o t h e m e d i c a l a n d a d m i n i s t r a t i v e b u d g e t G e n e r a l P r a c t i t i o n e r-R S H e r m i n a T a n g e r a n g J u n e 2 0 2 3-F e b r u a r y 2 0 2 4 M a n a g e d e m e r g e n c y t r i a g e a n d s t a b i l i z a t i o n; c o l l a b o r a t e d w i t h m u l t i d i s c i p l i n a r y t e a m s f o r c o n t i n u i t y o f c a r e.\n\nP r o v i d i n g f i r s t a i d a n d b a s i c t o a d v a n c e d r e s u s c i t a t i o n (B L S a n d A C L S) C o n d u c t i n g d a i l y r o u n d s a n d e x a m i n a t i o n s o f i n p a t i e n t s w h o h a v e n o t y e t b e e n h a n d l e d o r a r e u n d e r G P s u p e r v i s i o n P r o v i d i n g i n i t i a l m a n a g e m e n t b e f o r e t h e p a t i e n t i s t a k e n o v e r b y t h e s p e c i a l i s t D P J P (D o c t o r i n C h a r g e o f S e r v i c e) P r o v i d i n g s e r v i c e s i n t h e H o s p i t a l P o l y c l i n i c (f o r n o n-s p e c i a l i s t c a s e s o r g e n e r a l c h e c k-u p s) P e r f o r m i n g m e d i c a l p r o c e d u r e s w i t h i n t h e G P ' s a u t h o r i t y i n t h e h o s p i t a l S t r e n g t h e n e d d e c i s i o n-m a k i n g u n d e r p r e s s u r e, s t r u c t u r e d c l i n i c a l r e a s o n i n g, a n d s t a k e h o l d e r c o m m u n i c a t i o n.\n\nG e n e r a l P r a c t i t i o n e r-P u s k e s m a s J a t i u w u n g D i a g n o s i n g a n d t r e a t i n g c o m m o n d i s e a s e s a t t h e G e n e r a l P o l y c l i n i c / O u t p a t i e n t U n i t C o n d u c t i n g r o u t i n e h e a l t h c h e c k s, f o r m u l a t i n g a n d d i s p e n s i n g d r u g p r e s c r i p t i o n s R e s p o n s i b l e f o r o r i n v o l v e d i n E s s e n t i a l H e a l t h P r o g r a m s (e.\n\ng., M a t e r n a l a n d C h i l d H e a l t h / M C H, N u t r i t i o n, C o m m u n i c a b l e D i s e a s e C o n t r o l / P 2 M) C o n d u c t i n g h e a l t h p r o m o t i o n a n d f o s t e r i n g i n t h e w o r k i n g a r e a (P o s y a n d u, s c h o o l s, a n d v i l l a g e s) J a n u a r y 2 0 2 3-J u n e 2 0 2 3 C o n d u c t i n g a n a m n e s i s, p h y s i c a l e x a m i n a t i o n s, a n d d i a g n o s i n g c o m m o n a c u t e a n d c h r o n i c i l l n e s s e s t h a t d o n o t r e q u i r e s p e c i a l i s t i n t e r v e n t i o n o r h o s p i t a l i z a t i o n P e r f o r m i n g s i m p l e m e d i c a l p r o c e d u r e s (m i n o r w o u n d s u t u r i n g) F o r m u l a t i n g a n d d i s p e n s i n g d r u g p r e s c r i p t i o n s i n a c c o r d a n c e w i t h s t a n d a r d s a n d e t h i c s G e n e r a l P r a c t i t i o n e r-K l i n i k B e r k a h C e n g k a r e n g O c t o b e r 2 0 2 2-J a n u a r y 2 0 2 3 E D U C A T I O N F a c u l t y o f M e d i c i n e — C h r i s t i a n K r i d a W a c a n a U n i v e r s i t y (U K R I D A) A u g 2 0 1 5-A u g 2 0 1 9 C E R T I F I C A T I O N S & T R A I N I N G A d v a n c e d C a r d i a c L i f e S u p p o r t (A C L S) — A m e r i c a n H e a r t A s s o c i a t i o n | S e p 2 0 2 2 H i p e r k e s (I n d u s t r i a l H y g i e n e, E r g o n o m i c s & O c c u p a t i o n a l H e a l t h) — K e m n a k e r | F e b 2 0 2 3 A h l i K 3 U m u m (T r a i n i n g & C e r t i f i c a t i o n) | A p r 2 0 2 3 A h l i K 3 M u d a (C e r t i f i c a t i o n) | M a y 2 0 2 3 G o o g l e D i g i t a l M a r k e t i n g & E-C o m m e r c e — C o u r s e r a | M e i 2 0 2 3 B u s i n e s s B l u e p r i n t P r o g r a m — S e v e n p r e n e u r | J u n 2 0 2 3 B a s i c A c c o u n t i n g — M y S k i l l | D e c 2 0 2 3 G o o g l e D a t a A n a l y t i c s — C o u r s e r a | F e b 2 0 2 4 P r o d u c t M a n a g e m e n t J o b C o n n e c t o r B o o t c a m p — P u r w a d h i k a | F e b 2 0 2 6 C l i n i c a l C l e r k s h i p (C o-A s s / D o k t e r M u d a) O c t 2 0 1 9 – A p r 2 0 2 2 A u g 2 0 2 5-I n P r o g r e s s S K I L L S & T O O L S M e d i c a l & S c i e n t i f i c: G e n e r a l c o n s u l t a t i o n & t r e a t m e n t, c l i n i c a l c o m m u n i c a t i o n, e v i d e n c e i n t e r p r e t a t i o n D a t a & P r o d u c t i v i t y: G o o g l e W o r k s p a c e, M i c r o s o f t O f f i c e, E x c e l i n t e r m e d i a t e, N o t i o n H S E / K 3: O c c u p a t i o n a l s a f e t y k n o w l e d g e (K 3 & H S E) B u s i n e s s S u p p o r t: B a s i c a c c o u n t i n g & f i n a n c e s u p p o r t D i g i t a l M a r k e t i n g: G o o g l e a n a l y t i c s, M e t r i c o o l, B u s i n e s s S u i t e C o m m u n i c a t i o n: P u b l i c s p e a k i n g, t e a m w o r k D e s i g n & E d i t i n g: A d o b e P h o t o s h o p, C a n v a, C a p c u t T e c h n i c a l: C o m p u t e r h a r d w a r e (P C a s s e m b l y & t r o u b l e s h o o t i n g), P h o t o g r a p h y A I P r o d u c t i v i t y (P o w e r U s e r): C h a t G P T, G e m i n i, C l a u d e, P e r p l e x i t y, E l i c i t, C o n s e n s u s, M i d j o u r n e y, S u n o A I (A I - a s s i s t e d r e s e a r c h, s u m m a r i z a t i o n, d r a f t i n g, a n d w o r k f l o w a c c e l e r a t i o n) L A N G U A G E S B a h a s a I n d o n e s i a (N a t i v e) E n g l i s h — W o r k i n g P r o f i c i e n c y P r o d u c t M a n a g e m e n t — P u r w a d h i k a D i g i t a l T e c h n o l o g y S c h o o l O c t 2 0 2 5-D e c 2 0 2 5 M a s t e r o f M a n a g e m e n t (c o n c e n t r a t i o n: M a r k e t i n g)"
+  },
+  "projects": [
+    {
+      "title": "DHA EPA AA untuk Anak",
+      "file": "/portfolio-assets/projects/dha-epa-aa-untuk-anak.html",
+      "size": 56673,
+      "type": "Interactive HTML Deck"
+    },
+    {
+      "title": "Perut Anak Sehat Moms Lebih Tenang",
+      "file": "/portfolio-assets/projects/perut-anak-sehat-moms-lebih-tenang.html",
+      "size": 48648,
+      "type": "Interactive HTML Deck"
+    },
+    {
+      "title": "Rahasia Orang yang Jarang Sakit",
+      "file": "/portfolio-assets/projects/rahasia-orang-yang-jarang-sakit.html",
+      "size": 52152,
+      "type": "Interactive HTML Deck"
+    }
+  ],
+  "slides": [
+    {
+      "title": "BMK Tropisetron",
+      "file": "/portfolio-assets/slides/bmk-tropisetron.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/bmk-tropisetron.webp",
+      "pages": 55,
+      "summary": "Choco MST BMK Tropisetron Mual & Muntah https://www.oegari.at/web_files/cms_daten/esa_asa_2020_consensus_guidelines_ponv.pdf Mual / nausea Muntah / vomiting / emesis Retching = mau muntah tapi ga keluar (muntah kering) Kenapa mual-muntah dianggap serius Dehidrasi → lemas, pusing, BAK sedikit. Gangguan elektrolit (mineral tubuh kacau) → lemah, kram, bisa gang"
+    },
+    {
+      "title": "Effective & Safe Fever & Pain Management in Children Ibuprofen Syrup & Paracetamol Infusion Solutions",
+      "file": "/portfolio-assets/slides/effective-safe-fever-pain-management-in-children-ibuprofen-syrup-paracetamol-infusion-solutions-1.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/effective-safe-fever-pain-management-in-children-ibuprofen-syrup-paracetamol-infusion-solutions-1.webp",
+      "pages": 51,
+      "summary": "Novell Pharmaceutical Laboratories Effective & Safe Fever & Pain Management in Children: Ibuprofen Syrup & Paracetamol Infusion Solutions Burden of Fever and Pain in Pediatric Practice Barbi E, Marzuillo P, Neri E, Naviglio S, Krauss BS. Fever in Children: Pearls and Pitfalls. Children (Basel).\n\n2017;4(9):81. Published 2017 Sep 1. doi:10.3390/children4090081"
+    },
+    {
+      "title": "Kepatuhan Minum Obat pada Anak dengan Thalassemia",
+      "file": "/portfolio-assets/slides/kepatuhan-minum-obat-pada-anak-dengan-thalassemia.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/kepatuhan-minum-obat-pada-anak-dengan-thalassemia.webp",
+      "pages": 22,
+      "summary": "Novell Pharmaceutical Laboratories Kepatuhan Minum Obat pada Anak dengan Thalassemia Apa itu Thalassemia? Sadiq IZ, Abubakar FS, Usman HS, Abdullahi AD, Ibrahim B, Kastayal BS, Ibrahim M, Hassan HA. Thalassemia: Pathophysiology, Diagnosis, and Advances in Treatment.\n\nThalassemia Reports. 2024; 14(4):81-102. https://doi.org/10.3390/thalassrep14040010 Grzegorz"
+    },
+    {
+      "title": "Lacto B Update",
+      "file": "/portfolio-assets/slides/lacto-b-update-2.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/lacto-b-update-2.webp",
+      "pages": 50,
+      "summary": "Lacto B Update Choco MST Masalah Saat Ini Anak sehat tetep bisa adda masalah: ● BAB tidak teratur ● Perut kembung ● Sering jajan ● Baru minum antibiotik ● Masuk daycare / sekolah ● Mudah batuk pilek berulang Target baru: ● Anak sehat usia 1–12 tahun ● Anak sekolah ● Anak setelah antibiotik ● Anak yg pola makan kurang serat ● Bayi cukup bulan <1 tahun Orang t"
+    },
+    {
+      "title": "Managing the Unmanageable UDCA Strategies in Fatty Liver Disease",
+      "file": "/portfolio-assets/slides/managing-the-unmanageable-udca-strategies-in-fatty-liver-disease.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/managing-the-unmanageable-udca-strategies-in-fatty-liver-disease.webp",
+      "pages": 34,
+      "summary": "Novell Pharmaceutical Laboratories Managing the Unmanageable: UDCA Strategies in Fatty Liver Disease Fatty Liver 01"
+    },
+    {
+      "title": "Mechanism and Efficacy of L-Ornithine L-Aspartate (LOLA) in Chronic Liver Disease Management",
+      "file": "/portfolio-assets/slides/mechanism-and-efficacy-of-l-ornithine-l-aspartate-lola-in-chronic-liver-disease-management.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/mechanism-and-efficacy-of-l-ornithine-l-aspartate-lola-in-chronic-liver-disease-management.webp",
+      "pages": 28,
+      "summary": "Mechanism and Efficacy of L-Ornithine L-Aspartate (LOLA) in Chronic Liver Disease Management Novell Pharmaceutical Laboratories Table of contents 01 Chronic Liver Diseases 02 L-Ornithine L-Aspartate 03 Journal Support"
+    },
+    {
+      "title": "Nalfurafine vs Cholestyramine",
+      "file": "/portfolio-assets/slides/nalfurafine-vs-cholestyramine.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/nalfurafine-vs-cholestyramine.webp",
+      "pages": 23,
+      "summary": "Nalfuraﬁne Choco MST Apa itu Nalfuraﬁne? Nalfuraﬁne adalah agonis selektif reseptor κ‑opioid (KOR) pertama yang diberikan secara oral untuk mengobati gatal (pruritus) refrakter Dikembangin oleh Toray Industries Jepang, nama dagangnya Remitch Singkatnya Nalfuraﬁne itu aktiﬁn KOR → menekan transmisi sinyal gatal dan ga menimbulkan efek euforia atau ketergantun"
+    },
+    {
+      "title": "Optimizing the Use of Somatostatin From Acute Esophageal Variceal Hemorrhagic Bleeding to Pancreatitis",
+      "file": "/portfolio-assets/slides/optimizing-the-use-of-somatostatin-from-acute-esophageal-variceal-hemorrhagic-bleeding-to-pancreatitis.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/optimizing-the-use-of-somatostatin-from-acute-esophageal-variceal-hemorrhagic-bleeding-to-pancreatitis.webp",
+      "pages": 53,
+      "summary": "Optimizing the Use of Somatostatin: From Acute Esophageal Variceal Hemorrhagic/Bleeding to Pancreatitis Novell Pharmaceutical Laboratories 01 Esophageal Varices Table of contents 02 Pancreatitis 03 Somatostatin & Journal Support"
+    },
+    {
+      "title": "Pantoprazole for Cardiovascular Diseases",
+      "file": "/portfolio-assets/slides/pantoprazole-for-cardiovascular-diseases.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/pantoprazole-for-cardiovascular-diseases.webp",
+      "pages": 19,
+      "summary": "Pantoprazole for Cardiovascular Diseases Novell Pharmaceutical Laboratories Penyakit Penyakit Cardiovascular Coronary Artery Disease (CAD)/Penyakit Jantung Koroner (PJK) Atrial Fibrillation (AF) Venous Thromboembolism (VTE)/Tromboemboli Vena Penyakit Katup Jantung Mekanik (Pasca-Valve Replacement) Peripheral Artery Disease (PAD) Ischemic Stroke (Stroke Iskem"
+    },
+    {
+      "title": "PROTAB ZOLEDRONIC ACID",
+      "file": "/portfolio-assets/slides/protab-zoledronic-acid.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/protab-zoledronic-acid.webp",
+      "pages": 1,
+      "summary": "PROTAB ZOLEDRONIC ACID INDIKASI &SKRINING PRA-TERAPI INDIKASI ONKOLOGINON-ONKOLOGI Metastasis tulangMultiple MyelomaHiperkalsemia Malignan Osteoporosis PascamenopausePaget’s Disease SKRINING Funsi Ginjal & ElektrolitSerum Kreatinin + Creatinine Clearance (CrCl)Kadar Kalsium, fosfat & Magnesium KONTRAINDIKASI CrCl < 35 mL/menitHipokalsemiaAcute Renal Impairme"
+    },
+    {
+      "title": "Sulfasalazine for IBD in the Era of Advanced Therapy Old is Gold",
+      "file": "/portfolio-assets/slides/sulfasalazine-for-ibd-in-the-era-of-advanced-therapy-old-is-gold.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/sulfasalazine-for-ibd-in-the-era-of-advanced-therapy-old-is-gold.webp",
+      "pages": 37,
+      "summary": "Novell Pharmaceutical Laboratories Sulfasalazine for IBD in the Era of Advanced Therapy: Old is Gold Outlines Inflammatory bowel disease (IBD) Ulcerative colitis (UC) Sulfasalazine Jurnal Support"
+    },
+    {
+      "title": "Update on the Management of NSAID-Induced Lower Gastrointestinal Injury",
+      "file": "/portfolio-assets/slides/update-on-the-management-of-nsaid-induced-lower-gastrointestinal-injury.pdf",
+      "thumb": "/portfolio-assets/thumbs/slides/update-on-the-management-of-nsaid-induced-lower-gastrointestinal-injury.webp",
+      "pages": 21,
+      "summary": "Update on the Management of NSAID-Induced Lower Gastrointestinal Injury Novell Pharmaceutical Laboratories Lower GI events menyumbang 40% dari seluruh serious NSAID-related GI events Studi capsule endoscopy klasik, cedera mukosa usus halus ditemukan pada 71% pengguna NSAID kronik versus 10% kontrol Why Lower GI Injury Matters in NSAID Users Guo CG, Leung WK."
+    }
+  ],
+  "articles": [
+    {
+      "title": "Delima, Buah Merah Kecil yang Bisa Bantu Jaga Tubuh dari Kerusakan",
+      "file": "/portfolio-assets/articles/pdf/delima-buah-merah-kecil-yang-bisa-bantu-jaga-tubuh-dari-kerusakan.pdf",
+      "poster": "/portfolio-assets/articles/posters/delima-buah-kecil-dengan-manfaat-besar.png",
+      "posterPreview": "/portfolio-assets/thumbs/articles/delima-buah-kecil-dengan-manfaat-besar.webp",
+      "pages": 4,
+      "body": "Banyak penyakit berbahaya itu tidak datang tiba tiba. Sering kali tubuh sudah memberi tanda pelan pelan, tapi kita tidak sadar. Tekanan darah naik sedikit demi sedikit.\n\nGula darah mulai tinggi. Kolesterol mulai menumpuk. Pembuluh darah mulai kaku.\n\nLalu suatu hari baru terasa saat sudah muncul stroke, serangan jantung, atau komplikasi diabetes. Angkanya cukup menakutkan. Pada 2021, penyakit jantung dan pembuluh darah menyebabkan sekitar 20,5 juta kematian di dunia.\n\nHipertensi pada usia 30 sampai 79 tahun juga naik besar, dari sekitar 648 juta orang pada 1990 menjadi sekitar 1,28 miliar orang pada 2019. Diabetes pun tidak kalah mengkhawatirkan, pada 2022 diperkirakan sudah mengenai sekitar 828 juta orang dewasa di dunia.¹˒²˒³ Masalahnya, penyakit seperti ini sering terasa biasa saja di awal.\n\nOrang masih bisa kerja, makan enak, jalan seperti biasa. Tapi di dalam tubuh, ada proses yang terus berjalan. Salah satunya adalah peradangan kecil yang berlangsung lama dan stres oksidatif.\n\nBahasa mudahnya, sel tubuh seperti sedang berkarat pelan pelan. Di sinilah buah delima atau Punica granatum mulai menarik untuk dibahas. Delima bukan obat ajaib.\n\nDelima juga bukan pengganti obat dokter. Tapi buah ini punya kandungan polifenol, punicalagin, antosianin, dan ellagitannin. Senyawa ini banyak diteliti karena berhubungan dengan antioksidan, kesehatan pembuluh darah, tekanan darah, gula darah, dan peradangan.\n\nApa manfaat delima menurut penelitian 1. Membantu menurunkan tekanan darah Bukti yang paling menarik ada pada tekanan darah. Sebuah meta analisis tahun 2023 yang menggabungkan 14 uji klinis dengan 573 orang menemukan bahwa jus delima dapat menurunkan tekanan darah sistolik sekitar 5 mmHg.\n\nEfeknya lebih jelas pada konsumsi sampai 300 mL per hari. ⁴ Angka 5 mmHg terdengar kecil. Tapi untuk orang dengan tekanan darah tinggi, penurunan kecil yang konsisten tetap berarti.\n\nTentu tetap harus dibarengi makan sehat, kurangi garam, olahraga, tidur cukup, dan minum obat bila sudah diresepkan dokter. 2. Membantu melawan stres oksidatif dan peradangan Peradangan kronis dan stres oksidatif sering ikut berperan dalam penyakit jantung, diabetes, obesitas, dan penuaan pembuluh darah.\n\nMeta analisis tahun 2023 menunjukkan konsumsi delima dapat memberi efek baik pada beberapa penanda inflamasi dan stres oksidatif pada orang dewasa. ⁵ Secara sederhana, delima membantu tubuh melawan proses rusak pelan pelan tadi. Bukan seperti obat yang langsung terasa, tapi lebih seperti dukungan harian untuk pola makan yang lebih sehat.\n\n3. Bisa membantu profil gula darah, tapi jangan dibesar besarkan Penelitian terbaru tahun 2025 menunjukkan produk delima dapat memberi efek positif pada gula darah puasa, insulin, dan resistensi insulin. Tapi efeknya masih kecil dan belum kuat untuk dianggap sebagai terapi diabetes.\n\nHbA1c juga tidak selalu membaik bermakna. ⁶ Artinya, penderita diabetes boleh menjadikan delima sebagai bagian dari pola makan sehat. Tapi jangan berpikir minum jus delima bisa menetralkan makan manis berlebihan.\n\n4. Efek ke kolesterol masih campur aduk Untuk kolesterol, hasil penelitian belum seragam. Review tahun 2020 menyebut bukti belum cukup kuat untuk menyatakan delima pasti menurunkan kolesterol.\n\n⁷ Namun meta analisis yang lebih baru menunjukkan jus delima mungkin membantu menurunkan trigliserida dan LDL, serta sedikit menaikkan HDL, terutama pada orang dengan gangguan metabolik. ⁸ Jadi, manfaatnya mungkin ada. Tapi tetap bukan pengganti diet rendah lemak jenuh, berat badan sehat, dan obat kolesterol bila dibutuhkan.\n\nCara konsumsi yang lebih masuk akal Pilih delima utuh bila memungkinkan. Bijinya bisa dimakan langsung atau dicampur ke yoghurt tawar, oatmeal, salad buah, atau dimakan sebagai camilan. Kalau minum jus, pilih 100 persen jus delima tanpa gula tambahan.\n\nPorsi yang sering diteliti sekitar 150 sampai 300 mL per hari. Jangan ditambah gula, susu kental manis, atau sirup, karena manfaatnya bisa kalah oleh gulanya. Untuk orang dengan diabetes, penyakit ginjal, sedang minum pengencer darah seperti warfarin, atau obat rutin banyak macam, sebaiknya tanya dokter dulu.\n\nReview keamanan mencatat delima umumnya aman, tapi keluhan seperti gangguan lambung, gejala seperti flu, keluhan berkemih, dan alergi pernah dilaporkan. ⁹ Mitos vs Fakta Mitos: Delima bisa menyembuhkan darah tinggi Fakta: Delima bisa membantu menurunkan tekanan darah sedikit, tapi bukan pengganti obat. Mitos: Jus delima aman diminum sebanyak banyaknya Fakta: Jus tetap mengandung gula alami.\n\nTerlalu banyak tetap tidak baik. Mitos: Delima bisa menyembuhkan diabetes Fakta: Delima mungkin membantu beberapa angka metabolik, tapi tidak menggantikan pengobatan diabetes. Mitos: Semua suplemen delima pasti sama manfaatnya Fakta: Kandungan tiap produk bisa berbeda.\n\nBuah asli atau jus tanpa gula biasanya lebih masuk akal untuk awam. FAQ Apakah delima boleh diminum setiap hari Boleh untuk kebanyakan orang, asal porsinya wajar dan tidak ditambah gula. Lebih baik buah delima atau jus delima Buah utuh lebih baik karena masih ada serat.\n\nJus boleh, tapi pilih yang tanpa gula tambahan. Apakah penderita diabetes boleh makan delima Boleh dalam porsi kecil, tapi tetap hitung sebagai asupan buah. Jangan minum jus terlalu banyak.\n\nKapan harus hati hati Hati hati bila sedang minum obat pengencer darah, punya penyakit ginjal, alergi buah tertentu, atau sedang dalam terapi obat rutin yang banyak. Take Home Message Delima adalah buah sehat dengan bukti paling menarik untuk membantu tekanan darah, peradangan, dan stres oksidatif. Manfaat ke gula darah dan kolesterol ada potensi, tapi belum boleh dianggap sebagai obat.\n\nCara paling aman adalah menjadikannya bagian dari pola makan sehat, bukan jalan pintas untuk menutupi pola makan yang berantakan. Daftar Pustaka AMA 1. Di Cesare M, McGhie DV, Perel P, et al.\n\nThe Heart of the World. Glob Heart. 2024;19(1):11.\n\ndoi:10.5334/gh.1288 2. NCD Risk Factor Collaboration. Worldwide trends in hypertension prevalence and progress in treatment and control from 1990 to 2019.\n\nLancet. 2021;398(10304):957-980. doi:10.1016/S0140-6736(21)01330-1 3.\n\nNCD Risk Factor Collaboration. Worldwide trends in diabetes prevalence and treatment from 1990 to 2022. Lancet.\n\n2024;404(10467):2077-2093. doi:10.1016/S0140-6736(24)02317-1 4. Ghaemi F, Emadzadeh M, Atkin SL, Jamialahmadi T, Zengin G, Sahebkar A.\n\nImpact of pomegranate juice on blood pressure. Phytother Res. 2023;37(10):4429-4441.\n\ndoi:10.1002/ptr.7952 5. Bahari H, Omidian K, Goudarzi K, et al. The effects of pomegranate consumption on inflammatory and oxidative stress biomarkers in adults.\n\nInflammopharmacology. 2023;31(5):2283-2301. doi:10.1007/s10787-023-01294-x 6.\n\nMohammadzaheri F, Sheikhhossein F, Hemmati A, et al. The effect of pomegranate products on glycemic profile in adults. BMC Nutr.\n\n2025;11:168. doi:10.1186/s40795-025-01138-7 7. Aziz Z, Huin WK, Hisham MDB, Ng JX.\n\nEffects of pomegranate on lipid profiles. Complement Ther Med. 2020;48:102236.\n\ndoi:10.1016/j.ctim.2019.102236 8. Ghaemi F, Emadzadeh M, Almahmeed W, et al. Pomegranate juice consumption and lipid profile.\n\nAvicenna J Phytomed. 2026;16(3):420-439. doi:10.22038/ajp.2025.26398 9.\n\nZare H, Amiri-Ardekani E, Tavakoli A, Pasalar M. Reporting of adverse effects of pomegranate in clinical studies. J Complement Integr Med.\n\n2023;21(2):154-166. doi:10.1515/jcim-2022-0247",
+      "excerpt": "Banyak penyakit berbahaya itu tidak datang tiba tiba. Sering kali tubuh sudah memberi tanda pelan pelan, tapi kita tidak sadar. Tekanan darah naik sedikit demi sedikit.\n\nGula darah mulai tinggi. Kolesterol mulai menumpuk. Pembuluh darah mulai kaku.\n\nLalu suatu hari baru terasa saat sudah muncul stroke, serangan jantung, atau komplikasi diabetes. Angkanya cukup menakutkan. Pada 2021, penyakit jantung dan pembuluh darah menyebabkan sekitar 20,5 juta kematian di dunia.\n\nHipertensi pada usia 30 sampai 79 tahun juga nai"
+    },
+    {
+      "title": "Ekstrak Ikan Gabus untuk Penyembuhan Luka",
+      "file": "/portfolio-assets/articles/pdf/ekstrak-ikan-gabus-untuk-penyembuhan-luka.pdf",
+      "poster": "/portfolio-assets/articles/posters/ekstrak-ikan-gabus-bisa-bantu-penyembuhan.png",
+      "posterPreview": "/portfolio-assets/thumbs/articles/ekstrak-ikan-gabus-bisa-bantu-penyembuhan.webp",
+      "pages": 4,
+      "body": "Kenapa banyak orang bilang bagus, dan mana yang benar Luka itu kelihatannya kecil. Tapi kalau penyembuhannya lambat, urusannya bisa panjang. Pada operasi, infeksi luka operasi masih jadi masalah di banyak negara.\n\nSatu meta analisis tahun 2023 menemukan angka infeksi luka operasi secara global sekitar 2,5 persen, dan bisa lebih tinggi di beberapa wilayah. Artinya dari 100 orang operasi, ada beberapa orang yang lukanya bisa bermasalah, bernanah, lama kering, atau harus kontrol berkali kali. Luka yang susah sembuh juga lebih sering terjadi pada orang dengan diabetes, gizi kurang, usia lanjut, obesitas, infeksi, dan aliran darah yang kurang baik.\n\nTubuh sebenarnya punya cara sendiri untuk memperbaiki luka. Tapi tubuh butuh bahan bangunan. Kalau bahan bangunannya kurang, luka bisa seperti rumah yang sedang direnovasi tapi semen, pasir, dan tukangnya tidak cukup.\n\nDi sinilah makanan tinggi protein mulai penting. Saat luka sembuh, tubuh bekerja lebih keras. Protein, asam amino, zinc, zat besi, vitamin C, vitamin A, dan cairan punya peran dalam pembentukan jaringan baru dan kolagen.\n\nKolagen ini bisa dibayangkan seperti anyaman yang membuat kulit menutup dan lebih kuat. Pada kondisi tertentu, kebutuhan protein saat penyembuhan bisa meningkat. Lalu apa hubungannya dengan ikan gabus Ikan gabus atau Channa striata sudah lama dikenal di Indonesia sebagai makanan untuk orang habis operasi, habis melahirkan, atau sedang pemulihan.\n\nBiasanya orang menyebutnya karena kandungan albumin. Albumin adalah salah satu protein penting dalam darah. Tapi perlu diluruskan, albumin bukan satu satunya penentu luka sembuh.\n\nLuka sembuh tetap dipengaruhi kebersihan luka, gula darah, infeksi, aliran darah, istirahat, dan pola makan keseluruhan. Ekstrak ikan gabus menarik karena mengandung protein, albumin, asam amino seperti arginin dan glisin, asam lemak, serta mineral seperti zinc dan copper. Dalam sebuah systematic review tahun 2025, Channa striata dilaporkan memiliki kandungan albumin sekitar 0,76 sampai 10,73 gram per 100 gram, dan beberapa studi klinis menunjukkan potensi pada penyembuhan luka, nyeri, dan beberapa penanda pemulihan.\n\nTapi penelitinya juga menekankan bahwa jumlah uji klinis manusia masih terbatas, jadi belum bisa disebut obat ajaib. Jadi manfaatnya apa Ekstrak ikan gabus bisa membantu sebagai tambahan nutrisi, terutama bila seseorang sulit makan cukup protein atau sedang butuh dukungan pemulihan. Pada pasien penyakit ginjal tahap akhir yang menjalani dialisis, sebuah uji acak terkontrol memakai ekstrak Channa striata 500 mg tiga kali sehari selama 21 hari.\n\nHasilnya, kadar albumin naik dan hs CRP turun dibanding plasebo. Tapi hasil penelitian tidak selalu sama. Pada pasien kanker serviks setelah operasi histerektomi radikal, pemberian kapsul ekstrak ikan gabus tidak menunjukkan perbedaan bermakna pada kadar albumin setelah operasi.\n\nIni penting supaya kita tidak menelan klaim secara mentah mentah. Jadi cara melihatnya begini. Ekstrak ikan gabus boleh dianggap sebagai pendukung pemulihan, bukan pengganti perawatan medis.\n\nKalau luka kotor, bernanah, berbau, makin nyeri, demam, atau gula darah tinggi, yang dibutuhkan bukan hanya suplemen. Harus diperiksa. Siapa yang mungkin terbantu Orang yang sedang pemulihan setelah operasi, ibu setelah melahirkan, pasien dengan luka yang sedang dirawat, atau orang yang asupan proteinnya kurang bisa mempertimbangkan ikan gabus sebagai bagian dari makanan tinggi protein.\n\nBisa dalam bentuk lauk ikan gabus biasa, sup ikan, atau ekstrak siap minum dan kapsul. Namun untuk pasien penyakit ginjal, penyakit hati berat, alergi ikan, ibu hamil dengan kondisi khusus, pasien kanker, atau pasien yang sedang banyak obat, sebaiknya tanya dokter dulu. Bukan karena ikan gabus pasti berbahaya, tapi karena kondisi tiap orang berbeda.\n\nMitos vs fakta Mitos 1 Ekstrak ikan gabus bisa menutup luka tanpa obat Faktanya, luka tetap butuh perawatan yang benar. Cuci luka, balut luka, kontrol infeksi, dan kontrol gula darah tetap nomor satu. Mitos 2 Semakin banyak diminum, semakin cepat sembuh Faktanya, tubuh tetap punya batas.\n\nTerlalu banyak suplemen tidak otomatis mempercepat penyembuhan. Mitos 3 Albumin rendah pasti cukup diatasi dengan ikan gabus Faktanya, albumin rendah bisa karena radang, infeksi, penyakit ginjal, penyakit hati, atau kurang makan. Penyebabnya harus dicari.\n\nMitos 4 Ikan gabus sama dengan obat antibiotik Faktanya, bukan. Kalau luka infeksi, antibiotik atau tindakan medis mungkin dibutuhkan sesuai pemeriksaan dokter. FAQ Apakah ikan gabus boleh dimakan tiap hari saat pemulihan Boleh saja bila tidak alergi dan tidak ada larangan dari dokter.\n\nLebih baik tetap bergantian dengan sumber protein lain seperti telur, ayam, tempe, tahu, susu, atau ikan lain. Lebih baik makan ikan gabus atau minum ekstraknya Kalau masih bisa makan dengan baik, makanan asli tetap pilihan bagus. Ekstrak bisa membantu bila nafsu makan turun atau butuh cara yang lebih praktis.\n\nBerapa lama biasanya diminum Tidak ada aturan yang sama untuk semua orang. Banyak studi memakai durasi beberapa minggu. Untuk penggunaan setelah operasi atau luka berat, ikuti saran dokter atau tenaga kesehatan.\n\nApakah aman untuk penderita diabetes Bisa saja, tapi jangan lupa yang paling menentukan adalah kontrol gula darah. Luka diabetes yang gula darahnya tinggi tetap sulit sembuh walaupun minum suplemen. Kapan harus ke dokter Kalau luka makin merah, bengkak, bernanah, berbau, nyeri bertambah, demam, luka terbuka lagi, atau tidak membaik setelah beberapa hari.\n\nKesimpulan Ekstrak ikan gabus punya dasar ilmiah yang cukup menarik sebagai pendukung penyembuhan, terutama karena kandungan protein, albumin, asam amino, dan mineralnya. Tapi jangan diposisikan sebagai obat sakti. Luka sembuh itu kerja tim.\n\nAda nutrisi, kebersihan luka, kontrol penyakit, istirahat, dan perawatan medis. Ikan gabus bisa jadi salah satu teman pemulihan, bukan satu satunya jalan. Daftar Pustaka AMA 1.\n\nMengistu DA, Alemu A, Abdukadir AA, et al. Global incidence of surgical site infection among patients: systematic review and meta-analysis. Inquiry.\n\n2023;60:469580231162549. doi:10.1177/00469580231162549 2. Ju M, Kim Y, Seo KW.\n\nRole of nutrition in wound healing and nutritional recommendations for promotion of wound healing: a narrative review. Ann Clin Nutr Metab. 2023;15(3):67-71.\n\ndoi:10.15747/ACNM.2023.15.3.67 3. Hapsari R, Tjandrawinata R. Nutritional composition and action mechanism of Channa striata meat in wound healing: a systematic review.\n\nNarra J. 2025;5(3):e2903. doi:10.52225/narra.v5i3.2903 4.\n\nPutranto W, Hestiningrum S, Febriani NI, et al. The effect of Channa striata extract on serum albumin and high sensitive C-reactive protein in end-stage renal disease patients: a randomized controlled trial. Pharmacogn J.\n\n2023;15(1):1-5. doi:10.5530/pj.2023.15.1 5. Akmelia C, Agustiansyah P, Saleh AZ, Theodorus.\n\nEfficacy of Channa striata extract capsule for serum albumin level and wound healing postradical hysterectomy in cervical cancer patients. Indones J Obstet Gynecol. 2021;9(3):149-152.\n\ndoi:10.32771/inajog.v9i3.1207 6. Sahid NA, Hayati F, Rao CV, et al. Snakehead consumption enhances wound healing?\n\nFrom tradition to modern clinical practice: a prospective randomized controlled trial. Evid Based Complement Alternat Med. 2018;2018:3032790.\n\ndoi:10.1155/2018/3032790",
+      "excerpt": "Kenapa banyak orang bilang bagus, dan mana yang benar Luka itu kelihatannya kecil. Tapi kalau penyembuhannya lambat, urusannya bisa panjang. Pada operasi, infeksi luka operasi masih jadi masalah di banyak negara.\n\nSatu meta analisis tahun 2023 menemukan angka infeksi luka operasi secara global sekitar 2,5 persen, dan bisa lebih tinggi di beberapa wilayah. Artinya dari 100 orang operasi, ada beberapa orang yang lukanya bisa bermasalah, bernanah, lama kering, atau harus kontrol berkali kali. Luka yang susah sembuh ju"
+    },
+    {
+      "title": "Fatty Liver Diam Diam Merusak Tubuh",
+      "file": "/portfolio-assets/articles/pdf/fatty-liver-diam-diam-merusak-tubuh.pdf",
+      "poster": "/portfolio-assets/articles/posters/manfaat-curcuma-pada-fatty-liver.png",
+      "posterPreview": "/portfolio-assets/thumbs/articles/manfaat-curcuma-pada-fatty-liver.webp",
+      "pages": 3,
+      "body": "Bayangkan ada 10 orang dewasa sedang duduk bersama. Sekitar 3 orang di antaranya mungkin punya fatty liver atau perlemakan hati. Secara global, penelitian besar memperkirakan fatty liver menyerang sekitar 30 persen orang dewasa, dan angkanya naik sekitar 50 persen dalam beberapa dekade terakhir.\n\nDi Indonesia, angkanya juga pernah diperkirakan sekitar 30 persen. Jadi ini bukan penyakit langka. Ini penyakit yang dekat sekali dengan hidup sehari hari.\n\nYang bikin berbahaya, fatty liver sering tidak terasa. Tidak selalu nyeri. Tidak selalu kuning.\n\nTidak selalu bikin lemas. Banyak orang baru tahu saat medical check up, USG perut, atau hasil SGOT SGPT naik. Padahal pada sebagian orang, lemak di hati bisa berkembang menjadi radang hati, jaringan parut, sirosis, bahkan kanker hati.\n\nRisiko kematian pada pasien fatty liver juga sering berkaitan dengan penyakit jantung dan pembuluh darah. Fatty liver artinya ada penumpukan lemak berlebihan di dalam hati. Hati itu ibarat dapur besar tubuh.\n\nIa mengolah gula, lemak, protein, obat, dan racun. Kalau lemak terlalu banyak menumpuk, kerja hati bisa terganggu. Penyebabnya sering dekat dengan kebiasaan harian, seperti berat badan berlebih, lingkar perut besar, diabetes, kolesterol tinggi, trigliserida tinggi, minuman manis, makanan tinggi kalori, kurang gerak, dan tidur berantakan.\n\nKabar baiknya, fatty liver masih bisa diperbaiki, terutama kalau ditemukan lebih awal. Penurunan berat badan sekitar 5 persen sudah dapat membantu mengurangi lemak hati. Penurunan sekitar 7 sampai 10 persen biasanya memberi dampak lebih baik pada peradangan hati.\n\nJadi kunci utamanya tetap gaya hidup, bukan sekadar minum herbal atau suplemen. Lalu Apa Peran Curcuma Curcuma sering dikenal masyarakat sebagai rimpang kuning seperti kunyit dan temulawak. Dalam penelitian fatty liver manusia, bahan yang paling banyak diteliti adalah curcumin, yaitu zat aktif utama dari kunyit Curcuma longa.\n\nUntuk temulawak Curcuma xanthorrhiza, bukti klinis manusia pada fatty liver masih jauh lebih terbatas. Curcumin menarik karena punya efek antioksidan dan antiradang. Pada fatty liver, tubuh sering mengalami peradangan ringan, stres oksidatif, gangguan gula darah, dan gangguan lemak darah.\n\nSecara teori, curcumin bisa membantu menenangkan proses tersebut. Namun kata membantu perlu digarisbawahi. Curcumin bukan obat ajaib yang bisa mencairkan lemak hati dalam semalam.\n\nBeberapa penelitian uji klinis dan meta analisis menunjukkan curcumin dapat membantu menurunkan enzim hati seperti AST dan ALT, serta memperbaiki gambaran lemak hati pada sebagian pasien. Meta analisis tahun 2023 yang menilai 16 uji klinis menemukan perbaikan AST, ALT, dan peluang perbaikan steatosis yang lebih tinggi pada kelompok curcumin dibanding kontrol.\n\nSalah satu uji klinis pada pasien fatty liver memberi curcumin selama 8 minggu. Hasilnya, perbaikan lemak hati lebih tinggi pada kelompok curcumin dibanding placebo, yaitu 78,9 persen dibanding 27,5 persen. Tapi ini tetap penelitian jangka pendek, jadi tidak boleh dibaca sebagai bukti bahwa semua orang pasti sembuh hanya dengan curcumin.\n\nYang juga penting, curcumin tidak terbukti konsisten menurunkan berat badan, BMI, atau lingkar perut pada pasien fatty liver. Jadi kalau pola makan masih tinggi gula, minuman manis masih jalan, gorengan tiap hari, dan jarang gerak, curcumin tidak akan cukup. Cara Paling Masuk Akal Curcuma atau curcumin boleh dilihat sebagai pendamping.\n\nBukan pengganti makan sehat, olahraga, kontrol gula darah, kontrol kolesterol, dan pemeriksaan dokter. Untuk sehari hari, lebih aman mulai dari makanan. Misalnya kunyit atau temulawak sebagai bagian dari masakan atau minuman tanpa gula berlebihan.\n\nKalau memakai suplemen curcumin dosis tinggi, apalagi yang ditambah piperine atau lada hitam agar penyerapannya tinggi, sebaiknya konsultasi dulu, terutama bila punya penyakit hati berat, batu empedu, sedang hamil, minum pengencer darah, atau rutin minum banyak obat. Natural bukan berarti selalu aman untuk semua orang. Pada kebanyakan studi, curcumin relatif aman jangka pendek, tapi laporan cedera hati akibat suplemen kunyit dosis tinggi tetap ada, walaupun jarang.\n\nJadi tetap pakai akal sehat. Mitos vs Fakta Mitos Fatty liver hanya terjadi pada peminum alkohol. Fakta Banyak fatty liver terjadi pada orang yang jarang atau tidak minum alkohol, terutama yang punya obesitas, diabetes, kolesterol tinggi, atau perut buncit.\n\nMitos Curcuma bisa membersihkan hati dengan cepat. Fakta Curcumin mungkin membantu peradangan dan enzim hati, tapi tidak menggantikan diet, olahraga, dan penurunan berat badan. Mitos Kalau sudah minum herbal, tidak perlu cek dokter.\n\nFakta Fatty liver perlu dipantau. Kadang perlu cek SGOT SGPT, gula darah, profil lipid, USG, atau FibroScan bila dicurigai fibrosis. FAQ Apakah curcuma boleh untuk fatty liver Boleh sebagai pendamping, terutama dalam bentuk makanan.\n\nUntuk suplemen dosis tinggi, lebih baik diskusi dulu dengan dokter. Berapa lama hasilnya terlihat Dalam studi, banyak penelitian memakai 8 sampai 12 minggu. Tapi hasil tiap orang berbeda.\n\nApakah temulawak sama dengan curcumin Tidak sama persis. Temulawak dan kunyit sama sama keluarga Curcuma, tetapi penelitian fatty liver manusia paling banyak memakai curcumin dari kunyit. Apa yang paling penting untuk fatty liver Turunkan berat badan bila berlebih, kurangi gula dan minuman manis, perbanyak gerak, kontrol diabetes dan kolesterol.\n\nDaftar Pustaka AMA 1. Younossi ZM, Golabi P, Paik JM, et al. The global epidemiology of nonalcoholic fatty liver disease and nonalcoholic steatohepatitis.\n\nHepatology. 2023;77:1335-1347. 2.\n\nAditya P, Lesmana CR. Pharmacological and non-pharmacological treatment in non-alcoholic fatty liver disease. Indones J Gastroenterol Hepatol Dig Endosc.\n\n2013. 3. Vilar-Gomez E, Martinez-Perez Y, Calzadilla-Bertot L, et al.\n\nWeight loss through lifestyle modification significantly reduces features of nonalcoholic steatohepatitis. Gastroenterology. 2015;149:367-378.e5.\n\n4. Lukkunaprasit T, Tansawet A, Boonmanunt S, et al. An updated meta-analysis of effects of curcumin on metabolic dysfunction-associated fatty liver disease.\n\nSci Rep. 2023;13:5824. doi:10.1038/s41598-023-33023-3 5.\n\nRahmani S, Asgary S, Askari G, et al. Treatment of non-alcoholic fatty liver disease with curcumin. Phytother Res.\n\n2016;30:1540-1548. doi:10.1002/ptr.5659 6. Jafarirad S, Mansoori A, Adineh A, Panahi Y, Hadi A, Goodarzi R.\n\nDoes turmeric/curcumin supplementation change anthropometric indices in patients with non-alcoholic fatty liver disease. Clin Nutr Res. 2019;8:196-208.\n\ndoi:10.7762/cnr.2019.8.3.196",
+      "excerpt": "Bayangkan ada 10 orang dewasa sedang duduk bersama. Sekitar 3 orang di antaranya mungkin punya fatty liver atau perlemakan hati. Secara global, penelitian besar memperkirakan fatty liver menyerang sekitar 30 persen orang dewasa, dan angkanya naik sekitar 50 persen dalam beberapa dekade terakhir.\n\nDi Indonesia, angkanya juga pernah diperkirakan sekitar 30 persen. Jadi ini bukan penyakit langka. Ini penyakit yang dekat sekali dengan hidup sehari hari.\n\nYang bikin berbahaya, fatty liver sering tidak terasa. Tidak sela"
+    },
+    {
+      "title": "Kalsium untuk Anak",
+      "file": "/portfolio-assets/articles/pdf/kalsium-untuk-anak.pdf",
+      "poster": "/portfolio-assets/articles/posters/kalsium-untuk-anak.png",
+      "posterPreview": "/portfolio-assets/thumbs/articles/kalsium-untuk-anak.webp",
+      "pages": 4,
+      "body": "Jangan tunggu tulang anak bermasalah baru mulai peduli Banyak orang tua lebih takut anak kurang makan nasi daripada kurang kalsium. Padahal kalsium itu bukan cuma soal tulang. Kalsium ikut membantu gigi kuat, otot bergerak, saraf bekerja, dan jantung berdetak normal.\n\nYang bikin ngeri, masalah kurang kalsium sering tidak kelihatan di awal. Anak bisa tetap lari, tetap main, tetap terlihat biasa saja. Tapi di dalam tubuh, tabungan tulangnya bisa pelan pelan kurang kuat.\n\nSecara global, sekitar 3,5 miliar orang berisiko kurang asupan kalsium. Sebagian besar berada di Asia dan Afrika. Banyak negara di Asia punya rata rata asupan kalsium di bawah 500 mg per hari, padahal kebutuhan anak dan remaja bisa jauh lebih tinggi dari itu.\n\nDi Indonesia, penelitian pada anak sekolah usia 5 sampai 12 tahun dari data Riskesdas 2018 menunjukkan masalah kekurangan zat gizi mikro masih terjadi, termasuk kalsium. Ini bukan masalah kecil, karena masa anak adalah masa tubuh sedang membangun fondasi. Kenapa masa anak itu penting sekali Tulang anak itu seperti bangunan yang sedang dikerjakan.\n\nKalau bahan bangunannya kurang, bangunannya tetap bisa berdiri, tapi mungkin tidak sekuat yang seharusnya. Sekitar 90 persen massa tulang sudah terbentuk pada usia 18 tahun. Artinya, masa anak dan remaja adalah masa emas untuk mengisi tabungan tulang.\n\nSetelah dewasa, tubuh lebih banyak menjaga daripada membangun dari nol. Kalau anak sering kurang kalsium, risikonya bisa muncul dalam bentuk gigi mudah bermasalah, tulang kurang kuat, nyeri otot, kram, sampai risiko tulang mudah patah di kemudian hari. Pada kekurangan yang berat, bisa muncul gangguan pertumbuhan tulang seperti rakitis, terutama bila kurang vitamin D juga.\n\nPeran kalsium untuk anak Kalsium punya beberapa tugas penting. Pertama, kalsium membantu membentuk tulang dan gigi. Hampir semua kalsium tubuh disimpan di tulang dan gigi.\n\nJadi kalau asupan dari makanan kurang, tubuh bisa mengambil cadangan dari tulang. Kedua, kalsium membantu otot bekerja. Saat anak berlari, melompat, atau menggenggam pensil, ototnya membutuhkan kalsium.\n\nKetiga, kalsium membantu saraf mengirim pesan. Tubuh anak bukan hanya butuh energi, tapi juga butuh sistem komunikasi yang lancar. Keempat, kalsium bekerja bersama vitamin D.\n\nKalsium adalah bahannya, vitamin D membantu tubuh menyerap bahan itu. Jadi minum susu banyak tapi anak jarang kena matahari dan kurang vitamin D, hasilnya bisa kurang maksimal. Anak butuh kalsium dari mana Sumber kalsium yang mudah ditemukan antara lain susu, yoghurt, keju, ikan kecil yang dimakan dengan tulangnya, tahu yang diproses dengan kalsium, tempe, sayuran hijau, kacang kacangan, dan makanan yang difortifikasi kalsium.\n\nUntuk anak yang tidak suka susu, jangan langsung panik. Kalsium tetap bisa dicari dari makanan lain. Yang penting bukan harus satu jenis makanan, tapi totalnya cukup dari pola makan sehari hari.\n\nContoh sederhana dalam sehari bisa seperti ini. Pagi minum susu atau yoghurt. Siang makan tahu atau tempe.\n\nMalam makan ikan atau sayur hijau. Bila anak sulit makan, pilih bentuk yang lebih mudah diterima, misalnya puding susu, smoothie buah dengan yoghurt, atau tahu telur. Apakah anak perlu suplemen kalsium Tidak semua anak perlu suplemen.\n\nMakanan tetap pilihan utama. Suplemen bisa dipertimbangkan bila anak sangat sulit makan, alergi atau tidak bisa konsumsi banyak sumber kalsium, punya kondisi medis tertentu, atau dokter menilai asupannya kurang. Penelitian menunjukkan suplementasi kalsium pada anak dapat memberi efek kecil terhadap kepadatan tulang, tapi bukan solusi ajaib yang menggantikan pola makan, aktivitas fisik, dan vitamin D.\n\nJadi jangan asal memberi suplemen dosis tinggi. Terlalu banyak kalsium juga tidak baik, bisa menyebabkan sembelit, mual, dan pada kondisi tertentu meningkatkan risiko batu ginjal. Mitos vs fakta Mitos 1: Kalsium cuma penting untuk anak yang pendek Fakta: Kalsium penting untuk semua anak, bukan hanya yang pendek.\n\nTinggi badan dipengaruhi banyak hal, termasuk genetik, protein, tidur, aktivitas fisik, penyakit, dan hormon. Mitos 2: Kalau sudah minum susu, pasti aman Fakta: Belum tentu. Tergantung jumlah susu, pola makan, vitamin D, dan apakah anak menyerap nutrisinya dengan baik.\n\nMitos 3: Kalsium bikin anak langsung tinggi Fakta: Kalsium membantu tulang tumbuh kuat, tapi tidak bisa memaksa anak jadi tinggi melebihi potensi tubuhnya. Mitos 4: Anak tidak suka susu berarti pasti kurang kalsium Fakta: Tidak selalu. Anak masih bisa dapat kalsium dari ikan kecil, tahu, tempe, sayur hijau, kacang, dan makanan fortifikasi.\n\nMitos 5: Makin banyak suplemen kalsium makin bagus Fakta: Salah. Kalsium harus cukup, bukan berlebihan. FAQ Kapan anak mulai butuh kalsium Sejak bayi sudah butuh kalsium.\n\nPada bayi, sumber utamanya ASI atau formula sesuai usia. Setelah MPASI, sumber kalsium mulai bisa ditambah dari makanan. Apakah susu wajib Tidak wajib, tapi susu termasuk sumber kalsium yang praktis.\n\nKalau anak tidak cocok susu, cari sumber lain. Apakah kalsium harus diminum bersama vitamin D Keduanya saling mendukung. Vitamin D membantu penyerapan kalsium.\n\nAnak juga perlu aktivitas luar rumah dan paparan matahari yang cukup. Tanda anak kurang kalsium apa Sering kali tidak jelas. Pada kondisi berat bisa ada kram, kesemutan, nyeri tulang, gigi mudah bermasalah, atau gangguan pertumbuhan tulang.\n\nBila curiga, sebaiknya periksa ke dokter. Makanan apa yang paling mudah untuk sehari hari Susu, yoghurt, tahu, tempe, ikan teri atau ikan kecil bertulang lunak, sayur hijau, kacang, dan makanan fortifikasi. Kesimpulan Kalsium itu seperti tabungan tulang anak.\n\nTidak terlihat langsung, tapi sangat menentukan kekuatan tubuhnya di masa depan. Anak tidak harus minum susu terus menerus, tapi asupan kalsiumnya perlu dipikirkan setiap hari. Makanan bergizi, cukup protein, vitamin D, aktivitas fisik, dan tidur yang baik adalah paket lengkap untuk pertumbuhan anak.\n\nDaftar pustaka 1. Shlisky J, Mandlik R, Askari S, et al. Calcium deficiency worldwide: prevalence of inadequate intakes and associated health outcomes.\n\nAnn N Y Acad Sci. 2022;1512(1):10-28. doi:10.1111/nyas.14758 2.\n\nErnawati F, Syauqy A, Arifin AY, Soekatri MYE, Sandjaja S. Micronutrients and nutrition status of school-aged children in Indonesia. J Nutr Metab.\n\n2023;2023:4610038. doi:10.1155/2023/4610038 3. Sopher AB, Fennoy I, Oberfield SE.\n\nAn update on childhood bone health: mineral accrual, assessment and treatment. Curr Opin Endocrinol Diabetes Obes. 2015;22(1):35-40.\n\ndoi:10.1097/MED.0000000000000125 4. Winzenberg TM, Shaw K, Fryer J, Jones G. Calcium supplementation for improving bone mineral density in children.\n\nCochrane Database Syst Rev. 2006;(2):CD005119. doi:10.1002/14651858.CD005119.pub2 5.\n\nAbrams SA. Bone health in school age children: effects of nutritional intake on outcomes. Front Nutr.\n\n2021;8:773425. doi:10.3389/fnut.2021.773425",
+      "excerpt": "Jangan tunggu tulang anak bermasalah baru mulai peduli Banyak orang tua lebih takut anak kurang makan nasi daripada kurang kalsium. Padahal kalsium itu bukan cuma soal tulang. Kalsium ikut membantu gigi kuat, otot bergerak, saraf bekerja, dan jantung berdetak normal.\n\nYang bikin ngeri, masalah kurang kalsium sering tidak kelihatan di awal. Anak bisa tetap lari, tetap main, tetap terlihat biasa saja. Tapi di dalam tubuh, tabungan tulangnya bisa pelan pelan kurang kuat.\n\nSecara global, sekitar 3,5 miliar orang berisi"
+    },
+    {
+      "title": "PPI untuk Maag Lambung",
+      "file": "/portfolio-assets/articles/pdf/ppi-untuk-maag-lambung.pdf",
+      "poster": "/portfolio-assets/articles/posters/maag-sering-kambuh.png",
+      "posterPreview": "/portfolio-assets/thumbs/articles/maag-sering-kambuh.webp",
+      "pages": 2,
+      "body": "Obat asam lambung yang sering dipakai, tapi jangan asal minum Keluhan maag itu bukan hal kecil. Secara global, penyakit asam lambung naik atau GERD diperkirakan mengenai sekitar 13,98% penduduk dunia, atau kira kira 1 miliar orang. Keluhan dispepsia fungsional seperti nyeri ulu hati, begah, cepat kenyang, dan mual juga cukup sering, sekitar 6,8 sampai 11,9% orang dewasa di dunia.\n\nDi Indonesia, data besar masih terbatas, tapi studi lokal menunjukkan keluhan GERD bisa ditemukan cukup tinggi pada kelompok masyarakat yang diteliti. Jadi kalau sering merasa lambung panas, dada perih, mulut pahit, atau perut begah, itu bukan cuma perasaan saja. Masalahnya memang banyak.\n\nMaag sebenarnya bukan satu penyakit saja. Orang sering menyebut semua nyeri ulu hati sebagai maag. Padahal penyebabnya bisa beda beda.\n\nBisa karena asam lambung naik ke kerongkongan, luka lambung, iritasi lambung akibat obat nyeri, infeksi bakteri Helicobacter pylori, atau gangguan fungsi lambung yang membuat perut gampang begah walau tidak ada luka besar. Di sinilah PPI sering dipakai. PPI adalah singkatan dari proton pump inhibitor.\n\nMudahnya, PPI adalah obat yang menurunkan produksi asam lambung. Lambung tetap bisa bekerja, tapi asamnya dibuat lebih rendah, sehingga bagian yang sedang iritasi punya waktu untuk tenang dan sembuh. Contoh obat PPI yang sering ditemui adalah omeprazole, lansoprazole, pantoprazole, esomeprazole, rabeprazole, dan dexlansoprazole.\n\nNama dagangnya bisa berbeda beda, tapi golongannya sama. PPI biasanya dipakai pada keluhan seperti GERD, luka lambung, luka usus dua belas jari, dispepsia tertentu, dan perlindungan lambung pada orang yang berisiko luka karena obat anti nyeri tertentu. Dalam konsensus Indonesia, pasien dispepsia tanpa tanda bahaya dapat diberikan terapi awal dengan PPI, dengan atau tanpa obat tambahan sesuai penilaian dokter.\n\nCara minumnya juga penting. PPI paling baik diminum 30 sampai 60 menit sebelum makan, biasanya sebelum sarapan. Jangan diminum setelah makan besar lalu berharap langsung hilang seperti obat maag cair.\n\nPPI bukan obat yang bekerja seketika. Ia bekerja dengan menekan pabrik asam lambung, jadi hasilnya sering lebih terasa setelah beberapa hari. Pada GERD, guideline ACG juga merekomendasikan PPI diminum 30 sampai 60 menit sebelum makan untuk kontrol gejala yang lebih baik.\n\nTapi ini yang sering dilupakan. Tidak semua maag harus minum PPI terus menerus. Kalau penyebabnya bakteri H.\n\npylori, maka perlu terapi antibiotik khusus. Kalau penyebabnya obat nyeri seperti ibuprofen, asam mefenamat, atau diclofenac, maka obat pemicunya perlu dievaluasi. Kalau penyebabnya pola makan, berat badan, rokok, alkohol, atau sering langsung tiduran setelah makan, obat saja tidak cukup.\n\nPPI juga bukan vitamin lambung. Obat ini umumnya aman bila dipakai sesuai indikasi. Namun pemakaian lama tanpa alasan jelas sebaiknya dievaluasi.\n\nAGA menyarankan penggunaan PPI ditinjau ulang secara berkala, karena sebagian pasien memakainya terus padahal indikasinya sudah tidak jelas. Kalau memang masih perlu, lanjut bisa benar. Kalau tidak perlu, dokter bisa menurunkan dosis atau menghentikan dengan cara yang aman.\n\nSegera periksa bila ada tanda bahaya seperti muntah darah, BAB hitam, berat badan turun tanpa sebab, sulit menelan, muntah terus, nyeri dada berat, pucat karena anemia, atau keluhan baru muncul pada usia lebih tua. Pada kondisi seperti ini, jangan hanya menutup gejala dengan obat maag. Mitos vs Fakta ● Mitos: Semua maag sembuh dengan PPI.\n\nFakta: Tidak selalu. Penyebab maag bisa beda beda. ● Mitos: PPI makin lama diminum makin bagus.\n\nFakta: PPI perlu durasi yang sesuai. Pemakaian lama harus punya alasan. ● Mitos: PPI diminum setelah makan.\n\nFakta: Umumnya lebih baik sebelum makan. FAQ Singkat Apakah PPI boleh dibeli sendiri? Bisa saja untuk keluhan ringan jangka pendek, tapi bila sering kambuh sebaiknya periksa.\n\nBerapa lama biasanya diminum? Tergantung penyakitnya. Ada yang cukup beberapa hari, ada yang perlu beberapa minggu.\n\nGERD tertentu bisa butuh terapi lebih lama. Kalau sudah enak boleh berhenti? Jangan asal berhenti bila dokter memberi durasi tertentu.\n\nNamun jangan juga minum berbulan bulan tanpa kontrol. Kesimpulan PPI adalah obat penting untuk banyak masalah asam lambung. Obat ini bisa sangat membantu, terutama bila keluhannya memang berhubungan dengan asam.\n\nTapi PPI bukan obat sapu bersih untuk semua maag. Kuncinya adalah pakai dengan cara benar, durasi benar, dan tetap cari penyebabnya. Daftar Pustaka AMA 1.\n\nNirwan JS, Hasan SS, Babar ZUD, Conway BR, Ghori MU. Global prevalence and risk factors of gastro-oesophageal reflux disease. Sci Rep.\n\n2020;10:5814. doi:10.1038/s41598-020-62795-1 2. Lee K, Kwon CI, Yeniova AÖ, et al.\n\nGlobal prevalence of functional dyspepsia according to Rome criteria, 1990–2020. Sci Rep. 2024;14:4172.\n\ndoi:10.1038/s41598-024-54716-3 3. Syam AF, et al. Management of dyspepsia and Helicobacter pylori infection: the 2022 Indonesian Consensus Report.\n\nGut Pathog. 2023;15:25. doi:10.1186/s13099-023-00551-2 4.\n\nKatz PO, Dunbar KB, Schnoll-Sussman FH, et al. ACG Clinical Guideline for the diagnosis and management of GERD. Am J Gastroenterol.\n\n2022;117:27-56. doi:10.14309/ajg.0000000000001538 5. Targownik LE, Fisher DA, Saini SD.\n\nAGA Clinical Practice Update on de-prescribing of proton pump inhibitors. Gastroenterology. 2022;162:1334-1342.\n\ndoi:10.1053/j.gastro.2021.12.247",
+      "excerpt": "Obat asam lambung yang sering dipakai, tapi jangan asal minum Keluhan maag itu bukan hal kecil. Secara global, penyakit asam lambung naik atau GERD diperkirakan mengenai sekitar 13,98% penduduk dunia, atau kira kira 1 miliar orang. Keluhan dispepsia fungsional seperti nyeri ulu hati, begah, cepat kenyang, dan mual juga cukup sering, sekitar 6,8 sampai 11,9% orang dewasa di dunia.\n\nDi Indonesia, data besar masih terbatas, tapi studi lokal menunjukkan keluhan GERD bisa ditemukan cukup tinggi pada kelompok masyarakat "
+    },
+    {
+      "title": "Zinc untuk Anak Besar Perannya",
+      "file": "/portfolio-assets/articles/pdf/zinc-untuk-anak-besar-perannya.pdf",
+      "poster": "/portfolio-assets/articles/posters/zinc-untuk-anak-besar-perannya.png",
+      "posterPreview": "/portfolio-assets/thumbs/articles/zinc-untuk-anak-besar-perannya.webp",
+      "pages": 4,
+      "body": "Banyak orang tua baru panik saat anak demam tinggi. Tapi ada satu penyakit yang sering dianggap biasa, padahal bisa berbahaya kalau telat ditangani. Penyakit itu adalah diare.\n\nSecara global, diare masih menjadi ancaman besar pada anak balita. Studi berbasis Global Burden of Disease 2021 menyebut diare pada anak di bawah 5 tahun masih menjadi masalah kesehatan besar, walaupun angkanya sudah menurun dari tahun ke tahun. Penyebab kematian tersering masih berkaitan dengan gizi buruk, berat badan kurang, ASI tidak eksklusif, dan infeksi seperti rotavirus.\n\nDi Asia Tenggara, masalah ini juga dekat dengan kita. Satu penelitian pada lima negara Asia Tenggara menemukan bahwa angka diare balita paling tinggi ada di Indonesia, yaitu sekitar 18,21 persen. Artinya, dari 100 anak balita, kira kira 18 pernah mengalami diare dalam periode pengamatan penelitian tersebut.\n\nMasalahnya, diare bukan cuma anak jadi sering BAB cair. Kalau cairan tubuh banyak keluar, anak bisa lemas, mata cekung, jarang pipis, bahkan dehidrasi berat. Pada anak kecil, kondisi bisa memburuk lebih cepat dibanding orang dewasa.\n\nLalu zinc itu apa Zinc adalah mineral kecil yang dibutuhkan tubuh anak. Jumlahnya memang tidak banyak, tapi kerjanya penting. Zinc membantu daya tahan tubuh, pertumbuhan, penyembuhan luka, dan menjaga dinding usus tetap kuat.\n\nKalau tubuh kekurangan zinc, anak bisa lebih mudah terkena infeksi, lebih lama pulih saat sakit, dan pertumbuhan bisa ikut terganggu. Penelitian di Indonesia pada anak sekolah menemukan kekurangan zinc sekitar 19,7 persen, jadi ini bukan masalah yang jauh dari kehidupan sehari hari. Kenapa zinc sering diberikan saat anak diare Saat diare, dinding usus sedang terganggu.\n\nZinc membantu memperbaiki kerja usus, mengurangi keluarnya cairan berlebihan dari usus, dan membantu tubuh melawan infeksi. Meta analisis tahun 2024 yang menggabungkan 38 uji klinis acak menemukan bahwa zinc pada anak dengan diare akut atau diare cair persisten membantu lebih banyak anak pulih saat pemantauan terakhir, dan rata rata memperpendek lama diare sekitar 13 jam dibanding plasebo.\n\nTapi penting dipahami, zinc bukan pengganti oralit. Saat anak diare, yang paling penting tetap cairan. Oralit membantu mengganti cairan dan garam tubuh yang hilang.\n\nZinc membantu proses pemulihan usus. Apakah semua anak perlu zinc setiap hari Tidak selalu. Untuk anak sehat, kebutuhan zinc sebaiknya dipenuhi dari makanan sehari hari.\n\nContohnya telur, ikan, daging ayam, daging sapi, hati, susu, kacang kacangan, tempe, tahu, dan makanan laut. Suplemen zinc biasanya lebih sering diberikan saat anak diare, atau bila dokter menilai anak berisiko kekurangan zinc. Jangan asal memberi zinc dosis tinggi setiap hari tanpa arahan tenaga kesehatan.\n\nTerlalu banyak zinc bisa menyebabkan mual, muntah, nyeri perut, dan mengganggu penyerapan mineral lain. Dalam penelitian besar NEJM pada anak 6 sampai 59 bulan dengan diare akut, zinc dosis lebih rendah 5 mg atau 10 mg per hari punya hasil yang tidak kalah dibanding 20 mg, dan muntah lebih sedikit. Ini menunjukkan bahwa dosis harus dipakai dengan bijak, bukan makin besar makin bagus.\n\nMitos vs Fakta Mitos Fakta Anak diare cukup diberi obat mampet Tidak selalu. Yang utama adalah cegah dehidrasi dengan oralit Zinc langsung menghentikan diare Zinc membantu mempercepat pemulihan, tapi bukan obat yang membuat diare berhenti seketika Kalau sudah minum zinc, tidak perlu oralit Salah. Oralit tetap paling penting saat anak diare Zinc makin tinggi dosisnya makin bagus Tidak benar.\n\nDosis perlu sesuai usia dan arahan tenaga kesehatan Zinc hanya untuk anak yang sakit Zinc juga ada dalam makanan harian dan penting untuk tumbuh kembang Kapan anak diare harus segera dibawa ke dokter Segera periksa bila anak sangat lemas, tidak mau minum, muntah terus, BAB berdarah, demam tinggi, mata cekung, bibir kering, jarang pipis, atau diare terjadi pada bayi kecil.\n\nJangan tunggu sampai anak terlihat sangat parah. FAQ Apakah zinc aman untuk anak Aman bila dosis dan lama pemakaian sesuai anjuran. Jangan diberikan berlebihan.\n\nZinc diminum berapa lama saat diare Umumnya diberikan beberapa hari sesuai arahan dokter atau petugas kesehatan. Ikuti aturan pada obat yang diberikan. Apakah zinc bisa menaikkan nafsu makan Zinc berperan dalam metabolisme dan pertumbuhan.\n\nBila anak kurang zinc, perbaikan asupan zinc bisa membantu kondisi tubuh. Tapi zinc bukan obat instan penambah nafsu makan. Apakah zinc bisa mencegah anak sakit terus Zinc membantu kerja daya tahan tubuh.\n\nNamun anak tetap perlu makan bergizi, tidur cukup, imunisasi, kebersihan tangan, air bersih, dan lingkungan yang sehat. Kesimpulan Zinc adalah mineral kecil yang penting untuk anak. Bukti paling kuat terlihat pada diare anak, terutama sebagai pendamping oralit.\n\nZinc dapat membantu usus pulih lebih cepat dan mendukung daya tahan tubuh. Tapi zinc bukan obat ajaib, bukan pengganti cairan, dan bukan alasan untuk menunda ke dokter bila muncul tanda bahaya. Daftar Pustaka AMA 1.\n\nChu C, Yang G, Yang J, Wang H. Trends in epidemiological characteristics and etiologies of diarrheal disease in children under five: an ecological study based on Global Burden of Disease Study 2021. Sci One Health.\n\n2024;3:100086. doi:10.1016/j.soh.2024.100086. 2.\n\nArifin H, Rakhmawati W, Kurniawati Y, et al. Prevalence and determinants of diarrhea among under-five children in five Southeast Asian countries: evidence from the demographic health survey. J Pediatr Nurs.\n\n2022;66:e37-e45. doi:10.1016/j.pedn.2022.06.005. 3.\n\nAli AA, Naqvi SK, Hasnain Z, et al. Zinc supplementation for acute and persistent watery diarrhoea in children: a systematic review and meta-analysis. J Glob Health.\n\n2024;14:04212. doi:10.7189/jogh.14.04212. PMID:39641338.\n\n4. Dhingra U, Kisenge R, Sudfeld CR, et al. Lower-dose zinc for childhood diarrhea: a randomized multicenter trial.\n\nN Engl J Med. 2020;383:1231-1241. doi:10.1056/NEJMoa1915905.\n\nPMID:32966722. 5. Ernawati F, Efriwati, Nurjanah N, et al.\n\nMicronutrients and nutrition status of school-aged children in Indonesia. J Nutr Metab. 2023;2023:4610038.\n\ndoi:10.1155/2023/4610038. PMID:37705875. 6.\n\nWessels I, Maywald M, Rink L. Zinc as a gatekeeper of immune function. Nutrients.\n\n2017;9(12):1286. doi:10.3390/nu9121286. PMID:29186856.",
+      "excerpt": "Banyak orang tua baru panik saat anak demam tinggi. Tapi ada satu penyakit yang sering dianggap biasa, padahal bisa berbahaya kalau telat ditangani. Penyakit itu adalah diare.\n\nSecara global, diare masih menjadi ancaman besar pada anak balita. Studi berbasis Global Burden of Disease 2021 menyebut diare pada anak di bawah 5 tahun masih menjadi masalah kesehatan besar, walaupun angkanya sudah menurun dari tahun ke tahun. Penyebab kematian tersering masih berkaitan dengan gizi buruk, berat badan kurang, ASI tidak eksk"
+    }
+  ],
+  "designs": [
+    {
+      "title": "New Buletin Data Carousel",
+      "file": "/portfolio-assets/designs/new-buletin-data-carousel.pdf",
+      "preview": "/portfolio-assets/thumbs/designs/new-buletin-data-carousel.webp",
+      "size": 21235954,
+      "pages": 4,
+      "kind": "pdf",
+      "summary": "A multi-page data bulletin carousel designed for public education, built to make health information feel clear, visual, and shareable."
+    },
+    {
+      "title": "Parenting - Picky Eater",
+      "file": "/portfolio-assets/designs/parenting-picky-eater.png",
+      "preview": "/portfolio-assets/thumbs/designs/parenting-picky-eater.webp",
+      "size": 19295957,
+      "pages": 1,
+      "kind": "image",
+      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
+    },
+    {
+      "title": "Parenting Pregnancy Child Health - Baby Walker",
+      "file": "/portfolio-assets/designs/parenting-pregnancy-child-health-baby-walker.png",
+      "preview": "/portfolio-assets/thumbs/designs/parenting-pregnancy-child-health-baby-walker.webp",
+      "size": 13144994,
+      "pages": 1,
+      "kind": "image",
+      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
+    },
+    {
+      "title": "Parenting Pregnancy Child Health - Kopi Kejang",
+      "file": "/portfolio-assets/designs/parenting-pregnancy-child-health-kopi-kejang.png",
+      "preview": "/portfolio-assets/thumbs/designs/parenting-pregnancy-child-health-kopi-kejang.webp",
+      "size": 14150818,
+      "pages": 1,
+      "kind": "image",
+      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
+    },
+    {
+      "title": "Parenting Pregnancy Child Health - Madu Bayi",
+      "file": "/portfolio-assets/designs/parenting-pregnancy-child-health-madu-bayi.png",
+      "preview": "/portfolio-assets/thumbs/designs/parenting-pregnancy-child-health-madu-bayi.webp",
+      "size": 14491621,
+      "pages": 1,
+      "kind": "image",
+      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
+    }
+  ],
+  "certificates": [
+    {
+      "title": "ACLS AHA dr Marcho",
+      "file": "/portfolio-assets/certificates/acls-aha-dr-marcho.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/acls-aha-dr-marcho.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Analitik Data Google",
+      "file": "/portfolio-assets/certificates/analitik-data-google.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/analitik-data-google.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Artificial Intelligence MySkill Certificate",
+      "file": "/portfolio-assets/certificates/artificial-intelligence-myskill-certificate.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/artificial-intelligence-myskill-certificate.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Basic Accounting Sertifikat Marcho",
+      "file": "/portfolio-assets/certificates/basic-accounting-sertifikat-marcho.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/basic-accounting-sertifikat-marcho.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Google Certificate Foundations of Digital Marketing and E-commerce",
+      "file": "/portfolio-assets/certificates/google-certificate-foundations-of-digital-marketing-and-e-commerce.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/google-certificate-foundations-of-digital-marketing-and-e-commerce.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Hiperkes Kemnaker dr Marcho",
+      "file": "/portfolio-assets/certificates/hiperkes-kemnaker-dr-marcho.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/hiperkes-kemnaker-dr-marcho.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Marcho Sertifikat Sevenpreneur Business Blueprint Program Batch 02 - Scale Up Bisnis",
+      "file": "/portfolio-assets/certificates/marcho-sertifikat-sevenpreneur-business-blueprint-program-batch-02-scale-up-bisnis.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/marcho-sertifikat-sevenpreneur-business-blueprint-program-batch-02-scale-up-bisnis.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Purwadhika Marcho Product Management",
+      "file": "/portfolio-assets/certificates/purwadhika-marcho-product-management.pdf",
+      "preview": "/portfolio-assets/thumbs/certificates/purwadhika-marcho-product-management.webp",
+      "pages": 1,
+      "kind": "pdf"
+    },
+    {
+      "title": "Sertifikasi Ahli K3 Umum",
+      "file": "/portfolio-assets/certificates/sertifikasi-ahli-k3-umum.jpeg",
+      "preview": "/portfolio-assets/thumbs/certificates/sertifikasi-ahli-k3-umum.webp",
+      "pages": 1,
+      "kind": "jpeg"
+    },
+    {
+      "title": "Sertifikasi Dasar Sistem Manajemen Keselamatan dan Kesehatan Kerja (SMK3) untuk Ahli K3 Muda",
+      "file": "/portfolio-assets/certificates/sertifikasi-dasar-sistem-manajemen-keselamatan-dan-kesehatan-kerja-smk3-untuk-ahli-k3-muda.jpeg",
+      "preview": "/portfolio-assets/thumbs/certificates/sertifikasi-dasar-sistem-manajemen-keselamatan-dan-kesehatan-kerja-smk3-untuk-ahli-k3-muda.webp",
+      "pages": 1,
+      "kind": "jpeg"
+    }
+  ],
+  "videos": [
+    {
+      "title": "Edukasi Hiperfosfat",
+      "file": "https://github.com/zenwaku/marcho-portfolio/releases/download/media-v1/edukasi-hiperfosfat-1080.mp4",
+      "size": 143205326,
+      "delivery": "github-release"
+    },
+    {
+      "title": "Lyric Video Hiperfosfat",
+      "file": "https://github.com/zenwaku/marcho-portfolio/releases/download/media-v1/hiperfosfat-1080.mp4",
+      "size": 173448190,
+      "delivery": "github-release"
+    }
+  ],
+  "counts": {
+    "projects": 3,
+    "slides": 12,
+    "articles": 6,
+    "designs": 5,
+    "certificates": 10,
+    "videos": 2
+  }
+}

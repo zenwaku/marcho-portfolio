@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Probiotik Anak untuk Moms | Interactive Fullscreen Slides</title>
+<style>
+  :root {
+    --ink:#17231b; --muted:#667568; --paper:#fffdf4; --white:#ffffff;
+    --mint:#bff6da; --leaf:#28b779; --deep:#0f5d3e; --lime:#dcff80;
+    --aqua:#9de8ff; --blue:#6a95ff; --sun:#ffd35a; --coral:#ff806d;
+    --pink:#f47aa6; --violet:#9b72ff; --cream:#fff4cf; --shadow:0 26px 80px rgba(13,46,28,.18);
+    --r:clamp(24px,3.2vmin,48px);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;overflow:hidden;background:#07110c;color:var(--ink);font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif}
+  .deck{position:relative;width:100vw;height:100vh;overflow:hidden;background:
+    radial-gradient(circle at 8% 10%, rgba(220,255,128,.58), transparent 25%),
+    radial-gradient(circle at 88% 8%, rgba(157,232,255,.62), transparent 23%),
+    radial-gradient(circle at 86% 86%, rgba(244,122,166,.26), transparent 30%),
+    linear-gradient(130deg,#faffef 0%,#f8fff7 42%,#fff5df 100%);}
+  .deck::before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 120deg, rgba(40,183,121,.18), rgba(157,232,255,.26), rgba(255,211,90,.2), rgba(244,122,166,.16), rgba(40,183,121,.18));animation:slowSpin 34s linear infinite;opacity:.75;z-index:0}
+  @keyframes slowSpin{to{transform:rotate(360deg)}}
+  .noise{position:absolute;inset:0;opacity:.12;background-image:radial-gradient(rgba(23,35,27,.28) 1px, transparent 1px);background-size:18px 18px;z-index:1;pointer-events:none;mask-image:linear-gradient(to bottom, transparent, #000 10%, #000 88%, transparent)}
+  .blob{position:absolute;border-radius:999px;filter:blur(18px);mix-blend-mode:multiply;opacity:.82;z-index:1;animation:drift 16s ease-in-out infinite alternate}
+  .blob.one{width:32vw;height:32vw;background:rgba(191,246,218,.85);left:-10vw;top:8vh}
+  .blob.two{width:26vw;height:26vw;background:rgba(255,211,90,.6);right:6vw;top:-9vh;animation-delay:-6s}
+  .blob.three{width:30vw;height:30vw;background:rgba(106,149,255,.18);left:42vw;bottom:-12vh;animation-delay:-2s}
+  .blob.four{width:22vw;height:22vw;background:rgba(244,122,166,.24);right:-8vw;bottom:10vh;animation-delay:-9s}
+  @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(3vw,2vh,0) scale(1.15)}}
+  .microbe-field{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+  .micro{position:absolute;width:clamp(8px,1.3vmin,17px);height:clamp(8px,1.3vmin,17px);border-radius:50%;background:rgba(40,183,121,.24);box-shadow:inset -3px -4px 0 rgba(0,0,0,.05);animation:floaty var(--d) ease-in-out infinite alternate}
+  .micro::before,.micro::after{content:"";position:absolute;background:rgba(255,255,255,.8);border-radius:50%;width:25%;height:25%;top:25%}
+  .micro::before{left:24%} .micro::after{right:24%}
+  @keyframes floaty{to{transform:translateY(-34px) rotate(24deg)}}
+
+  .hud{position:absolute;left:clamp(14px,2vw,30px);right:clamp(14px,2vw,30px);top:clamp(12px,2vh,24px);z-index:35;display:flex;align-items:center;gap:12px;transition:opacity .25s ease, transform .25s ease}
+  .deck.title-mode .hud{opacity:0;transform:translateY(-10px);pointer-events:none}
+  .deck.title-mode .controls{opacity:0;pointer-events:none}
+  .deck.title-mode:hover .controls{opacity:.92;pointer-events:auto}
+  .brand{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.58);backdrop-filter:blur(18px);border:1px solid rgba(23,35,27,.1);font-weight:950;letter-spacing:-.035em;white-space:nowrap;box-shadow:0 10px 28px rgba(23,35,27,.08)}
+  .brandmark{width:30px;height:30px;border-radius:11px;background:linear-gradient(135deg,var(--leaf),var(--aqua));display:grid;place-items:center;color:white;font-weight:1000}
+  .progressBox{height:11px;flex:1;background:rgba(255,255,255,.5);border:1px solid rgba(23,35,27,.09);border-radius:999px;overflow:hidden;backdrop-filter:blur(16px)}
+  .progress{height:100%;width:0;background:linear-gradient(90deg,var(--leaf),var(--lime),var(--sun),var(--coral));border-radius:999px;transition:width .35s ease}
+  .count{min-width:76px;text-align:center;padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid rgba(23,35,27,.1);font-weight:950;box-shadow:0 10px 28px rgba(23,35,27,.08)}
+
+  .slides{position:absolute;inset:0;z-index:10}
+  .slide{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(330px,.82fr);gap:clamp(22px,4vw,70px);padding:clamp(78px,9vh,118px) clamp(42px,7.2vw,124px) clamp(70px,8vh,112px);opacity:0;pointer-events:none;transform:translateX(5vw) scale(.985);transition:opacity .52s ease,transform .62s cubic-bezier(.2,.9,.16,1);overflow:hidden}
+  .slide.active{opacity:1;pointer-events:auto;transform:translateX(0) scale(1)}
+  .slide.before{transform:translateX(-5vw) scale(.985)}
+  .slide.title{display:grid;place-items:center;text-align:center;padding:clamp(42px,8vh,100px);grid-template-columns:1fr;}
+  .slide.title h1{font-size:clamp(54px,11vmin,132px);max-width:12ch;line-height:.82;letter-spacing:-.085em;margin:0;text-wrap:balance}
+  .presenter{font-size:clamp(18px,3vmin,34px);font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-top:clamp(20px,4vh,44px);color:#246244}
+  .titleGlow{position:absolute;width:52vmin;height:52vmin;border-radius:50%;background:radial-gradient(circle,rgba(220,255,128,.9),rgba(157,232,255,.34) 44%,transparent 72%);filter:blur(4px);animation:breathe 4.5s ease-in-out infinite alternate;z-index:-1}
+  @keyframes breathe{to{transform:scale(1.18);opacity:.78}}
+
+  .copy{min-width:0;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:3}
+  .copyInner{transform-origin:left center;max-width:100%;}
+  h1{font-size:clamp(34px,7.4vmin,88px);line-height:.91;letter-spacing:-.075em;margin:0 0 clamp(14px,2.4vh,26px);font-weight:1000;max-width:12.2ch;text-wrap:balance}
+  .data h1{max-width:13ch}
+  .bridge h1{max-width:11.8ch}
+  .body{font-size:clamp(16px,2.65vmin,34px);line-height:1.14;letter-spacing:-.032em;font-weight:680;color:#27392b;max-width:27ch;white-space:pre-line;text-wrap:balance}
+  .body.compact{font-size:clamp(14px,2.1vmin,25px);line-height:1.15;max-width:42ch}
+  .body.small{font-size:clamp(11px,1.42vmin,17px);line-height:1.22;max-width:100%;letter-spacing:-.012em;column-count:2;column-gap:clamp(18px,4vw,52px);font-weight:620;color:#394b3f;text-wrap:auto}
+  .bigNumber{font-size:clamp(68px,17vmin,190px);line-height:.78;letter-spacing:-.1em;font-weight:1000;margin:clamp(4px,1vh,10px) 0 clamp(10px,2vh,22px);background:linear-gradient(130deg,#0c7d52,#58ce68,#ff9567);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 30px rgba(40,183,121,.14))}
+  .note{font-size:clamp(13px,1.8vmin,21px);line-height:1.26;color:#5b6f61;font-weight:720;max-width:41ch;white-space:pre-line;margin-top:clamp(12px,2vh,22px)}
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(18px,3vh,34px)}
+  .chip{padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.56);border:1px solid rgba(23,35,27,.1);backdrop-filter:blur(16px);font-size:clamp(12px,1.5vmin,16px);font-weight:900;color:#255037;box-shadow:0 10px 24px rgba(23,35,27,.06)}
+
+  .visual{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;z-index:2}
+  .artCard{position:relative;width:min(42vw,58vmin,560px);aspect-ratio:1/1;border-radius:var(--r);background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.26));border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(22px);box-shadow:var(--shadow);overflow:hidden;isolation:isolate;transform-style:preserve-3d}
+  .slide.active .artCard{animation:cardIn .75s cubic-bezier(.2,.9,.16,1) both}
+  @keyframes cardIn{from{opacity:0;transform:translateY(24px) rotateX(5deg) scale(.96)}to{opacity:1;transform:none}}
+  .artCard::before{content:"";position:absolute;inset:-35%;background:conic-gradient(from 100deg,rgba(255,211,90,.44),rgba(157,232,255,.4),rgba(220,255,128,.48),rgba(244,122,166,.22),rgba(255,211,90,.44));animation:slowSpin 13s linear infinite;z-index:-2}
+  .artCard::after{content:"";position:absolute;inset:12px;border-radius:calc(var(--r) - 10px);background:rgba(255,255,255,.66);z-index:-1}
+  .art{position:absolute;inset:7%;display:grid;place-items:center}
+  svg{width:100%;height:100%;overflow:visible}
+  .floatingBadge{position:absolute;left:7%;right:7%;bottom:7%;padding:14px 16px;border-radius:24px;background:rgba(255,255,255,.72);border:1px solid rgba(23,35,27,.09);backdrop-filter:blur(14px);box-shadow:0 14px 36px rgba(23,35,27,.11);font-weight:900;color:#214730;font-size:clamp(12px,1.7vmin,18px);line-height:1.14}
+  .ringOrbit{position:absolute;inset:8%;border:1px dashed rgba(40,183,121,.28);border-radius:50%;animation:slowSpin 26s linear infinite}
+  .ringOrbit::before,.ringOrbit::after{content:"";position:absolute;width:clamp(14px,3vmin,30px);height:clamp(14px,3vmin,30px);border-radius:50%;background:var(--lime);box-shadow:0 12px 28px rgba(40,183,121,.14)}
+  .ringOrbit::before{left:13%;top:4%} .ringOrbit::after{right:5%;bottom:16%;background:var(--aqua)}
+
+  .chartPanel{position:absolute;left:8%;right:8%;bottom:7%;border-radius:28px;background:rgba(255,255,255,.78);border:1px solid rgba(23,35,27,.09);backdrop-filter:blur(16px);padding:clamp(12px,2vmin,20px);box-shadow:0 16px 42px rgba(23,35,27,.10)}
+  .chartTitle{font-size:clamp(10px,1.35vmin,14px);font-weight:950;text-transform:uppercase;letter-spacing:.08em;color:#2b6041;margin-bottom:12px}
+  .bars{height:clamp(96px,18vmin,160px);display:flex;align-items:flex-end;gap:clamp(10px,2vmin,18px);padding:8px 5px 26px}
+  .bar{flex:1;border-radius:16px 16px 10px 10px;background:linear-gradient(180deg,var(--c),rgba(255,255,255,.55));height:0;position:relative;transition:height 1.2s cubic-bezier(.16,.8,.2,1)}
+  .active .bar{height:var(--h)}
+  .bar b{position:absolute;left:50%;top:-28px;transform:translateX(-50%);font-size:clamp(13px,1.9vmin,20px);font-weight:1000}
+  .bar span{position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);font-size:clamp(10px,1.35vmin,14px);font-weight:900;color:#5a6c60}
+  .donut{width:clamp(130px,25vmin,240px);aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--leaf) calc(var(--p)*1%), rgba(23,35,27,.08) 0);display:grid;place-items:center;margin:auto;box-shadow:inset 0 0 0 clamp(20px,4vmin,38px) rgba(255,255,255,.76)}
+  .donut strong{font-size:clamp(30px,6vmin,64px);letter-spacing:-.06em}
+  .waves{height:clamp(90px,17vmin,160px);position:relative;border-radius:20px;background:linear-gradient(to top,rgba(157,232,255,.75),rgba(255,255,255,.4));overflow:hidden}
+  .waves::before,.waves::after{content:"";position:absolute;left:-20%;width:140%;height:74%;bottom:12%;background:rgba(40,183,121,.22);border-radius:46% 54% 48% 52%;animation:wave 5s ease-in-out infinite}
+  .waves::after{background:rgba(106,149,255,.22);bottom:20%;animation-duration:7s;animation-delay:-1.6s}
+  @keyframes wave{50%{transform:translateX(7%) rotate(4deg)}}
+
+  .ref{position:absolute;left:clamp(42px,7.2vw,124px);right:clamp(42px,7.2vw,124px);bottom:clamp(14px,2.2vh,28px);font-size:clamp(8px,1.05vmin,12px);line-height:1.22;color:rgba(23,35,27,.56);z-index:25;display:flex;gap:8px;align-items:flex-end}
+  .ref b{color:#2f6043}
+  .ref span{display:block;max-width:100%}
+  .slide.title .ref{display:none}
+
+  .controls{position:absolute;right:clamp(12px,2vw,26px);bottom:clamp(12px,2vh,24px);z-index:50;display:flex;gap:9px;transition:opacity .25s ease}
+  button{border:0;border-radius:999px;padding:11px 15px;background:rgba(255,255,255,.66);border:1px solid rgba(23,35,27,.1);backdrop-filter:blur(16px);font-weight:950;color:#183322;box-shadow:0 12px 32px rgba(23,35,27,.1);cursor:pointer}
+  button:hover{transform:translateY(-2px);background:rgba(255,255,255,.9)}
+  .hint{display:none}
+
+  .menu{position:absolute;top:clamp(64px,9vh,92px);left:clamp(12px,2vw,26px);bottom:clamp(70px,9vh,100px);width:min(340px,88vw);z-index:70;overflow:auto;padding:12px;border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(23,35,27,.12);backdrop-filter:blur(22px);box-shadow:var(--shadow);transform:translateX(-112%);transition:transform .3s ease}
+  .menu.open{transform:translateX(0)}
+  .thumb{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;width:100%;text-align:left;padding:10px;border-radius:17px;background:rgba(255,255,255,.44);box-shadow:none;margin-bottom:8px}
+  .thumb.active{background:rgba(191,246,218,.68);border-color:rgba(40,183,121,.28)}
+  .thumbNo{width:32px;height:32px;border-radius:11px;background:linear-gradient(135deg,var(--leaf),var(--aqua));color:#fff;display:grid;place-items:center;font-size:12px;font-weight:1000}
+  .thumbTxt{font-size:13px;line-height:1.1;font-weight:900;color:#1d3425;letter-spacing:-.02em}
+
+  .mythGrid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px;max-width:44ch}
+  .mythCard{padding:13px 14px;border-radius:20px;background:rgba(255,255,255,.63);border:1px solid rgba(23,35,27,.09);font-size:clamp(13px,1.75vmin,19px);line-height:1.16;font-weight:800;box-shadow:0 12px 30px rgba(23,35,27,.07)}
+  .mythCard strong{display:block;color:#0f6845;margin-bottom:4px}
+  .faqItem{padding:14px 16px;border-radius:22px;background:rgba(255,255,255,.64);border:1px solid rgba(23,35,27,.09);margin:10px 0;box-shadow:0 12px 30px rgba(23,35,27,.07)}
+  .faqQ{font-weight:1000;color:#0f6845;font-size:clamp(14px,1.9vmin,21px);margin-bottom:5px}
+  .faqA{font-weight:730;color:#2b3e30;font-size:clamp(13px,1.7vmin,19px);line-height:1.18}
+
+  .spotlight{position:absolute;z-index:5;width:24vw;height:24vw;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.68),transparent 68%);mix-blend-mode:screen;pointer-events:none;opacity:.56;transform:translate(-50%,-50%);transition:opacity .2s}
+
+  @media(max-width: 900px){
+    .slide{grid-template-columns:1fr;gap:clamp(12px,2vh,22px);padding:clamp(78px,9vh,96px) clamp(22px,5vw,38px) clamp(82px,10vh,110px);overflow:auto}
+    .slide.title{padding:clamp(42px,8vh,80px)}
+    .copy{justify-content:flex-start}
+    h1{font-size:clamp(32px,9.5vmin,62px);max-width:13ch}
+    .body{font-size:clamp(16px,4.1vmin,25px);max-width:100%}
+    .body.small{column-count:1;font-size:clamp(11px,3vmin,15px)}
+    .bigNumber{font-size:clamp(70px,22vmin,130px)}
+    .visual{min-height:min(36vh,340px)}
+    .artCard{width:min(72vw,340px)}
+    .ref{left:clamp(22px,5vw,38px);right:clamp(22px,5vw,38px);bottom:clamp(48px,7vh,78px);font-size:9px}
+    .brand span{display:none}
+    .count{min-width:58px;padding:9px 10px;font-size:12px}
+    .hint{display:none}
+    .controls{left:12px;right:12px;justify-content:center}
+  }
+  @media(max-width: 520px){button{padding:10px 12px;font-size:12px} .progressBox{height:9px} .brandmark{width:28px;height:28px}}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+  <div class="noise"></div><div class="blob one"></div><div class="blob two"></div><div class="blob three"></div><div class="blob four"></div>
+  <div class="microbe-field" id="microbes"></div><div class="spotlight" id="spotlight"></div>
+  <div class="hud"><div class="brand"><div class="brandmark">●</div><span>Probiotik Anak</span></div><div class="progressBox"><div class="progress" id="progress"></div></div><div class="count" id="count"></div></div>
+  <section class="slides" id="slides"></section>
+  <nav class="menu" id="menu"></nav>
+  <div class="hint">Pakai panah keyboard · F fullscreen · M daftar slide</div>
+  <div class="controls"><button id="menuBtn">Daftar</button><button id="prevBtn">←</button><button id="nextBtn">→</button><button id="fullBtn">Full</button></div>
+</main>
+<script>
+const SLIDES = [{"type": "title", "title": "Perut Anak Sehat\nMoms Lebih Tenang", "name": "Marcho", "visual": "title"}, {"type": "data", "layout": "dataHero", "title": "Angkanya perlu moms lihat dulu", "big": "7,4%", "body": "Prevalensi diare pada balita di Indonesia menurut SKI 2023", "note": "Angkanya memang turun dari Riskesdas 2018, tapi diare tetap perlu diperhatikan karena anak kecil lebih cepat kekurangan cairan", "visual": "diarrhea", "chart": {"kind": "bars", "items": [["2018", "12,3", 12.3, "#ff7a66"], ["2023", "7,4", 7.4, "#35b779"]]}, "refs": ["Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. Hasil Utama Survei Kesehatan Indonesia 2023. Published 2024. Accessed June 15, 2026."]}, {"type": "data", "layout": "bigSplit", "title": "Sekitar 1 dari 5 balita masih stunting", "big": "19,8%", "body": "Prevalensi stunting nasional pada SSGI 2024", "note": "Ini bukan berarti probiotik adalah solusi stunting. Tapi ini mengingatkan kita bahwa makan, penyerapan, infeksi berulang, dan perawatan harian anak sama sama penting", "visual": "growth", "chart": {"kind": "ring", "value": 19.8, "label": "stunting 2024"}, "refs": ["Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. SSGI 2024 Prevalensi Stunting Nasional Turun Menjadi 19,8%. Published May 27, 2025. Accessed June 15, 2026."]}, {"type": "data", "layout": "dataHero", "title": "Diare bukan cuma BAB cair", "big": "444 ribu", "body": "Perkiraan kematian anak balita per tahun di dunia akibat diare menurut UNICEF", "note": "Karena itu saat anak diare, fokus pertama adalah cairan, oralit, makan tetap lanjut, dan tanda bahaya", "visual": "water", "chart": {"kind": "waves", "value": 72}, "refs": ["UNICEF Data. Diarrhoea. Updated November 2024. Accessed June 15, 2026.", "UNICEF Supply Division. Oral Rehydration Salts and Zinc. Accessed June 15, 2026."]}, {"type": "data", "layout": "bigSplit", "title": "Antibiotik tanpa resep masih sering terjadi", "big": "41%", "body": "Dari masyarakat yang memakai antibiotik oral dalam 1 tahun terakhir, 41% memperolehnya tanpa resep", "note": "Antibiotik yang tidak tepat bisa mengganggu bakteri baik di usus. Jadi jangan asal pakai antibiotik untuk batuk pilek atau diare", "visual": "antibiotic", "chart": {"kind": "donut", "value": 41, "label": "tanpa resep"}, "refs": ["Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. Penggunaan Antibiotik Tanpa Resep Dokter di Indonesia. Fact Sheet SKI 2023. Published 2024. Accessed June 15, 2026."]}, {"type": "bridge", "title": "Jadi arah pembahasannya begini", "body": "Kita tidak mau moms panik\n\nKita mau moms paham urutannya\n\nSaat anak sakit perut atau diare\nyang utama tetap cairan\nmakan yang cukup\nkebersihan\ndan tahu kapan harus ke dokter\n\nSetelah itu baru kita bahas\nperan probiotik sebagai bantuan tambahan", "visual": "map", "refs": ["UNICEF Supply Division. Oral Rehydration Salts and Zinc. Accessed June 15, 2026.", "Hegar B. Bagaimana menangani diare pada anak. Ikatan Dokter Anak Indonesia. Published September 9, 2014. Accessed June 15, 2026.", "Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "bridge", "title": "Kenapa mulai dari usus", "body": "Usus anak bukan cuma tempat makanan lewat\n\nDi sana ada proses mencerna makanan\nmenyerap nutrisi\ndan menjaga tubuh tetap nyaman\n\nKalau usus sedang tidak seimbang\nanak bisa lebih mudah rewel\nperut tidak nyaman\natau BAB berubah", "visual": "gut", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Probiotik Itu Apa Sih", "body": "Probiotik adalah bakteri baik yang membantu menjaga kesehatan perut anak\n\nBukan bakteri jahat  \nBukan obat sakti  \nBukan juga pengganti makan sehat\n\nBayangkan perut anak seperti kebun kecil  \nKalau dirawat dengan baik  \nbakteri baik bisa tumbuh lebih seimbang", "visual": "garden", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Di Perut Anak Ada Banyak Bakteri", "body": "Tidak semua bakteri itu berbahaya\n\nDi dalam usus anak  \nada bakteri baik yang membantu tubuh bekerja lebih nyaman\n\nTugasnya membantu pencernaan  \nmendukung daya tahan tubuh  \ndan menjaga perut tidak mudah rewel", "visual": "microbes", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Probiotik Bukan Obat Langsung Sembuh", "body": "Probiotik tidak bekerja seperti obat demam\n\nHari ini minum  \nbesok langsung sembuh total  \ntidak selalu seperti itu\n\nProbiotik lebih seperti bantuan tambahan  \nuntuk membantu usus kembali lebih seimbang\n\nYang utama tetap cairan  \nmakan yang cukup  \ndan istirahat", "visual": "calendar", "refs": ["Collinson S, Deans A, Padua-Zamora A, et al. Probiotics for treating acute infectious diarrhoea. Cochrane Database Syst Rev. 2020;12(12):CD003048. doi:10.1002/14651858.CD003048.pub4", "Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Kapan Probiotik Sering Dibutuhkan", "body": "Probiotik sering dipakai saat anak sedang diare\n\nTerutama kalau diare ringan  \natau saat anak sedang minum antibiotik\n\nKarena antibiotik kadang ikut mengganggu bakteri baik di usus\n\nTapi tetap lihat kondisi anak ya moms  \nkalau lemas atau tidak mau minum  \njangan tunggu lama", "visual": "need", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633", "Guo Q, Goldenberg JZ, Humphrey C, El Dib R, Johnston BC. Probiotics for the prevention of pediatric antibiotic-associated diarrhea. Cochrane Database Syst Rev. 2019;4(4):CD004827. doi:10.1002/14651858.CD004827.pub5"]}, {"type": "content", "title": "Saat Diare Yang Paling Penting Itu Cairan", "body": "Kalau anak diare  \nyang paling penting bukan langsung cari probiotik\n\nYang paling penting adalah anak tidak kekurangan cairan\n\nBerikan minum lebih sering  \nASI tetap lanjut  \nmakan tetap dicoba pelan pelan\n\nKalau ada oralit  \npakai sesuai aturan", "visual": "cup", "refs": ["Hegar B. Bagaimana menangani diare pada anak. Ikatan Dokter Anak Indonesia. Published September 9, 2014. Accessed June 15, 2026.", "UNICEF Supply Division. Oral Rehydration Salts and Zinc. Accessed June 15, 2026."]}, {"type": "content", "title": "Probiotik Bisa Membantu Tapi Tidak Semua Sama", "body": "Tidak semua probiotik punya manfaat yang sama\n\nBeda nama bakteri  \nbeda juga manfaatnya\n\nJadi jangan hanya lihat tulisan probiotik besar di kemasan\n\nLebih baik pilih yang jelas  \nada nama strain  \nada aturan pakai  \nada izin edar  \ndan sesuai usia anak", "visual": "strains", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Jangan Asal Kasih Banyak", "body": "Lebih banyak bukan berarti lebih bagus\n\nIkuti aturan pakai di kemasan  \natau arahan dokter\n\nKalau anak masih bayi kecil  \npunya penyakit berat  \natau daya tahan tubuhnya lemah  \nlebih baik tanya dokter dulu\n\nKarena kondisi tiap anak tidak selalu sama", "visual": "dose", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Probiotik Bukan Pengganti Makanan Bergizi", "body": "Anak tetap butuh makan yang baik\n\nNasi  \nlauk  \nsayur  \nbuah  \nsusu atau ASI sesuai usia\n\nProbiotik hanya membantu  \nbukan menggantikan makanan utama\n\nPerut sehat tetap dimulai dari makan harian yang baik", "visual": "plate", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633", "UNICEF Data. Diarrhoea. Updated November 2024. Accessed June 15, 2026."]}, {"type": "content", "title": "Makanan Juga Bisa Bantu Bakteri Baik", "body": "Bakteri baik suka makanan yang berserat\n\nContohnya buah  \nsayur  \nkacang kacangan  \ntempe  \ndan makanan rumahan yang bergizi\n\nKalau anak susah makan sayur  \nmulai sedikit dulu\n\nTidak perlu langsung banyak  \nyang penting rutin", "visual": "fiber", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Yogurt Itu Boleh Tapi Tetap Pilih Yang Tepat", "body": "Yogurt bisa jadi pilihan  \nkalau anak sudah sesuai usianya  \ndan tidak punya alergi atau masalah tertentu\n\nPilih yang tidak terlalu manis\n\nKarena kalau gulanya tinggi  \nmanfaatnya bisa kalah dengan gulanya\n\nUntuk anak kecil  \nlebih aman mulai dari porsi kecil dulu", "visual": "yogurt", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Kalau Anak Minum Antibiotik", "body": "Antibiotik hanya untuk infeksi bakteri  \nbukan untuk semua batuk pilek\n\nSaat anak minum antibiotik  \nkadang perut bisa lebih sensitif  \natau jadi diare\n\nProbiotik tertentu bisa membantu menurunkan risiko diare karena antibiotik\n\nTapi jangan menghentikan antibiotik sendiri  \nkalau belum selesai sesuai arahan dokter", "visual": "antibiotic", "refs": ["Guo Q, Goldenberg JZ, Humphrey C, El Dib R, Johnston BC. Probiotics for the prevention of pediatric antibiotic-associated diarrhea. Cochrane Database Syst Rev. 2019;4(4):CD004827. doi:10.1002/14651858.CD004827.pub5", "Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. Penggunaan Antibiotik Tanpa Resep Dokter di Indonesia. Fact Sheet SKI 2023. Published 2024. Accessed June 15, 2026."]}, {"type": "content", "title": "Tanda Anak Harus Segera Diperiksa", "body": "Segera periksa kalau anak diare dan terlihat lemas\n\nApalagi kalau ada tanda seperti ini\n\nTidak mau minum  \nmata cekung  \npipis sangat sedikit  \nmuntah terus  \ndemam tinggi  \nBAB berdarah  \natau diare tidak membaik\n\nJangan tunggu sampai anak makin lemah", "visual": "alert", "refs": ["Hegar B. Bagaimana menangani diare pada anak. Ikatan Dokter Anak Indonesia. Published September 9, 2014. Accessed June 15, 2026.", "Guarino A, Ashkenazi S, Gendrel D, et al. European Society for Pediatric Gastroenterology Hepatology and Nutrition evidence-based guidelines for acute gastroenteritis in children in Europe. J Pediatr Gastroenterol Nutr. 2014;59(1):132-152. doi:10.1097/MPG.0000000000000375"]}, {"type": "content", "title": "Probiotik Tidak Cocok Untuk Semua Anak", "body": "Sebagian besar anak sehat biasanya aman memakai probiotik sesuai aturan\n\nTapi ada anak yang perlu lebih hati hati\n\nBayi prematur  \nanak dengan daya tahan tubuh lemah  \nanak dengan penyakit berat  \nanak yang sedang dirawat di rumah sakit\n\nUntuk kondisi seperti ini  \nlebih baik tanya dokter dulu", "visual": "shield", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "content", "title": "Cara Simpan Juga Penting", "body": "Probiotik bisa rusak kalau penyimpanannya salah\n\nBaca aturan di kemasan\n\nAda yang perlu disimpan di suhu ruang  \nada yang perlu kulkas\n\nJangan taruh di tempat panas  \njangan campur dengan minuman yang terlalu panas\n\nKalau bakterinya rusak  \nmanfaatnya bisa berkurang", "visual": "storage", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "myth", "title": "Mitos vs Fakta", "body": "Mitos\nProbiotik bisa menggantikan oralit saat diare\n\nFakta\nTidak. Saat diare, cairan tetap paling utama\n\nMitos\nSemua probiotik pasti cocok untuk semua anak\n\nFakta\nTidak selalu. Anak dengan kondisi khusus perlu tanya dokter dulu\n\nMitos\nSemua yogurt pasti sama dengan probiotik\n\nFakta\nTidak semua punya bakteri hidup dan jumlah yang jelas", "visual": "myth", "refs": ["UNICEF Supply Division. Oral Rehydration Salts and Zinc. Accessed June 15, 2026.", "Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633"]}, {"type": "faq", "title": "FAQ Moms", "body": "Boleh diminum tiap hari\nTergantung produk, usia anak, dan kebutuhannya. Ikuti aturan pakai atau saran dokter\n\nKapan harus berhenti\nBila muncul keluhan yang tidak biasa, anak makin lemas, atau diare memburuk, hentikan dan periksa\n\nBoleh dicampur susu hangat\nJangan campur dengan minuman terlalu panas karena bakteri baik bisa rusak", "visual": "faq", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633", "Hegar B. Bagaimana menangani diare pada anak. Ikatan Dokter Anak Indonesia. Published September 9, 2014. Accessed June 15, 2026."]}, {"type": "take", "title": "Take Home Messages", "body": "Probiotik bisa membantu menjaga kesehatan perut anak\n\nTapi bukan obat ajaib  \ndan bukan pengganti makan sehat\n\nSaat diare  \nutamakan cairan\n\nPilih probiotik yang jelas  \npakai sesuai aturan  \ndan kenali tanda bahaya\n\nKalau anak tampak lemas  \nlebih baik segera periksa", "visual": "takehome", "refs": ["Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633", "Hegar B. Bagaimana menangani diare pada anak. Ikatan Dokter Anak Indonesia. Published September 9, 2014. Accessed June 15, 2026.", "UNICEF Supply Division. Oral Rehydration Salts and Zinc. Accessed June 15, 2026."]}, {"type": "biblio", "title": "Daftar Pustaka", "body": "1. Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. Hasil Utama Survei Kesehatan Indonesia 2023. Published 2024. Accessed June 15, 2026.\n2. Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. SKI 2023 Dalam Angka. Published 2024. Accessed June 15, 2026.\n3. Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. SSGI 2024 Prevalensi Stunting Nasional Turun Menjadi 19,8%. Published May 27, 2025. Accessed June 15, 2026.\n4. Badan Kebijakan Pembangunan Kesehatan Kementerian Kesehatan RI. Penggunaan Antibiotik Tanpa Resep Dokter di Indonesia. Fact Sheet SKI 2023. Published 2024. Accessed June 15, 2026.\n5. UNICEF Data. Diarrhoea. Updated November 2024. Accessed June 15, 2026.\n6. UNICEF Supply Division. Oral Rehydration Salts and Zinc. Accessed June 15, 2026.\n7. Szajewska H, Berni Canani R, Domellöf M, et al. Probiotics for the management of pediatric gastrointestinal disorders. J Pediatr Gastroenterol Nutr. 2023;76(2):232-247. doi:10.1097/MPG.0000000000003633\n8. Collinson S, Deans A, Padua-Zamora A, et al. Probiotics for treating acute infectious diarrhoea. Cochrane Database Syst Rev. 2020;12(12):CD003048. doi:10.1002/14651858.CD003048.pub4\n9. Guo Q, Goldenberg JZ, Humphrey C, El Dib R, Johnston BC. Probiotics for the prevention of pediatric antibiotic-associated diarrhea. Cochrane Database Syst Rev. 2019;4(4):CD004827. doi:10.1002/14651858.CD004827.pub5\n10. Guarino A, Ashkenazi S, Gendrel D, et al. European Society for Pediatric Gastroenterology Hepatology and Nutrition evidence-based guidelines for acute gastroenteritis in children in Europe. J Pediatr Gastroenterol Nutr. 2014;59(1):132-152. doi:10.1097/MPG.0000000000000375\n11. Hegar B. Bagaimana menangani diare pada anak. Ikatan Dokter Anak Indonesia. Published September 9, 2014. Accessed June 15, 2026.", "visual": "books", "refs": []}];
+const deck = document.getElementById('deck');
+const slidesEl = document.getElementById('slides');
+const menu = document.getElementById('menu');
+const progress = document.getElementById('progress');
+const count = document.getElementById('count');
+const spotlight = document.getElementById('spotlight');
+let current = 0;
+
+function esc(s){return String(s||'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
+const NL = String.fromCharCode(10);
+function para(text){ return esc(text||'').split(NL).join('<br>'); }
+function splitFaq(body){
+  const parts = String(body||'').split(NL+NL).filter(Boolean);
+  return '<div class="faqWrap">'+parts.map(p=>{const lines=p.split(NL);return `<div class="faqItem"><div class="faqQ">${esc(lines[0])}</div><div class="faqA">${esc(lines.slice(1).join(' '))}</div></div>`}).join('')+'</div>';
+}
+function splitMyth(body){
+  const chunks=String(body||'').split(NL+NL).filter(Boolean);
+  let html='<div class="mythGrid">';
+  for(let i=0;i<chunks.length;i+=2){
+    const a=chunks[i]?.split(NL)||[]; const b=chunks[i+1]?.split(NL)||[];
+    html += `<div class="mythCard"><strong>${esc(a[0]||'Mitos')}</strong>${esc(a.slice(1).join(' '))}</div>`;
+    html += `<div class="mythCard"><strong>${esc(b[0]||'Fakta')}</strong>${esc(b.slice(1).join(' '))}</div>`;
+  }
+  return html+'</div>';
+}
+
+
+function visualSvg(type){
+  const common = `<defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#28b779"/><stop offset="1" stop-color="#9de8ff"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd35a"/><stop offset="1" stop-color="#ff806d"/></linearGradient>
+    <filter id="soft"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#183322" flood-opacity=".18"/></filter>
+  </defs>`;
+  const kid = `<circle cx="240" cy="178" r="58" fill="#ffd7b5" filter="url(#soft)"/><path d="M172 164c18-52 115-52 136 4-36-24-82-26-136-4z" fill="#2e3b2f"/><path d="M124 390c15-92 59-138 118-138s105 47 122 138" fill="url(#g1)" filter="url(#soft)"/><circle cx="220" cy="178" r="7"/><circle cx="260" cy="178" r="7"/><path d="M220 210c18 13 42 13 58 0" fill="none" stroke="#2e3b2f" stroke-width="8" stroke-linecap="round"/>`;
+  const microbes = `<g>${Array.from({length:18},(_,i)=>`<circle cx="${80+(i*37)%320}" cy="${80+(i*61)%310}" r="${10+(i%4)*4}" fill="${i%3===0?'#dcff80':i%3===1?'#9de8ff':'#bff6da'}" opacity=".9"><animate attributeName="cy" values="${80+(i*61)%310};${68+(i*61)%310};${80+(i*61)%310}" dur="${3+i%5}s" repeatCount="indefinite"/></circle>`).join('')}</g>`;
+  const gut = `<path d="M184 82c-56 22-78 87-38 128 24 25 68 27 84 58 22 42-27 77-1 117 29 45 115 31 124-24 8-47-40-64-35-102 5-40 65-43 73-89 11-64-83-111-139-70" fill="none" stroke="url(#g1)" stroke-width="35" stroke-linecap="round" filter="url(#soft)"/><path d="M202 92c-32 22-38 63-9 89 25 23 61 23 76 52 17 31-15 55 2 82 16 27 65 20 69-10" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".9"/>`;
+  const cup = `<path d="M158 142h168l-24 232H182z" fill="url(#g1)" filter="url(#soft)"/><path d="M178 192h128" stroke="#fff" stroke-width="20" stroke-linecap="round" opacity=".75"/><path d="M326 196c60 0 58 92-8 88" fill="none" stroke="#28b779" stroke-width="26" stroke-linecap="round"/>`;
+  const plate = `<circle cx="240" cy="248" r="142" fill="#fff" filter="url(#soft)"/><circle cx="240" cy="248" r="96" fill="#fff7de"/><circle cx="205" cy="222" r="40" fill="#ff806d"/><circle cx="274" cy="218" r="34" fill="#dcff80"/><path d="M178 298c52 28 96 30 143 0" stroke="#28b779" stroke-width="30" stroke-linecap="round"/>`;
+  const bottle = `<rect x="168" y="112" width="144" height="260" rx="36" fill="url(#g1)" filter="url(#soft)"/><rect x="202" y="72" width="76" height="60" rx="18" fill="#ffd35a"/><rect x="190" y="200" width="100" height="72" rx="18" fill="#fff" opacity=".86"/><path d="M212 236h56M240 208v56" stroke="#28b779" stroke-width="13" stroke-linecap="round"/>`;
+  const growth = `<path d="M112 350h268" stroke="#183322" stroke-width="12" stroke-linecap="round" opacity=".18"/><rect x="130" y="246" width="42" height="104" rx="16" fill="#9de8ff"/><rect x="210" y="196" width="42" height="154" rx="16" fill="#dcff80"/><rect x="290" y="132" width="42" height="218" rx="16" fill="#28b779"/><path d="M110 222c82-8 147-52 220-130" fill="none" stroke="#ff806d" stroke-width="14" stroke-linecap="round"/><path d="M332 92l-2 62-58-18" fill="none" stroke="#ff806d" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const shield = `<path d="M240 70l130 54v98c0 91-53 151-130 190-77-39-130-99-130-190v-98z" fill="url(#g1)" filter="url(#soft)"/><path d="M178 242l42 42 88-104" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const storage = `<rect x="150" y="96" width="180" height="296" rx="34" fill="#fff" filter="url(#soft)"/><rect x="170" y="132" width="140" height="112" rx="20" fill="#9de8ff"/><rect x="170" y="264" width="140" height="92" rx="20" fill="#dcff80"/><path d="M240 144v58M211 173h58" stroke="#fff" stroke-width="13" stroke-linecap="round"/>`;
+  const book = `<path d="M112 132c60-28 100-8 128 22v250c-35-30-80-43-128-20z" fill="#9de8ff" filter="url(#soft)"/><path d="M240 154c31-30 76-49 128-22v252c-52-23-97-10-128 20z" fill="#dcff80" filter="url(#soft)"/><path d="M240 154v250" stroke="#183322" opacity=".25" stroke-width="8"/>`;
+  const map = `<path d="M104 136h272v210H104z" fill="#fff" filter="url(#soft)"/><path d="M144 302c50-96 122-75 151-144 17-38 50-41 82-33" fill="none" stroke="#28b779" stroke-width="17" stroke-linecap="round"/><circle cx="144" cy="302" r="19" fill="#ff806d"/><circle cx="377" cy="125" r="19" fill="#ffd35a"/>`;
+  const alert = `<path d="M240 82l158 278H82z" fill="url(#g2)" filter="url(#soft)"/><path d="M240 174v86" stroke="#fff" stroke-width="22" stroke-linecap="round"/><circle cx="240" cy="314" r="13" fill="#fff"/>`;
+  const yogurt = `<path d="M158 168h164l-26 198H184z" fill="#fff" filter="url(#soft)"/><path d="M176 212h128" stroke="#f47aa6" stroke-width="34" stroke-linecap="round"/><ellipse cx="240" cy="168" rx="98" ry="34" fill="#dcff80"/><circle cx="202" cy="130" r="22" fill="#ff806d"/><circle cx="255" cy="112" r="18" fill="#9de8ff"/>`;
+  const calendar = `<rect x="130" y="110" width="220" height="260" rx="34" fill="#fff" filter="url(#soft)"/><rect x="130" y="110" width="220" height="74" rx="34" fill="url(#g1)"/><path d="M176 88v62M304 88v62" stroke="#183322" opacity=".35" stroke-width="16" stroke-linecap="round"/><path d="M185 238h110M185 290h78" stroke="#28b779" stroke-width="18" stroke-linecap="round"/>`;
+  const myth = `<circle cx="174" cy="210" r="82" fill="#ff806d" filter="url(#soft)"/><circle cx="306" cy="270" r="82" fill="#28b779" filter="url(#soft)"/><path d="M142 210h64M174 178v64" stroke="#fff" stroke-width="17" stroke-linecap="round"/><path d="M266 270l28 28 58-70" fill="none" stroke="#fff" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const faq = `<circle cx="240" cy="240" r="142" fill="#fff" filter="url(#soft)"/><path d="M206 202c3-38 69-44 78-7 9 34-30 43-40 70" fill="none" stroke="#28b779" stroke-width="24" stroke-linecap="round"/><circle cx="240" cy="322" r="13" fill="#ff806d"/>`;
+  const takehome = `<circle cx="240" cy="240" r="150" fill="url(#g1)" filter="url(#soft)"/><path d="M166 246l50 50 104-124" fill="none" stroke="#fff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const garden = `<path d="M110 340c70 40 200 40 260 0" fill="none" stroke="#28b779" stroke-width="32" stroke-linecap="round"/><path d="M238 340c-10-83 12-146 78-192" fill="none" stroke="#28b779" stroke-width="17" stroke-linecap="round"/><path d="M242 292c-36-68-85-78-136-74 22 60 68 86 136 74z" fill="#dcff80" filter="url(#soft)"/><path d="M272 232c16-67 58-93 112-102 0 66-37 104-112 102z" fill="#9de8ff" filter="url(#soft)"/>`;
+  const fiber = `<path d="M130 330c72 22 148 24 224 0" stroke="#28b779" stroke-width="20" stroke-linecap="round"/><circle cx="176" cy="220" r="44" fill="#ff806d" filter="url(#soft)"/><circle cx="252" cy="196" r="46" fill="#ffd35a" filter="url(#soft)"/><circle cx="314" cy="242" r="44" fill="#dcff80" filter="url(#soft)"/><path d="M176 142c32 12 62 8 88-18" stroke="#28b779" stroke-width="14" stroke-linecap="round"/>`;
+  const strains = `<g filter="url(#soft)"><rect x="104" y="142" width="104" height="210" rx="36" fill="#9de8ff"/><rect x="188" y="112" width="104" height="260" rx="36" fill="#dcff80"/><rect x="272" y="164" width="104" height="184" rx="36" fill="#ff806d"/></g><circle cx="156" cy="210" r="12" fill="#fff"/><circle cx="240" cy="194" r="12" fill="#fff"/><circle cx="324" cy="230" r="12" fill="#fff"/>`;
+  const dose = `<rect x="144" y="120" width="192" height="250" rx="38" fill="#fff" filter="url(#soft)"/><path d="M184 190h112M184 246h112M184 302h72" stroke="#28b779" stroke-width="17" stroke-linecap="round"/><circle cx="332" cy="126" r="56" fill="#ffd35a"/><path d="M310 126h44" stroke="#fff" stroke-width="17" stroke-linecap="round"/>`;
+  let body = microbes;
+  if(['gut'].includes(type)) body=gut+microbes;
+  else if(['water','cup'].includes(type)) body=cup;
+  else if(type==='growth') body=growth+kid;
+  else if(type==='antibiotic'||type==='need') body=bottle+microbes;
+  else if(type==='plate') body=plate;
+  else if(type==='shield') body=shield;
+  else if(type==='storage') body=storage;
+  else if(type==='books') body=book;
+  else if(type==='map') body=map;
+  else if(type==='alert') body=alert;
+  else if(type==='yogurt') body=yogurt+microbes;
+  else if(type==='calendar') body=calendar;
+  else if(type==='myth') body=myth;
+  else if(type==='faq') body=faq;
+  else if(type==='takehome') body=takehome;
+  else if(type==='garden') body=garden+microbes;
+  else if(type==='fiber') body=fiber;
+  else if(type==='strains') body=strains;
+  else if(type==='dose') body=dose;
+  else if(type==='diarrhea') body=alert+cup;
+  return `<svg viewBox="0 0 480 480" role="img" aria-label="Ilustrasi">${common}${body}</svg>`;
+}
+
+function chartHtml(chart){
+  if(!chart) return '';
+  if(chart.kind==='bars'){
+    const max = Math.max(...chart.items.map(x=>x[2]));
+    return `<div class="chartPanel"><div class="chartTitle">Perbandingan data</div><div class="bars">${chart.items.map(x=>`<div class="bar" style="--h:${Math.max(12, x[2]/max*100)}%;--c:${x[3]}"><b>${x[1]}%</b><span>${x[0]}</span></div>`).join('')}</div></div>`;
+  }
+  if(chart.kind==='donut'||chart.kind==='ring') return `<div class="chartPanel"><div class="chartTitle">${esc(chart.label||'data')}</div><div class="donut" style="--p:${chart.value}"><strong>${String(chart.value).replace('.',',')}%</strong></div></div>`;
+  if(chart.kind==='waves') return `<div class="chartPanel"><div class="chartTitle">Fokus utama saat diare</div><div class="waves"></div></div>`;
+  return '';
+}
+
+function slideHtml(s, i){
+  if(s.type==='title'){return `<article class="slide title" data-title="${esc(s.title.split(NL).join(' '))}"><div class="titleGlow"></div><div><h1>${para(s.title)}</h1><div class="presenter">${esc(s.name)}</div></div></article>`}
+  let body = s.type==='faq' ? splitFaq(s.body) : s.type==='myth' ? splitMyth(s.body) : para(s.body);
+  let bodyClass = s.type==='biblio' ? 'body small' : s.type==='myth'||s.type==='faq' ? 'body compact' : 'body';
+  let ref = s.refs&&s.refs.length ? `<footer class="ref"><span><b>Referensi</b> ${s.refs.map((r,idx)=>`${idx+1}. ${esc(r)}`).join(' ')}</span></footer>` : '';
+  let dataPieces = s.big ? `<div class="bigNumber">${esc(s.big)}</div><div class="body">${para(s.body)}</div><div class="note">${para(s.note||'')}</div>` : `<div class="${bodyClass}">${body}</div>`;
+  if(s.type==='biblio') dataPieces = `<div class="body small">${para(s.body)}</div>`;
+  return `<article class="slide ${esc(s.type)}" data-title="${esc(s.title)}"><div class="copy"><div class="copyInner"><h1>${esc(s.title)}</h1>${dataPieces}</div></div><div class="visual"><div class="artCard"><div class="ringOrbit"></div><div class="art">${visualSvg(s.visual)}</div>${chartHtml(s.chart)}<div class="floatingBadge">${badgeText(s)}</div></div></div>${ref}</article>`;
+}
+function badgeText(s){
+  const map={data:'Data Indonesia',bridge:'Jembatan pembahasan',content:'Inti materi moms',myth:'Klik slide untuk bahas pelan pelan',faq:'Pertanyaan yang sering muncul',take:'Ringkasan akhir',biblio:'Sumber rujukan'};
+  if(s.visual==='water'||s.visual==='cup') return 'Cairan dulu baru lainnya';
+  if(s.visual==='antibiotic') return 'Antibiotik harus bijak';
+  if(s.visual==='strains') return 'Jenis probiotik itu penting';
+  if(s.visual==='alert') return 'Kenali tanda bahaya';
+  return map[s.type]||'Edukasi probiotik anak';
+}
+
+slidesEl.innerHTML = SLIDES.map(slideHtml).join('');
+menu.innerHTML = SLIDES.map((s,i)=>`<button class="thumb" data-i="${i}"><span class="thumbNo">${i+1}</span><span class="thumbTxt">${esc(s.title.split(NL).join(' '))}</span></button>`).join('');
+const slideEls = [...document.querySelectorAll('.slide')];
+const thumbEls = [...document.querySelectorAll('.thumb')];
+
+function go(n){
+  current = (n + SLIDES.length) % SLIDES.length;
+  slideEls.forEach((el,i)=>{el.classList.toggle('active',i===current); el.classList.toggle('before',i<current);});
+  thumbEls.forEach((el,i)=>el.classList.toggle('active',i===current));
+  progress.style.width = `${((current+1)/SLIDES.length)*100}%`;
+  count.textContent = `${current+1} / ${SLIDES.length}`;
+  deck.classList.toggle('title-mode', current===0);
+  fitActive();
+}
+function fitActive(){
+  const el = slideEls[current]?.querySelector('.copyInner'); if(!el) return;
+  el.style.transform='scale(1)';
+  const box = slideEls[current].querySelector('.copy');
+  if(!box) return;
+  const maxH = box.clientHeight;
+  const h = el.scrollHeight;
+  const maxW = box.clientWidth;
+  const w = el.scrollWidth;
+  const scale = Math.min(1, maxH/h, maxW/w);
+  if(scale < .99) el.style.transform = `scale(${Math.max(.78, scale)})`;
+}
+document.getElementById('nextBtn').onclick=()=>go(current+1);
+document.getElementById('prevBtn').onclick=()=>go(current-1);
+document.getElementById('menuBtn').onclick=()=>menu.classList.toggle('open');
+document.getElementById('fullBtn').onclick=()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); };
+thumbEls.forEach(b=>b.onclick=()=>{go(+b.dataset.i); menu.classList.remove('open');});
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(current+1)}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(current-1)}
+  if(e.key.toLowerCase()==='m') menu.classList.toggle('open');
+  if(e.key.toLowerCase()==='f') document.getElementById('fullBtn').click();
+  if(e.key==='Home')go(0); if(e.key==='End')go(SLIDES.length-1);
+});
+window.addEventListener('resize',fitActive);
+deck.addEventListener('pointermove',e=>{spotlight.style.left=e.clientX+'px';spotlight.style.top=e.clientY+'px';});
+deck.addEventListener('pointerleave',()=>spotlight.style.opacity=.15);
+deck.addEventListener('pointerenter',()=>spotlight.style.opacity=.56);
+
+const field=document.getElementById('microbes');
+for(let i=0;i<42;i++){
+  const m=document.createElement('div'); m.className='micro';
+  m.style.left=(Math.random()*100)+'%'; m.style.top=(Math.random()*100)+'%';
+  m.style.setProperty('--d',(3+Math.random()*6)+'s');
+  m.style.animationDelay=(-Math.random()*8)+'s';
+  m.style.opacity=(.35+Math.random()*.55).toFixed(2);
+  field.appendChild(m);
+}
+go(0);
+</script>
+</body>
+</html>
