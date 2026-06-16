@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  ArrowUpRight,
   Award,
   BrainCircuit,
   BriefcaseBusiness,
@@ -31,6 +30,13 @@ import {
 } from "lucide-react";
 import data from "./data/portfolioData.json";
 import "./styles.css";
+
+const protectedMediaProps = {
+  "data-protected-media": true,
+  draggable: false,
+  onContextMenu: (event) => event.preventDefault(),
+  onDragStart: (event) => event.preventDefault(),
+};
 
 const nav = [
   ["About", "about"],
@@ -103,6 +109,14 @@ function textBlock(text) {
     .filter(Boolean);
 }
 
+function prepareProjectSrcDoc(html) {
+  const metaTag = '<meta name="referrer" content="no-referrer">';
+  if (/<head[^>]*>/i.test(html)) {
+    return html.replace(/<head([^>]*)>/i, `<head$1>${metaTag}`);
+  }
+  return `<!doctype html><html><head>${metaTag}</head><body>${html}</body></html>`;
+}
+
 function App() {
   useReveal();
   const progress = useScrollProgress();
@@ -116,6 +130,30 @@ function App() {
     if (!window.location.hash) {
       window.scrollTo({ top: 0, left: 0 });
     }
+  }, []);
+
+  useEffect(() => {
+    const protectedSelector = "[data-protected-media]";
+    const blockContext = (event) => {
+      if (event.target.closest(protectedSelector)) event.preventDefault();
+    };
+    const blockDrag = (event) => {
+      if (event.target.closest(protectedSelector)) event.preventDefault();
+    };
+    const blockShortcuts = (event) => {
+      const key = event.key.toLowerCase();
+      if ((event.ctrlKey || event.metaKey) && ["s", "p", "u"].includes(key)) {
+        event.preventDefault();
+      }
+    };
+    document.addEventListener("contextmenu", blockContext);
+    document.addEventListener("dragstart", blockDrag);
+    document.addEventListener("keydown", blockShortcuts);
+    return () => {
+      document.removeEventListener("contextmenu", blockContext);
+      document.removeEventListener("dragstart", blockDrag);
+      document.removeEventListener("keydown", blockShortcuts);
+    };
   }, []);
 
   const featured = data.projects[projectIndex];
@@ -307,7 +345,7 @@ function About() {
         <div className="moments-grid" data-reveal>
           {data.profileMedia.fieldMoments.map((moment) => (
             <article className="moment-card" key={moment.title}>
-              <img src={assetUrl(moment.preview || moment.file)} alt={moment.title} loading="lazy" />
+              <img src={assetUrl(moment.preview || moment.file)} alt={moment.title} loading="lazy" {...protectedMediaProps} />
               <span>{moment.title}</span>
             </article>
           ))}
@@ -326,7 +364,7 @@ function ProfileSnapshot() {
   const portrait = data.profileMedia?.portrait;
   return (
     <aside className="profile-snapshot" data-reveal>
-      {portrait ? <img src={assetUrl(portrait.preview || portrait.file)} alt="Marcho formal portrait" loading="lazy" /> : null}
+      {portrait ? <img src={assetUrl(portrait.preview || portrait.file)} alt="Marcho formal portrait" loading="lazy" {...protectedMediaProps} /> : null}
       <div>
         <span>At a Glance</span>
         <h3>{data.profile.currentRole}</h3>
@@ -396,10 +434,8 @@ function SlideShowcase({ onOpen }) {
       <div className="deck-grid" data-reveal>
         {data.slides.map((slide, index) => (
           <button className="deck-card" key={slide.file} onClick={() => onOpen(slide, index)}>
-            <img src={assetUrl(slide.thumb)} alt="" loading="lazy" />
-            <span>{slide.pages} pages</span>
+            <img src={assetUrl(slide.thumb)} alt="" loading="lazy" {...protectedMediaProps} />
             <h3>{slide.title}</h3>
-            <p>{slide.summary}</p>
           </button>
         ))}
       </div>
@@ -408,6 +444,33 @@ function SlideShowcase({ onOpen }) {
 }
 
 function ProjectLab({ project, projectIndex, setProjectIndex }) {
+  const [projectHtml, setProjectHtml] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    const projectUrl = assetUrl(project.file);
+    setProjectHtml("");
+
+    fetch(projectUrl, { cache: "force-cache" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Project failed to load (${response.status})`);
+        return response.text();
+      })
+      .then((html) => {
+        if (cancelled) return;
+        setProjectHtml(prepareProjectSrcDoc(html));
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setProjectHtml("<!doctype html><html><body></body></html>");
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [project.file]);
+
   return (
     <section className="section-band project-section" id="projects">
       <SectionHeader
@@ -430,16 +493,20 @@ function ProjectLab({ project, projectIndex, setProjectIndex }) {
       <div className="iframe-shell" data-reveal>
         <div className="iframe-toolbar">
           <span>{project.title}</span>
-          <a href={assetUrl(project.file)} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} in a new tab`}>
-            <ArrowUpRight size={18} />
-          </a>
+          <span className="iframe-dots" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
         </div>
         <iframe
           key={project.file}
           title={project.title}
-          src={assetUrl(project.file)}
+          srcDoc={projectHtml}
           loading="lazy"
           sandbox="allow-scripts allow-same-origin"
+          referrerPolicy="no-referrer"
+          {...protectedMediaProps}
         />
       </div>
     </section>
@@ -458,7 +525,7 @@ function ArticleStudio({ onOpen }) {
       <div className="article-grid" data-reveal>
         {data.articles.map((article) => (
           <button className="article-card" key={article.file} onClick={() => onOpen(article)}>
-            <img src={assetUrl(article.posterPreview)} alt="" loading="lazy" />
+            <img src={assetUrl(article.posterPreview)} alt="" loading="lazy" {...protectedMediaProps} />
             <div>
               <span>{article.pages} pages</span>
               <h3>{article.title}</h3>
@@ -483,7 +550,7 @@ function DesignGallery({ onOpen }) {
       <div className="design-grid" data-reveal>
         {data.designs.map((design, index) => (
           <button className={`design-card design-${index}`} key={design.file} onClick={() => onOpen(design)}>
-            <img src={assetUrl(design.preview)} alt={design.title} loading="lazy" />
+            <img src={assetUrl(design.preview)} alt={design.title} loading="lazy" {...protectedMediaProps} />
             <span>{design.title}</span>
             <small>{design.kind === "pdf" ? `${design.pages} page carousel` : "education carousel"}</small>
           </button>
@@ -507,7 +574,7 @@ function CertificateMarquee({ onOpen }) {
         <div className="marquee-track">
           {loop.map((cert, index) => (
             <button className="certificate-card" key={`${cert.file}-${index}`} onClick={() => onOpen(cert, index % data.certificates.length)}>
-              <img src={assetUrl(cert.preview)} alt={cert.title} loading="lazy" />
+              <img src={assetUrl(cert.preview)} alt={cert.title} loading="lazy" {...protectedMediaProps} />
               <span>{cert.title}</span>
             </button>
           ))}
@@ -538,7 +605,17 @@ function VideoRoom() {
           ))}
         </div>
         <div className="video-frame">
-          <video key={video.file} src={assetUrl(video.file)} controls preload="metadata" playsInline />
+          <video
+            key={video.file}
+            src={assetUrl(video.file)}
+            controls
+            controlsList="nodownload noplaybackrate noremoteplayback"
+            disablePictureInPicture
+            disableRemotePlayback
+            preload="metadata"
+            playsInline
+            {...protectedMediaProps}
+          />
           <h3>{video.title}</h3>
         </div>
       </div>
@@ -653,7 +730,7 @@ function PdfViewer({ modal, setModal }) {
         await renderTask.promise;
         if (!cancelled) setStatus("");
       } catch (error) {
-        if (!cancelled) setStatus(`Could not render this PDF in canvas. The original file is still available below. ${error.message}`);
+        if (!cancelled) setStatus(`This PDF preview could not be rendered in the browser. ${error.message}`);
       }
     }
     renderPdf();
@@ -701,8 +778,7 @@ function PdfViewer({ modal, setModal }) {
         ) : null}
       </div>
       {status ? <p className="viewer-status">{status}</p> : null}
-      <canvas ref={canvasRef} />
-      <object className="pdf-fallback" data={assetUrl(modal.item.file)} type="application/pdf" aria-label={modal.item.title} />
+      <canvas ref={canvasRef} {...protectedMediaProps} />
     </div>
   );
 }
@@ -711,7 +787,7 @@ function ArticleReader({ article }) {
   const paragraphs = textBlock(article.body);
   return (
     <div className="article-reader">
-      {article.poster ? <img src={assetUrl(article.poster)} alt="" /> : null}
+      {article.poster ? <img src={assetUrl(article.poster)} alt="" {...protectedMediaProps} /> : null}
       <article>
         <h3>{article.title}</h3>
         {paragraphs.map((paragraph, index) => (
@@ -725,7 +801,7 @@ function ArticleReader({ article }) {
 function ImageViewer({ item }) {
   return (
     <div className="image-viewer">
-      <img src={assetUrl(item.file)} alt={item.title} />
+      <img src={assetUrl(item.file)} alt={item.title} {...protectedMediaProps} />
     </div>
   );
 }

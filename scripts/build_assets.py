@@ -188,8 +188,8 @@ def main() -> None:
     cv_src = SOURCE_ROOT / "CV_MARCHO.pdf"
     cv = {
         "title": "Marcho Original CV",
-        "file": copy_asset(cv_src, PUBLIC_ROOT / "cv", "cv-marcho"),
-        "thumb": pdf_thumb(cv_src, PUBLIC_ROOT / "thumbs" / "cv"),
+        "file": None,
+        "thumb": None,
         "pages": pdf_pages(cv_src),
         "text": pdf_text(cv_src),
     }
@@ -208,14 +208,12 @@ def main() -> None:
     slides = []
     for src in sorted((SOURCE_ROOT / "Showcase Scientific Slides").glob("*.pdf")):
         pages = pdf_pages(src)
-        sample = pdf_text(src, 2)
         slides.append(
             {
                 "title": clean_title(src),
                 "file": copy_asset(src, PUBLIC_ROOT / "slides"),
                 "thumb": pdf_thumb(src, PUBLIC_ROOT / "thumbs" / "slides"),
                 "pages": pages,
-                "summary": sample[:360],
             }
         )
 
@@ -231,7 +229,7 @@ def main() -> None:
         articles.append(
             {
                 "title": title,
-                "file": copy_asset(src, PUBLIC_ROOT / "articles" / "pdf"),
+                "file": None,
                 "poster": poster_original,
                 "posterPreview": poster_preview,
                 "pages": pdf_pages(src),
@@ -334,7 +332,7 @@ def main() -> None:
 
     data = {
         "generatedAt": "2026-06-16",
-        "sourceRoot": str(SOURCE_ROOT),
+        "sourceRoot": None,
         "concept": concept_url,
         "profile": {
             "name": "Marcho",
