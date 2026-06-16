@@ -2,6 +2,11 @@
   "generatedAt": "2026-06-16",
   "sourceRoot": null,
   "concept": "/portfolio-assets/system/visual-concept.png",
+  "tracking": {
+    "qrUrl": "https://zenwaku.github.io/marcho-portfolio/?utm_source=qr&utm_medium=print&utm_campaign=portfolio_hiring",
+    "qrCode": "/portfolio-assets/system/portfolio-qr.svg",
+    "goatcounterUrl": null
+  },
   "profile": {
     "name": "Marcho",
     "location": "Jakarta, Indonesia",
@@ -379,47 +384,11 @@
     {
       "title": "New Buletin Data Carousel",
       "file": "/portfolio-assets/designs/new-buletin-data-carousel.pdf",
-      "preview": "/portfolio-assets/thumbs/designs/new-buletin-data-carousel.webp",
+      "preview": null,
       "size": 21235954,
       "pages": 4,
       "kind": "pdf",
       "summary": "A multi-page data bulletin carousel designed for public education, built to make health information feel clear, visual, and shareable."
-    },
-    {
-      "title": "Parenting - Picky Eater",
-      "file": "/portfolio-assets/designs/parenting-picky-eater.png",
-      "preview": "/portfolio-assets/thumbs/designs/parenting-picky-eater.webp",
-      "size": 19295957,
-      "pages": 1,
-      "kind": "image",
-      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
-    },
-    {
-      "title": "Parenting Pregnancy Child Health - Baby Walker",
-      "file": "/portfolio-assets/designs/parenting-pregnancy-child-health-baby-walker.png",
-      "preview": "/portfolio-assets/thumbs/designs/parenting-pregnancy-child-health-baby-walker.webp",
-      "size": 13144994,
-      "pages": 1,
-      "kind": "image",
-      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
-    },
-    {
-      "title": "Parenting Pregnancy Child Health - Kopi Kejang",
-      "file": "/portfolio-assets/designs/parenting-pregnancy-child-health-kopi-kejang.png",
-      "preview": "/portfolio-assets/thumbs/designs/parenting-pregnancy-child-health-kopi-kejang.webp",
-      "size": 14150818,
-      "pages": 1,
-      "kind": "image",
-      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
-    },
-    {
-      "title": "Parenting Pregnancy Child Health - Madu Bayi",
-      "file": "/portfolio-assets/designs/parenting-pregnancy-child-health-madu-bayi.png",
-      "preview": "/portfolio-assets/thumbs/designs/parenting-pregnancy-child-health-madu-bayi.webp",
-      "size": 14491621,
-      "pages": 1,
-      "kind": "image",
-      "summary": "Health education carousel design created to make public-facing medical topics easier to understand."
     }
   ],
   "certificates": [
@@ -512,7 +481,7 @@
     "projects": 3,
     "slides": 12,
     "articles": 6,
-    "designs": 5,
+    "designs": 1,
     "certificates": 10,
     "videos": 2
   }

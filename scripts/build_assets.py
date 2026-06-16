@@ -185,6 +185,11 @@ def main() -> None:
     if concept_src.exists():
         concept_url = copy_asset(concept_src, PUBLIC_ROOT / "system", "visual-concept")
 
+    qr_src = EXTRA_ROOT / "system" / "portfolio-qr.svg"
+    qr_url = None
+    if qr_src.exists():
+        qr_url = copy_asset(qr_src, PUBLIC_ROOT / "system", "portfolio-qr")
+
     cv_src = SOURCE_ROOT / "CV_MARCHO.pdf"
     cv = {
         "title": "Marcho Original CV",
@@ -239,26 +244,13 @@ def main() -> None:
         )
 
     designs = []
-    for src in sorted((SOURCE_ROOT / "Design").glob("*.png")):
-        designs.append(
-            {
-                "title": clean_title(src),
-                "file": copy_asset(src, PUBLIC_ROOT / "designs"),
-                "preview": image_preview(src, PUBLIC_ROOT / "thumbs" / "designs", width=1100),
-                "size": src.stat().st_size,
-                "pages": 1,
-                "kind": "image",
-                "summary": "Health education carousel design created to make public-facing medical topics easier to understand.",
-            }
-        )
     extra_design_pdf = EXTRA_ROOT / "designs" / "new-buletin-data-carousel.pdf"
     if extra_design_pdf.exists():
-        designs.insert(
-            0,
+        designs.append(
             {
                 "title": "New Buletin Data Carousel",
                 "file": copy_asset(extra_design_pdf, PUBLIC_ROOT / "designs"),
-                "preview": pdf_thumb(extra_design_pdf, PUBLIC_ROOT / "thumbs" / "designs", width=900),
+                "preview": None,
                 "size": extra_design_pdf.stat().st_size,
                 "pages": pdf_pages(extra_design_pdf),
                 "kind": "pdf",
@@ -334,6 +326,11 @@ def main() -> None:
         "generatedAt": "2026-06-16",
         "sourceRoot": None,
         "concept": concept_url,
+        "tracking": {
+            "qrUrl": "https://zenwaku.github.io/marcho-portfolio/?utm_source=qr&utm_medium=print&utm_campaign=portfolio_hiring",
+            "qrCode": qr_url,
+            "goatcounterUrl": os.environ.get("VITE_GOATCOUNTER_URL"),
+        },
         "profile": {
             "name": "Marcho",
             "location": "Jakarta, Indonesia",

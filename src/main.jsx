@@ -16,10 +16,13 @@ import {
   Mail,
   MessageSquareText,
   Microscope,
+  Minus,
   PanelsTopLeft,
   PenTool,
   Phone,
   Presentation,
+  Plus,
+  QrCode,
   Rocket,
   Sparkles,
   Stethoscope,
@@ -72,6 +75,135 @@ function assetUrl(path) {
   return `${normalizedBase}${path.replace(/^\/+/, "")}`;
 }
 
+function trackingAttrs(name, title = name) {
+  return {
+    "data-goatcounter-click": name,
+    "data-goatcounter-title": title,
+    "data-track-click": name,
+  };
+}
+
+function slugifyLabel(value) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 64);
+}
+
+const COUNTER_NAMESPACE = "marcho-portfolio-zenwaku";
+const COUNTER_BASE_URL = "https://api.counterapi.dev/v1";
+const TRACKING_SUMMARY = [
+  ["portfolio-visit", "Portfolio visits"],
+  ["qr-scan", "QR scans"],
+  ["click-hero-view-work", "Hero work CTA"],
+  ["click-hero-contact", "Hero contact CTA"],
+  ["click-contact-email", "Email clicks"],
+  ["click-contact-phone", "Phone clicks"],
+  ["click-contact-qr-card", "QR card clicks"],
+  ["click-nav-slides", "Slides nav"],
+  ["click-nav-projects", "Projects nav"],
+  ["click-nav-articles", "Articles nav"],
+  ["click-nav-design", "Design nav"],
+  ["click-nav-videos", "Videos nav"],
+  ["click-nav-certificates", "Certificates nav"],
+  ["click-design-pdf-next-page", "Design next page"],
+  ["click-design-pdf-zoom-in", "Design zoom in"],
+  ...data.projects.map((item) => [`click-project-tab-${slugifyLabel(item.title)}`, `Project: ${item.title}`]),
+  ...data.videos.map((item) => [`click-video-${slugifyLabel(item.title)}`, `Video: ${item.title}`]),
+];
+
+function counterUrl(name, action = "") {
+  const safeName = slugifyLabel(name) || "event";
+  const suffix = action ? `/${action}` : "";
+  return `${COUNTER_BASE_URL}/${COUNTER_NAMESPACE}/${safeName}${suffix}`;
+}
+
+function counterValue(payload) {
+  return payload?.value ?? payload?.count ?? payload?.data ?? 0;
+}
+
+function isLivePortfolioHost() {
+  return window.location.hostname === "zenwaku.github.io";
+}
+
+function useAnalytics() {
+  useEffect(() => {
+    const goatcounterUrl = import.meta.env.VITE_GOATCOUNTER_URL || data.tracking?.goatcounterUrl;
+    if (!goatcounterUrl || document.querySelector("script[data-goatcounter]")) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://gc.zgo.at/count.js";
+    script.dataset.goatcounter = goatcounterUrl;
+    document.head.appendChild(script);
+  }, []);
+}
+
+function useCounterTracking() {
+  useEffect(() => {
+    if (!isLivePortfolioHost()) return undefined;
+
+    const bump = (name) => {
+      const queue = (window.__portfolioCounterBeacons ||= []);
+      const beacon = new Image();
+      const cleanup = () => {
+        const index = queue.indexOf(beacon);
+        if (index >= 0) queue.splice(index, 1);
+      };
+      beacon.onload = cleanup;
+      beacon.onerror = cleanup;
+      queue.push(beacon);
+      beacon.src = `${counterUrl(name, "up")}?t=${Date.now()}`;
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    bump("portfolio-visit");
+    if (params.get("utm_source") === "qr") bump("qr-scan");
+
+    const onClick = (event) => {
+      const target = event.target.closest("[data-track-click]");
+      if (!target) return;
+      bump(`click-${target.dataset.trackClick}`);
+    };
+
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, []);
+}
+
+function useTrackingMode() {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setEnabled(params.get("tracking") === "1" || window.location.hash === "#tracking");
+  }, []);
+
+  return enabled;
+}
+
+function useViewportWidth() {
+  const [width, setWidth] = useState(() => window.innerWidth);
+
+  useEffect(() => {
+    let frame = 0;
+    const onResize = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => setWidth(window.innerWidth));
+    };
+
+    onResize();
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return width;
+}
+
 function useReveal() {
   useEffect(() => {
     const nodes = Array.from(document.querySelectorAll("[data-reveal]"));
@@ -118,8 +250,11 @@ function prepareProjectSrcDoc(html) {
 }
 
 function App() {
+  useAnalytics();
+  useCounterTracking();
   useReveal();
   const progress = useScrollProgress();
+  const trackingMode = useTrackingMode();
   const [modal, setModal] = useState(null);
   const [projectIndex, setProjectIndex] = useState(0);
 
@@ -171,10 +306,11 @@ function App() {
           setProjectIndex={setProjectIndex}
         />
         <ArticleStudio onOpen={(article) => setModal({ type: "article", item: article })} />
-        <DesignGallery onOpen={(design) => setModal({ type: design.kind === "pdf" ? "pdf" : "image", item: design })} />
+        <DesignGallery />
         <VideoRoom />
         <CertificateMarquee onOpen={(cert, index) => setModal({ type: cert.kind === "pdf" ? "pdf" : "image", item: cert, collection: data.certificates, index, collectionLabel: "Certificate" })} />
         <ContactSection />
+        {trackingMode ? <TrackingSnapshot /> : null}
       </main>
       <MediaModal modal={modal} onClose={() => setModal(null)} setModal={setModal} />
     </>
@@ -190,7 +326,7 @@ function SiteChrome({ progress }) {
       </a>
       <nav aria-label="Primary navigation">
         {nav.map(([label, id]) => (
-          <a key={id} href={`#${id}`}>
+          <a key={id} href={`#${id}`} {...trackingAttrs(`nav-${id}`, `Navigation: ${label}`)}>
             {label}
           </a>
         ))}
@@ -218,11 +354,11 @@ function Hero() {
           </div>
         </div>
         <div className="hero-actions">
-          <a className="button primary" href="#projects">
+          <a className="button primary" href="#projects" {...trackingAttrs("hero-view-work", "Hero: View Work")}>
             <PanelsTopLeft size={18} />
             View Work
           </a>
-          <a className="button secondary" href={`mailto:${data.profile.email}`}>
+          <a className="button secondary" href={`mailto:${data.profile.email}`} {...trackingAttrs("hero-contact", "Hero: Contact")}>
             <Mail size={18} />
             Contact
           </a>
@@ -290,6 +426,7 @@ function About() {
         text={data.profile.summary}
       />
       <div className="about-grid">
+        <ProfileSnapshot />
         <div className="competency-panel" data-reveal>
           <div className="panel-title">
             <span>Core Competencies</span>
@@ -308,7 +445,6 @@ function About() {
             <p>The through-line is simple: clinical reasoning, product clarity, and communication that helps field teams move with confidence.</p>
           </div>
         </div>
-        <ProfileSnapshot />
         <SkillMatrix />
         <div className="expertise-rail" data-reveal>
           {[
@@ -433,7 +569,12 @@ function SlideShowcase({ onOpen }) {
       />
       <div className="deck-grid" data-reveal>
         {data.slides.map((slide, index) => (
-          <button className="deck-card" key={slide.file} onClick={() => onOpen(slide, index)}>
+          <button
+            className="deck-card"
+            key={slide.file}
+            onClick={() => onOpen(slide, index)}
+            {...trackingAttrs(`deck-${slugifyLabel(slide.title)}`, `Scientific deck: ${slide.title}`)}
+          >
             <img src={assetUrl(slide.thumb)} alt="" loading="lazy" {...protectedMediaProps} />
             <h3>{slide.title}</h3>
           </button>
@@ -485,6 +626,7 @@ function ProjectLab({ project, projectIndex, setProjectIndex }) {
             key={item.file}
             className={index === projectIndex ? "is-active" : ""}
             onClick={() => setProjectIndex(index)}
+            {...trackingAttrs(`project-tab-${slugifyLabel(item.title)}`, `Project tab: ${item.title}`)}
           >
             {item.title}
           </button>
@@ -524,7 +666,12 @@ function ArticleStudio({ onOpen }) {
       />
       <div className="article-grid" data-reveal>
         {data.articles.map((article) => (
-          <button className="article-card" key={article.file} onClick={() => onOpen(article)}>
+          <button
+            className="article-card"
+            key={article.title}
+            onClick={() => onOpen(article)}
+            {...trackingAttrs(`article-${slugifyLabel(article.title)}`, `Article: ${article.title}`)}
+          >
             <img src={assetUrl(article.posterPreview)} alt="" loading="lazy" {...protectedMediaProps} />
             <div>
               <span>{article.pages} pages</span>
@@ -538,23 +685,92 @@ function ArticleStudio({ onOpen }) {
   );
 }
 
-function DesignGallery({ onOpen }) {
+function DesignGallery() {
+  const design = data.designs.find((item) => item.kind === "pdf") || data.designs[0];
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(design?.pages || 1);
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+    setZoom(1);
+    setPageCount(design?.pages || 1);
+  }, [design?.file, design?.pages]);
+
+  useEffect(() => {
+    if (page > pageCount) setPage(pageCount);
+  }, [page, pageCount]);
+
+  if (!design) return null;
+
+  const zoomPercent = Math.round(zoom * 100);
+
   return (
     <section className="section-band design-section" id="design">
       <SectionHeader
         number="05"
         icon={GalleryHorizontalEnd}
-        title="I design health carousels that educate at a glance."
-        text="I create poster, bulletin, and carousel-style health visuals for public education, built to make useful medical information easier to scan, save, and share."
+        title="I design data carousels that make public health easier to scan."
+        text="This four-page bulletin carousel is shown directly as a high-resolution PDF canvas, with page-by-page navigation and zoom for sharper reading."
       />
-      <div className="design-grid" data-reveal>
-        {data.designs.map((design, index) => (
-          <button className={`design-card design-${index}`} key={design.file} onClick={() => onOpen(design)}>
-            <img src={assetUrl(design.preview)} alt={design.title} loading="lazy" {...protectedMediaProps} />
-            <span>{design.title}</span>
-            <small>{design.kind === "pdf" ? `${design.pages} page carousel` : "education carousel"}</small>
-          </button>
-        ))}
+      <div className="design-pdf-stage" data-reveal>
+        <div className="design-pdf-toolbar">
+          <div>
+            <span>Data Bulletin Carousel</span>
+            <h3>{design.title}</h3>
+          </div>
+          <div className="pdf-controls compact">
+            <button
+              onClick={() => setPage((value) => Math.max(1, value - 1))}
+              disabled={page <= 1}
+              {...trackingAttrs("design-pdf-prev-page", "Design PDF: previous page")}
+            >
+              <ChevronLeft size={18} />
+              Page
+            </button>
+            <span>
+              {page} / {pageCount}
+            </span>
+            <button
+              onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
+              disabled={page >= pageCount}
+              {...trackingAttrs("design-pdf-next-page", "Design PDF: next page")}
+            >
+              Page
+              <ChevronRight size={18} />
+            </button>
+            <button
+              onClick={() => setZoom((value) => Math.max(0.75, value - 0.25))}
+              disabled={zoom <= 0.75}
+              aria-label="Zoom out"
+              {...trackingAttrs("design-pdf-zoom-out", "Design PDF: zoom out")}
+            >
+              <Minus size={18} />
+            </button>
+            <span>{zoomPercent}%</span>
+            <button
+              onClick={() => setZoom((value) => Math.min(2.5, value + 0.25))}
+              disabled={zoom >= 2.5}
+              aria-label="Zoom in"
+              {...trackingAttrs("design-pdf-zoom-in", "Design PDF: zoom in")}
+            >
+              <Plus size={18} />
+            </button>
+          </div>
+        </div>
+        <PdfCanvas file={design.file} page={page} zoom={zoom} maxWidth={980} minHeight={320} lazy onPageCount={setPageCount} />
+        <div className="pdf-page-strip" aria-label="Carousel pages">
+          {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
+            <button
+              key={pageNumber}
+              className={pageNumber === page ? "is-active" : ""}
+              onClick={() => setPage(pageNumber)}
+              {...trackingAttrs(`design-pdf-page-${pageNumber}`, `Design PDF: page ${pageNumber}`)}
+            >
+              {pageNumber}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -573,7 +789,12 @@ function CertificateMarquee({ onOpen }) {
       <div className="marquee" data-reveal>
         <div className="marquee-track">
           {loop.map((cert, index) => (
-            <button className="certificate-card" key={`${cert.file}-${index}`} onClick={() => onOpen(cert, index % data.certificates.length)}>
+            <button
+              className="certificate-card"
+              key={`${cert.file}-${index}`}
+              onClick={() => onOpen(cert, index % data.certificates.length)}
+              {...trackingAttrs(`certificate-${slugifyLabel(cert.title)}`, `Certificate: ${cert.title}`)}
+            >
               <img src={assetUrl(cert.preview)} alt={cert.title} loading="lazy" {...protectedMediaProps} />
               <span>{cert.title}</span>
             </button>
@@ -598,7 +819,12 @@ function VideoRoom() {
       <div className="video-layout" data-reveal>
         <div className="video-list">
           {data.videos.map((item, index) => (
-            <button key={item.file} className={index === active ? "is-active" : ""} onClick={() => setActive(index)}>
+            <button
+              key={item.file}
+              className={index === active ? "is-active" : ""}
+              onClick={() => setActive(index)}
+              {...trackingAttrs(`video-${slugifyLabel(item.title)}`, `Video: ${item.title}`)}
+            >
               <CirclePlay size={22} />
               <span>{item.title}</span>
             </button>
@@ -624,6 +850,9 @@ function VideoRoom() {
 }
 
 function ContactSection() {
+  const qrCode = data.tracking?.qrCode;
+  const qrUrl = data.tracking?.qrUrl || "https://zenwaku.github.io/marcho-portfolio/";
+
   return (
     <footer className="section-band contact-section" id="contact">
       <div data-reveal>
@@ -632,21 +861,130 @@ function ContactSection() {
           I combine physician-level clinical reasoning with product storytelling, stakeholder communication, market awareness, and AI-enabled workflow speed.
         </p>
       </div>
-      <div className="contact-actions" data-reveal>
-        <a className="button primary" href={`mailto:${data.profile.email}`}>
-          <Mail size={18} />
-          {data.profile.email}
-        </a>
-        <a className="button secondary" href={`tel:${data.profile.phone}`}>
-          <Phone size={18} />
-          {data.profile.phone}
-        </a>
-        <button className="button ghost" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <Sparkles size={18} />
-          Back to Top
-        </button>
+      <div className="contact-side" data-reveal>
+        <div className="contact-actions">
+          <a className="button primary" href={`mailto:${data.profile.email}`} {...trackingAttrs("contact-email", "Contact: email")}>
+            <Mail size={18} />
+            {data.profile.email}
+          </a>
+          <a className="button secondary" href={`tel:${data.profile.phone}`} {...trackingAttrs("contact-phone", "Contact: phone")}>
+            <Phone size={18} />
+            {data.profile.phone}
+          </a>
+          <button
+            className="button ghost"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            {...trackingAttrs("contact-back-to-top", "Contact: back to top")}
+          >
+            <Sparkles size={18} />
+            Back to Top
+          </button>
+        </div>
+        {qrCode ? (
+          <a className="qr-card" href={qrUrl} aria-label="Open QR campaign link" {...trackingAttrs("contact-qr-card", "Contact: QR card")}>
+            <img src={assetUrl(qrCode)} alt="QR code for Marcho portfolio" loading="lazy" />
+            <div>
+              <span>
+                <QrCode size={16} />
+                Scan Portfolio
+              </span>
+              <strong>QR campaign link</strong>
+            </div>
+          </a>
+        ) : null}
       </div>
     </footer>
+  );
+}
+
+function TrackingSnapshot() {
+  const [stats, setStats] = useState([]);
+  const [status, setStatus] = useState("Loading tracking snapshot...");
+
+  useEffect(() => {
+    let cancelled = false;
+    const fallbackRows = TRACKING_SUMMARY.map(([key, label]) => ({
+      key,
+      label,
+      value: null,
+      url: counterUrl(key),
+    }));
+
+    async function loadStats() {
+      setStatus("Loading tracking snapshot...");
+      try {
+        const rows = await Promise.all(
+          TRACKING_SUMMARY.map(async ([key, label]) => {
+            const response = await fetch(counterUrl(key), { cache: "no-store" });
+            if (!response.ok) return { key, label, value: 0, url: counterUrl(key) };
+            const payload = await response.json();
+            return { key, label, value: counterValue(payload), url: counterUrl(key) };
+          }),
+        );
+        if (!cancelled) {
+          setStats(rows);
+          setStatus("");
+        }
+      } catch {
+        if (!cancelled) {
+          setStats(fallbackRows);
+          setStatus("Tracking is wired. If this browser cannot read the public API directly, open the raw counter links below.");
+        }
+      }
+    }
+
+    loadStats();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const topClicks = stats
+    .filter((item) => item.key.startsWith("click-"))
+    .sort((a, b) => (b.value || 0) - (a.value || 0))
+    .slice(0, 8);
+
+  return (
+    <section className="section-band tracking-section" id="tracking">
+      <SectionHeader
+        number="QR"
+        icon={QrCode}
+        title="Tracking snapshot for the portfolio QR and key clicks."
+        text="This lightweight view reads public counters for the GitHub Pages portfolio, including visits from the QR campaign URL and the highest-signal click areas."
+      />
+      <div className="tracking-panel" data-reveal>
+        {status ? <p className="viewer-status">{status}</p> : null}
+        <div className="tracking-cards">
+          {stats.slice(0, 7).map((item) => (
+            <article key={item.key}>
+              <span>{item.label}</span>
+              {item.value === null ? (
+                <a href={item.url} target="_blank" rel="noreferrer">Open</a>
+              ) : (
+                <strong>{item.value}</strong>
+              )}
+            </article>
+          ))}
+        </div>
+        <div className="tracking-list">
+          <h3>Top click areas</h3>
+          {topClicks.length ? (
+            topClicks.map((item) => (
+              <div key={item.key}>
+                <span>{item.label}</span>
+                {item.value === null ? (
+                  <a href={item.url} target="_blank" rel="noreferrer">Open</a>
+                ) : (
+                  <strong>{item.value}</strong>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No click counters yet.</p>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -690,20 +1028,41 @@ function MediaModal({ modal, onClose, setModal }) {
   );
 }
 
-function PdfViewer({ modal, setModal }) {
+function PdfCanvas({ file, page, zoom = 1, maxWidth = 1040, minHeight = 0, lazy = false, onPageCount }) {
+  const wrapRef = useRef(null);
   const canvasRef = useRef(null);
-  const [page, setPage] = useState(1);
-  const [pageCount, setPageCount] = useState(modal.item.pages || 1);
-  const [status, setStatus] = useState("Loading PDF...");
+  const viewportWidth = useViewportWidth();
+  const [isReady, setIsReady] = useState(!lazy);
+  const [status, setStatus] = useState(lazy ? "PDF preview will load here." : "Loading PDF...");
 
   useEffect(() => {
-    setPage(1);
-    setPageCount(modal.item.pages || 1);
-  }, [modal.item.file, modal.item.pages]);
+    if (!lazy) {
+      setIsReady(true);
+      return undefined;
+    }
+
+    const node = wrapRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "640px 0px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [lazy]);
 
   useEffect(() => {
+    if (!isReady) return undefined;
+
     let cancelled = false;
     let renderTask = null;
+
     async function renderPdf() {
       setStatus("Loading PDF...");
       try {
@@ -712,20 +1071,28 @@ function PdfViewer({ modal, setModal }) {
           import("pdfjs-dist/build/pdf.worker.mjs?url"),
         ]);
         pdfjsLib.GlobalWorkerOptions.workerSrc = workerModule.default;
-        const loadingTask = pdfjsLib.getDocument(assetUrl(modal.item.file));
+        const loadingTask = pdfjsLib.getDocument(assetUrl(file));
         const pdf = await loadingTask.promise;
         if (cancelled) return;
-        setPageCount(pdf.numPages);
+
+        onPageCount?.(pdf.numPages);
         const currentPage = Math.min(page, pdf.numPages);
         const pdfPage = await pdf.getPage(currentPage);
         const canvas = canvasRef.current;
+        if (!canvas) return;
+
         const context = canvas.getContext("2d");
-        const parentWidth = Math.min(canvas.parentElement.clientWidth, 1040);
+        const parentWidth = Math.min(canvas.parentElement?.clientWidth || maxWidth, maxWidth);
         const baseViewport = pdfPage.getViewport({ scale: 1 });
-        const scale = Math.max(0.7, Math.min(2.1, parentWidth / baseViewport.width));
+        const fitScale = parentWidth / baseViewport.width;
+        const readableMinHeight = viewportWidth < 520 && minHeight ? Math.min(minHeight, 220) : minHeight;
+        const heightScale = readableMinHeight ? readableMinHeight / baseViewport.height : 0;
+        const scale = Math.max(0.55, Math.min(3.4, Math.max(fitScale, heightScale) * zoom));
         const viewport = pdfPage.getViewport({ scale });
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
+
+        canvas.width = Math.ceil(viewport.width);
+        canvas.height = Math.ceil(viewport.height);
+        context.clearRect(0, 0, canvas.width, canvas.height);
         renderTask = pdfPage.render({ canvasContext: context, viewport });
         await renderTask.promise;
         if (!cancelled) setStatus("");
@@ -733,36 +1100,87 @@ function PdfViewer({ modal, setModal }) {
         if (!cancelled) setStatus(`This PDF preview could not be rendered in the browser. ${error.message}`);
       }
     }
+
     renderPdf();
     return () => {
       cancelled = true;
       if (renderTask) renderTask.cancel();
     };
-  }, [modal.item.file, page]);
+  }, [file, page, zoom, maxWidth, minHeight, onPageCount, viewportWidth, isReady]);
+
+  return (
+    <div className="pdf-canvas-wrap" ref={wrapRef}>
+      {status ? <p className="viewer-status">{status}</p> : null}
+      <canvas ref={canvasRef} {...protectedMediaProps} />
+    </div>
+  );
+}
+
+function PdfViewer({ modal, setModal }) {
+  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(modal.item.pages || 1);
+  const [zoom, setZoom] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+    setZoom(1);
+    setPageCount(modal.item.pages || 1);
+  }, [modal.item.file, modal.item.pages]);
+
+  useEffect(() => {
+    if (page > pageCount) setPage(pageCount);
+  }, [page, pageCount]);
 
   const canGoPrevDeck = modal.collection && modal.index > 0;
   const canGoNextDeck = modal.collection && modal.index < modal.collection.length - 1;
   const collectionLabel = modal.collectionLabel || "Item";
+  const zoomPercent = Math.round(zoom * 100);
 
   return (
     <div className="pdf-viewer">
       <div className="pdf-controls">
-        <button onClick={() => setPage((value) => Math.max(1, value - 1))} disabled={page <= 1}>
+        <button
+          onClick={() => setPage((value) => Math.max(1, value - 1))}
+          disabled={page <= 1}
+          {...trackingAttrs("pdf-prev-page", "PDF viewer: previous page")}
+        >
           <ChevronLeft size={18} />
           Page
         </button>
         <span>
           {page} / {pageCount}
         </span>
-        <button onClick={() => setPage((value) => Math.min(pageCount, value + 1))} disabled={page >= pageCount}>
+        <button
+          onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
+          disabled={page >= pageCount}
+          {...trackingAttrs("pdf-next-page", "PDF viewer: next page")}
+        >
           Page
           <ChevronRight size={18} />
+        </button>
+        <button
+          onClick={() => setZoom((value) => Math.max(0.75, value - 0.25))}
+          disabled={zoom <= 0.75}
+          aria-label="Zoom out"
+          {...trackingAttrs("pdf-zoom-out", "PDF viewer: zoom out")}
+        >
+          <Minus size={18} />
+        </button>
+        <span>{zoomPercent}%</span>
+        <button
+          onClick={() => setZoom((value) => Math.min(2.5, value + 0.25))}
+          disabled={zoom >= 2.5}
+          aria-label="Zoom in"
+          {...trackingAttrs("pdf-zoom-in", "PDF viewer: zoom in")}
+        >
+          <Plus size={18} />
         </button>
         {modal.collection ? (
           <>
             <button
               onClick={() => setModal({ type: "pdf", item: modal.collection[modal.index - 1], collection: modal.collection, index: modal.index - 1, collectionLabel })}
               disabled={!canGoPrevDeck}
+              {...trackingAttrs(`pdf-prev-${slugifyLabel(collectionLabel)}`, `PDF viewer: previous ${collectionLabel}`)}
             >
               <ChevronLeft size={18} />
               {collectionLabel}
@@ -770,6 +1188,7 @@ function PdfViewer({ modal, setModal }) {
             <button
               onClick={() => setModal({ type: "pdf", item: modal.collection[modal.index + 1], collection: modal.collection, index: modal.index + 1, collectionLabel })}
               disabled={!canGoNextDeck}
+              {...trackingAttrs(`pdf-next-${slugifyLabel(collectionLabel)}`, `PDF viewer: next ${collectionLabel}`)}
             >
               {collectionLabel}
               <ChevronRight size={18} />
@@ -777,8 +1196,7 @@ function PdfViewer({ modal, setModal }) {
           </>
         ) : null}
       </div>
-      {status ? <p className="viewer-status">{status}</p> : null}
-      <canvas ref={canvasRef} {...protectedMediaProps} />
+      <PdfCanvas file={modal.item.file} page={page} zoom={zoom} maxWidth={1040} onPageCount={setPageCount} />
     </div>
   );
 }

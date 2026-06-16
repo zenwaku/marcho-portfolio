@@ -446,6 +446,8 @@ a {
 }
 
 .competency-panel {
+  grid-column: 1;
+  grid-row: 1;
   padding: clamp(18px, 3vw, 28px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -455,6 +457,8 @@ a {
 }
 
 .profile-snapshot {
+  grid-column: 2;
+  grid-row: 1;
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
   gap: 16px;
@@ -1056,6 +1060,84 @@ a {
   text-transform: uppercase;
 }
 
+.design-pdf-stage {
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: rgba(247, 248, 244, 0.82);
+  box-shadow: var(--shadow);
+}
+
+.design-pdf-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 16px;
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.design-pdf-toolbar span {
+  color: rgba(247, 248, 244, 0.72);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.design-pdf-toolbar h3 {
+  margin: 5px 0 0;
+  font-size: clamp(22px, 3vw, 40px);
+  line-height: 1;
+}
+
+.pdf-controls.compact {
+  position: relative;
+  top: auto;
+  justify-content: flex-end;
+  padding: 0;
+  color: var(--paper);
+  background: transparent;
+  border-bottom: 0;
+  backdrop-filter: none;
+}
+
+.pdf-controls.compact button {
+  color: var(--paper);
+  border-color: rgba(247, 248, 244, 0.28);
+}
+
+.pdf-controls.compact span {
+  color: var(--paper);
+}
+
+.pdf-page-strip {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--soft-line);
+}
+
+.pdf-page-strip button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.pdf-page-strip button.is-active {
+  color: var(--paper);
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+}
+
 .marquee {
   overflow: hidden;
   border-block: 1px solid var(--line);
@@ -1151,6 +1233,54 @@ a {
   background: var(--ink);
 }
 
+.contact-side {
+  display: grid;
+  gap: 18px;
+  justify-items: end;
+}
+
+.contact-side .contact-actions {
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.qr-card {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 14px;
+  width: min(360px, 100%);
+  align-items: center;
+  padding: 12px;
+  border: 1px solid rgba(247, 248, 244, 0.24);
+  border-radius: var(--radius);
+  background: rgba(247, 248, 244, 0.06);
+}
+
+.qr-card img {
+  width: 110px;
+  aspect-ratio: 1;
+  padding: 8px;
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.qr-card span {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.qr-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  line-height: 1.05;
+}
+
 .contact-section h2 {
   max-width: 1000px;
   margin: 0;
@@ -1176,6 +1306,101 @@ a {
 .contact-section .button.primary {
   color: var(--ink);
   background: var(--paper);
+}
+
+.tracking-section {
+  background:
+    linear-gradient(135deg, rgba(37, 88, 255, 0.08), transparent 34%),
+    linear-gradient(315deg, rgba(16, 198, 181, 0.12), transparent 40%),
+    var(--paper);
+}
+
+.tracking-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.tracking-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tracking-cards article,
+.tracking-list {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(247, 248, 244, 0.82);
+}
+
+.tracking-cards article {
+  padding: 16px;
+}
+
+.tracking-cards span,
+.tracking-list span {
+  color: rgba(16, 18, 22, 0.64);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.tracking-cards strong {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 0.9;
+}
+
+.tracking-cards a,
+.tracking-list a {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 34px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(37, 88, 255, 0.28);
+  border-radius: var(--radius);
+  color: var(--cobalt);
+  background: rgba(37, 88, 255, 0.08);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.tracking-list {
+  padding: 16px;
+}
+
+.tracking-list h3 {
+  margin: 0 0 14px;
+  font-size: 24px;
+}
+
+.tracking-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid var(--soft-line);
+}
+
+.tracking-list strong {
+  font-size: 20px;
+}
+
+.tracking-list a {
+  margin-top: 0;
+}
+
+.tracking-list p {
+  margin: 0;
+  color: rgba(16, 18, 22, 0.66);
+  font-weight: 650;
 }
 
 .modal-backdrop {
@@ -1288,10 +1513,17 @@ a {
   text-align: center;
 }
 
-.pdf-viewer canvas {
-  width: min(100%, 1040px);
+.pdf-canvas-wrap {
+  overflow: auto;
+  padding: 18px;
+  overscroll-behavior: contain;
+}
+
+.pdf-canvas-wrap canvas {
+  width: auto;
+  max-width: none;
   height: auto;
-  margin: 18px auto;
+  margin: 0 auto;
   background: white;
   box-shadow: var(--shadow);
 }
@@ -1376,8 +1608,21 @@ a {
   .hero,
   .about-grid,
   .video-layout,
-  .contact-section {
+  .contact-section,
+  .tracking-panel {
     grid-template-columns: 1fr;
+  }
+
+  .competency-panel,
+  .profile-snapshot {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .contact-side,
+  .contact-side .contact-actions {
+    justify-items: start;
+    justify-content: flex-start;
   }
 
   .signal-panel {
@@ -1396,6 +1641,18 @@ a {
 
   .skill-group-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tracking-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .design-pdf-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-controls.compact {
+    justify-content: flex-start;
   }
 }
 
@@ -1468,6 +1725,35 @@ a {
 
   .iframe-shell iframe {
     height: 620px;
+  }
+
+  .design-pdf-toolbar {
+    padding: 12px;
+  }
+
+  .pdf-controls {
+    justify-content: flex-start;
+  }
+
+  .pdf-controls button {
+    flex: 1 1 auto;
+    min-width: 74px;
+  }
+
+  .pdf-canvas-wrap {
+    padding: 10px;
+  }
+
+  .qr-card {
+    grid-template-columns: 92px minmax(0, 1fr);
+  }
+
+  .qr-card img {
+    width: 92px;
+  }
+
+  .tracking-cards {
+    grid-template-columns: 1fr;
   }
 
   .modal-panel {
