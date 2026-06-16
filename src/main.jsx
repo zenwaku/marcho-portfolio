@@ -446,6 +446,7 @@ function About() {
           </div>
         </div>
         <SkillMatrix />
+        <AIWorkflow />
         <div className="expertise-rail" data-reveal>
           {[
             ["Evidence", "I turn journals, disease burden, and clinical nuance into messages teams can use in the field.", BrainCircuit],
@@ -553,6 +554,40 @@ function SkillMatrix() {
         {data.profile.softSkills.map((skill) => (
           <span key={skill}>{skill}</span>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function AIWorkflow() {
+  const workflow = data.profile.aiWorkflow;
+  if (!workflow) return null;
+
+  const stepIcons = [BrainCircuit, FileText, Microscope, Rocket];
+
+  return (
+    <div className="ai-workflow" data-reveal>
+      <div className="ai-workflow-copy">
+        <span>{workflow.eyebrow}</span>
+        <h3>{workflow.title}</h3>
+        <p>{workflow.summary}</p>
+        <div className="ai-tool-row">
+          {workflow.tools.map((tool) => (
+            <span key={tool}>{tool}</span>
+          ))}
+        </div>
+      </div>
+      <div className="ai-workflow-steps">
+        {workflow.steps.map((step, index) => {
+          const Icon = stepIcons[index % stepIcons.length];
+          return (
+            <article key={step.label}>
+              <Icon size={22} />
+              <h4>{step.label}</h4>
+              <p>{step.text}</p>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

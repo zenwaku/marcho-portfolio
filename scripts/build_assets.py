@@ -187,8 +187,12 @@ def main() -> None:
 
     qr_src = EXTRA_ROOT / "system" / "portfolio-qr.svg"
     qr_url = None
+    qr_png_url = None
     if qr_src.exists():
         qr_url = copy_asset(qr_src, PUBLIC_ROOT / "system", "portfolio-qr")
+    qr_png_src = EXTRA_ROOT / "system" / "portfolio-qr-cv.png"
+    if qr_png_src.exists():
+        qr_png_url = copy_asset(qr_png_src, PUBLIC_ROOT / "system", "portfolio-qr-cv")
 
     cv_src = SOURCE_ROOT / "CV_MARCHO.pdf"
     cv = {
@@ -329,6 +333,7 @@ def main() -> None:
         "tracking": {
             "qrUrl": "https://zenwaku.github.io/marcho-portfolio/?utm_source=qr&utm_medium=print&utm_campaign=portfolio_hiring",
             "qrCode": qr_url,
+            "qrCodePng": qr_png_url,
             "goatcounterUrl": os.environ.get("VITE_GOATCOUNTER_URL"),
         },
         "profile": {
@@ -338,7 +343,7 @@ def main() -> None:
             "phone": "081311993778",
             "positioning": "Medical Scientific x Product Strategy",
             "headline": "I turn clinical evidence into clear product stories, useful market insight, and healthcare education that people can actually act on.",
-            "summary": "I am a medical doctor and Master of Management candidate working at the intersection of Medical Affairs, product training, healthcare content, market intelligence, and AI-assisted workflow speed. My edge is simple: I can read the science, understand the field reality, and shape it into communication that helps teams move with confidence.",
+            "summary": "I am a medical doctor and Master of Management candidate working at the intersection of Medical Affairs, product training, healthcare content, market intelligence, and AI-assisted research productivity. My edge is simple: I can read the science, understand the field reality, use modern tools to move faster, and still validate the output with clinical judgment.",
             "currentRole": "Medical Scientific & Product Trainer - PT Novell Pharmaceutical Laboratories",
             "coreCompetencies": [
                 "Medical Affairs",
@@ -352,8 +357,34 @@ def main() -> None:
                 "Sales enablement",
                 "Healthcare content writing",
                 "Public education carousel design",
-                "AI-assisted research workflow",
+                "AI-assisted medical literature workflow",
+                "AI output validation",
+                "Simple workflow automation",
             ],
+            "aiWorkflow": {
+                "eyebrow": "AI-Assisted, Clinically Validated",
+                "title": "I use AI to accelerate research, not to replace medical judgment.",
+                "summary": "My workflow uses AI as a productivity layer for medical literature search, evidence synthesis, scientific writing, strategic research, and simple automation. The final thinking stays human-led: I validate sources, compare claims across tools, check for hallucination, and translate the result into usable medical or product communication.",
+                "steps": [
+                    {
+                        "label": "Search",
+                        "text": "Perplexity, Elicit, Consensus, Gemini, and Claude help me map literature, questions, and competing claims faster.",
+                    },
+                    {
+                        "label": "Structure",
+                        "text": "Codex, ChatGPT, and Claude help turn raw findings into outlines, evidence tables, decks, articles, scripts, and research workflows.",
+                    },
+                    {
+                        "label": "Validate",
+                        "text": "I cross-check citations, clinical logic, journal quality, claim strength, and hallucination risk before using AI-assisted output.",
+                    },
+                    {
+                        "label": "Automate",
+                        "text": "Make and repeatable templates help reduce manual work for task breakdown, content planning, data organization, and follow-up workflows.",
+                    },
+                ],
+                "tools": ["ChatGPT", "Codex", "Gemini", "Claude Cowork", "Perplexity", "Elicit", "Consensus", "Make"],
+            },
             "skillGroups": [
                 {
                     "title": "Clinical & Medical Affairs",
@@ -396,15 +427,17 @@ def main() -> None:
                 },
                 {
                     "title": "Data, Digital & AI Workflow",
-                    "pitch": "I use digital and AI tools to research faster, organize evidence better, and turn raw information into practical output.",
+                    "pitch": "I use digital and AI tools to research faster, organize evidence better, and build repeatable workflows while keeping human validation in the loop.",
                     "items": [
                         "Excel intermediate",
                         "Google Workspace",
                         "Notion workflow",
                         "Google Analytics",
                         "Metricool and Business Suite",
-                        "ChatGPT, Gemini, Claude",
-                        "Perplexity, Elicit, Consensus",
+                        "ChatGPT, Codex, Gemini",
+                        "Claude Cowork, Perplexity",
+                        "Elicit, Consensus, Make",
+                        "AI-assisted hallucination checking",
                     ],
                 },
                 {
@@ -448,19 +481,19 @@ def main() -> None:
                 {
                     "role": "General Practitioner",
                     "company": "RS Hermina Tangerang",
-                    "period": "June 2023 - February 2024",
+                    "period": "August 2023 - February 2024",
                     "focus": ["Emergency triage", "BLS/ACLS", "Inpatient rounds", "Continuity of care"],
                 },
                 {
                     "role": "General Practitioner",
                     "company": "Puskesmas Jatiuwung",
-                    "period": "January 2023 - June 2023",
+                    "period": "February 2023 - August 2023",
                     "focus": ["Primary care", "Public health programs", "Health promotion", "Minor procedures"],
                 },
                 {
                     "role": "General Practitioner",
                     "company": "Klinik Berkah Cengkareng",
-                    "period": "October 2022 - January 2023",
+                    "period": "October 2022 - February 2023",
                     "focus": ["General consultation", "Prescription standards", "Clinical documentation"],
                 },
             ],
@@ -491,7 +524,9 @@ def main() -> None:
                 "HSE / K3 and occupational health awareness",
                 "Basic accounting and finance support",
                 "PC assembly and troubleshooting",
-                "AI productivity power use",
+                "AI-assisted medical literature review",
+                "AI research validation and hallucination checking",
+                "Simple automation with Make",
             ],
             "languages": ["Bahasa Indonesia - Native", "English - Working proficiency"],
         },
