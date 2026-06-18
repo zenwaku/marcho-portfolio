@@ -120,6 +120,10 @@ const TRACKING_SUMMARY = [
   ...data.slides.map((item) => [`click-deck-${slugifyLabel(item.title)}`, `Deck: ${item.title}`]),
   ...data.projects.map((item) => [`click-project-${slugifyLabel(item.title)}`, `Project: ${item.title}`]),
   ...data.articles.map((item) => [`click-article-${slugifyLabel(item.title)}`, `Article: ${item.title}`]),
+  ...(data.infographics || []).map((item) => [`click-infographic-${slugifyLabel(item.title)}`, `Infographic: ${item.title}`]),
+  ...(data.socialPosts || []).map((item) => [`click-social-post-${slugifyLabel(item.title)}`, `Social post: ${item.title}`]),
+  ...(data.socialStories || []).map((item) => [`click-social-story-${slugifyLabel(item.title)}`, `Social story: ${item.title}`]),
+  ...(data.reels || []).map((item) => [`click-reel-${slugifyLabel(item.title)}`, `Reel: ${item.title}`]),
   ...data.videos.map((item) => [`click-video-${slugifyLabel(item.title)}`, `Video: ${item.title}`]),
 ];
 
@@ -316,7 +320,10 @@ function App() {
         <AIEvidenceWorkflow />
         <ScientificDecks openPdf={openPdf} />
         <ArticlesSection onOpen={(article) => setModal({ type: "article", item: article })} />
-        <MedicalCommunicationLab />
+        <MedicalCommunicationLab
+          onOpenImage={(item, collection, index, collectionLabel) => setModal({ type: "image", item, collection, index, collectionLabel })}
+          onOpenProject={openProject}
+        />
         <CredentialsSection onOpen={(cert, index, collection) => setModal({ type: cert.kind === "pdf" ? "pdf" : "image", item: cert, collection, index, collectionLabel: "Certificate" })} />
         <ContactSection />
         {trackingMode ? <TrackingSnapshot /> : null}
@@ -751,7 +758,7 @@ function ArticlesSection({ onOpen }) {
   );
 }
 
-function MedicalCommunicationLab() {
+function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
   const design = data.designs.find((item) => item.kind === "pdf") || data.designs[0];
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(design?.pages || 1);
@@ -759,6 +766,10 @@ function MedicalCommunicationLab() {
   const [activeVideo, setActiveVideo] = useState(0);
   const [videoUnlocked, setVideoUnlocked] = useState(false);
   const video = data.videos[activeVideo];
+  const infographics = data.infographics || [];
+  const socialPosts = data.socialPosts || [];
+  const socialStories = data.socialStories || [];
+  const reels = data.reels || [];
 
   useEffect(() => {
     setPage(1);
@@ -770,7 +781,7 @@ function MedicalCommunicationLab() {
     if (page > pageCount) setPage(pageCount);
   }, [page, pageCount]);
 
-  if (!design && !video) return null;
+  if (!design && !video && !infographics.length && !socialPosts.length && !socialStories.length && !reels.length) return null;
   const zoomPercent = Math.round(zoom * 100);
 
   return (
@@ -868,7 +879,96 @@ function MedicalCommunicationLab() {
           </article>
         ) : null}
       </div>
+      <div className="communication-library" data-reveal>
+        <CommunicationCollection
+          title="Evidence-Based Infographics"
+          text="Large-format public education visuals for emergency signs, first aid, fever pattern recognition, sunscreen, and nutrition limits."
+          items={infographics}
+          shape="infographic"
+          collectionLabel="Infographic"
+          trackingPrefix="infographic"
+          onOpen={onOpenImage}
+        />
+        <CommunicationCollection
+          title="Social Media Single Image Posts"
+          text="Square posts designed for quick health awareness, clinic education, and clear visual hooks on feed-based platforms."
+          items={socialPosts}
+          shape="post"
+          collectionLabel="Post"
+          trackingPrefix="social-post"
+          onOpen={onOpenImage}
+        />
+        <CommunicationCollection
+          title="Mobile Story Assets"
+          text="Vertical story-format education pieces for mobile-first communication and fast public-health recall."
+          items={socialStories}
+          shape="story"
+          collectionLabel="Story"
+          trackingPrefix="social-story"
+          onOpen={onOpenImage}
+        />
+        {reels.length ? (
+          <article className="communication-panel reels-panel">
+            <div className="communication-panel-copy">
+              <span>Interactive HTML Reels</span>
+              <h3>Motion-led education concept for social media.</h3>
+              <p>HTML-based reels work presented directly in the browser, keeping motion and interaction available without requiring a download.</p>
+            </div>
+            <div className="reel-grid">
+              {reels.map((reel) => (
+                <button
+                  className="reel-card"
+                  key={reel.file}
+                  onClick={() => onOpenProject(reel)}
+                  {...trackingAttrs(`reel-${slugifyLabel(reel.title)}`, `Reel: ${reel.title}`)}
+                >
+                  <iframe
+                    src={assetUrl(reel.file)}
+                    title={`${reel.title} preview`}
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin"
+                    referrerPolicy="no-referrer"
+                    tabIndex="-1"
+                    aria-hidden="true"
+                    {...protectedMediaProps}
+                  />
+                  <span>{reel.outputType || "Interactive HTML reel"}</span>
+                  <strong>{reel.title}</strong>
+                </button>
+              ))}
+            </div>
+          </article>
+        ) : null}
+      </div>
     </section>
+  );
+}
+
+function CommunicationCollection({ title, text, items, shape, collectionLabel, trackingPrefix, onOpen }) {
+  if (!items?.length) return null;
+
+  return (
+    <article className={`communication-panel ${shape ? `is-${shape}` : ""}`}>
+      <div className="communication-panel-copy">
+        <span>{collectionLabel}</span>
+        <h3>{title}</h3>
+        <p>{text}</p>
+      </div>
+      <div className={`media-rail ${shape ? `is-${shape}` : ""}`} aria-label={title}>
+        {items.map((item, index) => (
+          <button
+            className="media-card"
+            key={item.file}
+            onClick={() => onOpen(item, items, index, collectionLabel)}
+            {...trackingAttrs(`${trackingPrefix}-${slugifyLabel(item.title)}`, `${collectionLabel}: ${item.title}`)}
+          >
+            <img src={assetUrl(item.preview || item.file)} alt={item.title} loading="lazy" {...protectedMediaProps} />
+            <span>{item.outputType || item.type}</span>
+            <strong>{item.title}</strong>
+          </button>
+        ))}
+      </div>
+    </article>
   );
 }
 
@@ -1064,7 +1164,13 @@ function MediaModal({ modal, onClose, setModal }) {
 
   if (!modal) return null;
 
-  const label = modal.type === "pdf" ? "PDF Viewer" : modal.type === "article" ? "Article Reader" : modal.type === "project" ? "Interactive Case" : "Media Viewer";
+  const label = modal.type === "pdf"
+    ? "PDF Viewer"
+    : modal.type === "article"
+      ? "Article Reader"
+      : modal.type === "project"
+        ? modal.item?.type === "HTML Reel" ? "Interactive Reel" : "Interactive Case"
+        : "Media Viewer";
 
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true" aria-label={label}>
@@ -1086,7 +1192,7 @@ function MediaModal({ modal, onClose, setModal }) {
         ) : modal.type === "project" ? (
           <ProjectViewer project={modal.item} />
         ) : (
-          <ImageViewer item={modal.item} />
+          <ImageViewer modal={modal} setModal={setModal} />
         )}
       </div>
     </div>
@@ -1309,9 +1415,35 @@ function ArticleReader({ article }) {
   );
 }
 
-function ImageViewer({ item }) {
+function ImageViewer({ modal, setModal }) {
+  const item = modal.item;
+  const canGoPrevItem = modal.collection && modal.index > 0;
+  const canGoNextItem = modal.collection && modal.index < modal.collection.length - 1;
+  const collectionLabel = modal.collectionLabel || "Image";
+
   return (
     <div className="image-viewer">
+      {modal.collection ? (
+        <div className="image-controls">
+          <button
+            onClick={() => setModal({ type: "image", item: modal.collection[modal.index - 1], collection: modal.collection, index: modal.index - 1, collectionLabel })}
+            disabled={!canGoPrevItem}
+            {...trackingAttrs(`image-prev-${slugifyLabel(collectionLabel)}`, `Image viewer: previous ${collectionLabel}`)}
+          >
+            <ChevronLeft size={18} />
+            {collectionLabel}
+          </button>
+          <span>{modal.index + 1} / {modal.collection.length}</span>
+          <button
+            onClick={() => setModal({ type: "image", item: modal.collection[modal.index + 1], collection: modal.collection, index: modal.index + 1, collectionLabel })}
+            disabled={!canGoNextItem}
+            {...trackingAttrs(`image-next-${slugifyLabel(collectionLabel)}`, `Image viewer: next ${collectionLabel}`)}
+          >
+            {collectionLabel}
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      ) : null}
       <img src={assetUrl(item.file)} alt={item.title} {...protectedMediaProps} />
     </div>
   );
