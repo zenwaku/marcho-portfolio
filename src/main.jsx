@@ -51,7 +51,7 @@ const protectedMediaProps = {
 const nav = [
   ["Fit", "fit"],
   ["Readiness", "readiness"],
-  ["Cases", "case-studies"],
+  ["Education", "case-studies"],
   ["Decks", "decks"],
   ["Articles", "articles"],
   ["Lab", "lab"],
@@ -116,7 +116,6 @@ const TRACKING_SUMMARY = [
   ["click-hero-contact", "Hero contact CTA"],
   ["click-contact-email", "Email clicks"],
   ["click-contact-whatsapp", "WhatsApp clicks"],
-  ["click-contact-qr-card", "QR card clicks"],
   ...nav.map(([, id]) => [`click-nav-${id}`, `Navigation: ${id}`]),
   ...data.slides.map((item) => [`click-deck-${slugifyLabel(item.title)}`, `Deck: ${item.title}`]),
   ...data.projects.map((item) => [`click-project-${slugifyLabel(item.title)}`, `Project: ${item.title}`]),
@@ -313,7 +312,7 @@ function App() {
         <Hero />
         <HiringFitSnapshot />
         <MedicalAffairsReadiness />
-        <CaseStudies openPdf={openPdf} openProject={openProject} />
+        <CaseStudies openProject={openProject} />
         <AIEvidenceWorkflow />
         <ScientificDecks openPdf={openPdf} />
         <ArticlesSection onOpen={(article) => setModal({ type: "article", item: article })} />
@@ -365,9 +364,9 @@ function Hero() {
         <p className="hero-lead">{data.profile.heroHeadline || data.profile.headline}</p>
         <p className="hero-support">{data.profile.heroSupport || data.profile.summary}</p>
         <div className="hero-actions" aria-label="Primary actions">
-          <a className="button primary" href="#case-studies" {...trackingAttrs("hero-case-studies", "Hero: View Medical Case Studies")}>
+          <a className="button primary" href="#case-studies" {...trackingAttrs("hero-case-studies", "Hero: View Public Education Cases")}>
             <FileSearch size={18} />
-            View Medical Case Studies
+            View Education Case Studies
           </a>
           <a className="button secondary" href="#decks" {...trackingAttrs("hero-decks", "Hero: View Scientific Decks")}>
             <Presentation size={18} />
@@ -558,65 +557,63 @@ function MedicalAffairsReadiness() {
   );
 }
 
-function CaseStudies({ openPdf, openProject }) {
+function CaseStudies({ openProject }) {
   const cases = useMemo(
-    () => [
-      ...data.slides.map((item, index) => ({ ...item, caseKind: "deck", caseIndex: index })),
-      ...data.projects.map((item, index) => ({ ...item, caseKind: "project", caseIndex: index })),
-    ],
+    () => data.projects.map((item, index) => ({ ...item, caseIndex: index })),
     [],
   );
 
-  const openCase = (item) => {
-    if (item.caseKind === "deck") {
-      openPdf(item, data.slides, item.caseIndex, "Scientific Deck");
-      return;
-    }
-    openProject(item);
-  };
-
   return (
-    <section className="section-band case-section" id="case-studies" aria-labelledby="case-title">
+    <section className="section-band case-section public-education-section" id="case-studies" aria-labelledby="case-title">
       <SectionHeader
-        kicker="Selected Medical & Scientific Case Studies"
-        icon={FileSearch}
-        title="Evidence work presented as case studies, not just a file gallery."
-        text="Each selected work is framed by objective, likely contribution, therapeutic area, and medical value. Impact is described carefully without unsupported business claims."
+        kicker="Interactive Public Education"
+        icon={PanelsTopLeft}
+        title="Three interactive education cases for public health literacy."
+        text="These web-based education pieces are separated from scientific decks because they are built for general audiences, with motion, references, and a guided visual reading flow."
       />
-      <div className="case-grid" data-reveal>
+      <div className="case-grid public-education-grid" data-reveal>
         {cases.map((item) => (
-          <article className={`case-card ${item.featured ? "is-featured" : ""}`} key={`${item.caseKind}-${item.file}`}>
-            <div className="case-media">
-              {item.thumb ? <img src={assetUrl(item.thumb)} alt={`${item.title} preview`} loading="lazy" {...protectedMediaProps} /> : <PanelsTopLeft size={42} />}
-              {item.featured ? <span className="featured-tag">Featured</span> : null}
+          <article className="case-card public-education-card" key={item.file}>
+            <div className="case-media project-case-media">
+              <iframe
+                src={assetUrl(item.file)}
+                title={`${item.title} preview`}
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin"
+                referrerPolicy="no-referrer"
+                tabIndex="-1"
+                aria-hidden="true"
+                {...protectedMediaProps}
+              />
+              <span className="preview-tag">Live preview</span>
             </div>
             <div className="case-body">
               <div className="case-meta">
-                <span>{item.type || "Case Study"}</span>
-                <span>{item.therapeuticArea || "Medical education"}</span>
+                <span>{item.type || "Interactive Education"}</span>
+                <span>{item.therapeuticArea || "Public education"}</span>
               </div>
               <h3>{item.title}</h3>
               <dl>
                 <div>
                   <dt>Objective</dt>
-                  <dd>{item.objective || "Created to translate medical evidence into an educational asset."}</dd>
+                  <dd>{item.objective || "Built as an interactive education experience for public health literacy."}</dd>
                 </div>
                 <div>
-                  <dt>My likely contribution</dt>
-                  <dd>{item.contribution || "Evidence review, structure, scientific narrative, and education flow."}</dd>
+                  <dt>Audience</dt>
+                  <dd>General public, parents, patients, and caregivers.</dd>
                 </div>
                 <div>
-                  <dt>Medical value</dt>
-                  <dd>{item.medicalValue || "Designed to support clear, practical, and medically responsible communication."}</dd>
+                  <dt>Education value</dt>
+                  <dd>{item.medicalValue || "Designed to make health information clearer, visual, and easier to follow."}</dd>
                 </div>
               </dl>
               <button
                 className="button small"
-                onClick={() => openCase(item)}
-                {...trackingAttrs(`${item.caseKind === "deck" ? "deck" : "project"}-${slugifyLabel(item.title)}`, `${item.type}: ${item.title}`)}
+                onClick={() => openProject(item)}
+                {...trackingAttrs(`project-${slugifyLabel(item.title)}`, `Interactive education: ${item.title}`)}
               >
-                {item.caseKind === "deck" ? <Presentation size={16} /> : <PanelsTopLeft size={16} />}
-                {item.caseKind === "deck" ? "View Deck" : "Open Case"}
+                <PanelsTopLeft size={16} />
+                Open Interactive Education
               </button>
             </div>
           </article>
@@ -930,8 +927,6 @@ function CredentialsSection({ onOpen }) {
 }
 
 function ContactSection() {
-  const qrCode = data.tracking?.qrCodePng || data.tracking?.qrCode;
-  const qrUrl = data.tracking?.qrUrl || "https://zenwaku.github.io/marcho-portfolio/";
   const whatsapp = data.profile.phone?.replace(/^0/, "62") || "";
 
   return (
@@ -958,19 +953,6 @@ function ContactSection() {
             Back to Top
           </button>
         </div>
-        {qrCode ? (
-          <a className="qr-card" href={qrUrl} aria-label="Open QR campaign link" {...trackingAttrs("contact-qr-card", "Contact: QR card")}>
-            <img src={assetUrl(qrCode)} alt="Trackable QR code for Marcho portfolio" loading="lazy" />
-            <div>
-              <span>
-                <QrCode size={16} />
-                Trackable CV QR
-              </span>
-              <strong>Portfolio link for recruiters</strong>
-              <p>Designed to be placed inside the CV and read with basic scan/click tracking.</p>
-            </div>
-          </a>
-        ) : null}
       </div>
     </footer>
   );

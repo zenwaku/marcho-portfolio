@@ -748,17 +748,29 @@ a {
 .case-media {
   position: relative;
   display: grid;
-  min-height: 168px;
-  place-items: center;
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  place-items: stretch;
   overflow: hidden;
   background: var(--soft-gray);
 }
 
-.case-media img {
+.case-media img,
+.case-media iframe {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 100%;
+  border: 0;
   object-fit: cover;
   object-position: top;
+  background: var(--surface);
+}
+
+.case-media iframe {
+  pointer-events: none;
+}
+
+.project-case-media {
+  background: var(--navy);
 }
 
 .case-media svg {
@@ -766,6 +778,7 @@ a {
 }
 
 .featured-tag,
+.preview-tag,
 .deck-card em {
   display: inline-flex;
   min-height: 26px;
@@ -785,6 +798,14 @@ a {
   top: 10px;
   left: 10px;
   background: var(--surface);
+}
+
+.preview-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 24px rgba(8, 24, 39, 0.14);
 }
 
 .case-body {
@@ -1272,7 +1293,7 @@ a {
 
 .contact-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) 390px;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.34fr);
   gap: 32px;
   align-items: end;
   color: var(--surface);
@@ -1322,50 +1343,6 @@ a {
 .contact-section .button.secondary {
   color: var(--surface);
   background: rgba(35, 194, 214, 0.12);
-}
-
-.qr-card {
-  display: grid;
-  grid-template-columns: 118px minmax(0, 1fr);
-  gap: 14px;
-  width: 100%;
-  align-items: center;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.qr-card img {
-  width: 118px;
-  aspect-ratio: 1;
-  padding: 8px;
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-
-.qr-card span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--cyan);
-  font-size: 0.75rem;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.qr-card strong {
-  display: block;
-  margin-top: 8px;
-  color: var(--surface);
-  font-size: 1.06rem;
-  line-height: 1.15;
-}
-
-.qr-card p {
-  margin: 8px 0 0;
-  font-size: 0.82rem;
-  line-height: 1.4;
 }
 
 .tracking-section {
@@ -1695,10 +1672,6 @@ a {
     justify-items: start;
     justify-content: flex-start;
   }
-
-  .qr-card {
-    max-width: 420px;
-  }
 }
 
 @media (max-width: 760px) {
@@ -1841,14 +1814,6 @@ a {
 
   .pdf-canvas-wrap {
     padding: 10px;
-  }
-
-  .qr-card {
-    grid-template-columns: 92px minmax(0, 1fr);
-  }
-
-  .qr-card img {
-    width: 92px;
   }
 
   .modal-backdrop {
