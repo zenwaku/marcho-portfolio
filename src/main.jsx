@@ -1,29 +1,36 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
+  Activity,
   Award,
+  BadgeCheck,
+  BookOpenCheck,
   BrainCircuit,
   BriefcaseBusiness,
   ChevronLeft,
   ChevronRight,
   CirclePlay,
-  ClipboardList,
+  ClipboardCheck,
+  FileSearch,
   FileText,
+  Filter,
   GalleryHorizontalEnd,
   GraduationCap,
   HeartPulse,
   LineChart,
   Mail,
+  MapPin,
   MessageSquareText,
   Microscope,
   Minus,
   PanelsTopLeft,
   PenTool,
   Phone,
-  Presentation,
   Plus,
+  Presentation,
   QrCode,
-  Rocket,
+  Search,
+  ShieldCheck,
   Sparkles,
   Stethoscope,
   Target,
@@ -42,30 +49,38 @@ const protectedMediaProps = {
 };
 
 const nav = [
-  ["About", "about"],
-  ["Slides", "slides"],
-  ["Projects", "projects"],
+  ["Fit", "fit"],
+  ["Readiness", "readiness"],
+  ["Cases", "case-studies"],
+  ["Decks", "decks"],
   ["Articles", "articles"],
-  ["Design", "design"],
-  ["Videos", "videos"],
-  ["Certificates", "certificates"],
+  ["Lab", "lab"],
+  ["Credentials", "credentials"],
   ["Contact", "contact"],
 ];
 
-const competencyIcons = [
-  Stethoscope,
-  GraduationCap,
-  Presentation,
-  UsersRound,
-  ClipboardList,
-  Microscope,
-  LineChart,
-  Target,
-  BriefcaseBusiness,
-  MessageSquareText,
-  PenTool,
-  BrainCircuit,
+const fallbackHiringFit = [
+  {
+    title: "Medical Scientific / Product Trainer",
+    text: "Evidence review, product training, scientific deck development, objection-handling frameworks, and internal field education.",
+  },
+  {
+    title: "Medical Affairs Officer / Associate",
+    text: "Medical communication, KOL/HCP engagement support, evidence-based claim review, medical insight synthesis, and compliance-aware scientific materials.",
+  },
+  {
+    title: "Healthcare Content / Medical Reviewer",
+    text: "Evidence-based articles, public education, medical accuracy review, patient-friendly communication, and citation-backed content.",
+  },
+  {
+    title: "AI-assisted Medical Workflow Specialist",
+    text: "Literature search workflow, evidence table generation, citation audit, AI output validation, and repeatable research systems.",
+  },
 ];
+
+const readinessIcons = [MessageSquareText, Microscope, UsersRound, LineChart, ShieldCheck, BriefcaseBusiness, BrainCircuit];
+const fitIcons = [Presentation, Stethoscope, BookOpenCheck, BrainCircuit];
+const aiIcons = [Search, FileText, ShieldCheck, PanelsTopLeft];
 
 function assetUrl(path) {
   if (!path) return "";
@@ -84,7 +99,7 @@ function trackingAttrs(name, title = name) {
 }
 
 function slugifyLabel(value) {
-  return value
+  return String(value || "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
@@ -96,20 +111,16 @@ const COUNTER_BASE_URL = "https://api.counterapi.dev/v1";
 const TRACKING_SUMMARY = [
   ["portfolio-visit", "Portfolio visits"],
   ["qr-scan", "QR scans"],
-  ["click-hero-view-work", "Hero work CTA"],
+  ["click-hero-case-studies", "Hero case studies CTA"],
+  ["click-hero-decks", "Hero decks CTA"],
   ["click-hero-contact", "Hero contact CTA"],
   ["click-contact-email", "Email clicks"],
-  ["click-contact-phone", "Phone clicks"],
+  ["click-contact-whatsapp", "WhatsApp clicks"],
   ["click-contact-qr-card", "QR card clicks"],
-  ["click-nav-slides", "Slides nav"],
-  ["click-nav-projects", "Projects nav"],
-  ["click-nav-articles", "Articles nav"],
-  ["click-nav-design", "Design nav"],
-  ["click-nav-videos", "Videos nav"],
-  ["click-nav-certificates", "Certificates nav"],
-  ["click-design-pdf-next-page", "Design next page"],
-  ["click-design-pdf-zoom-in", "Design zoom in"],
-  ...data.projects.map((item) => [`click-project-tab-${slugifyLabel(item.title)}`, `Project: ${item.title}`]),
+  ...nav.map(([, id]) => [`click-nav-${id}`, `Navigation: ${id}`]),
+  ...data.slides.map((item) => [`click-deck-${slugifyLabel(item.title)}`, `Deck: ${item.title}`]),
+  ...data.projects.map((item) => [`click-project-${slugifyLabel(item.title)}`, `Project: ${item.title}`]),
+  ...data.articles.map((item) => [`click-article-${slugifyLabel(item.title)}`, `Article: ${item.title}`]),
   ...data.videos.map((item) => [`click-video-${slugifyLabel(item.title)}`, `Video: ${item.title}`]),
 ];
 
@@ -235,7 +246,7 @@ function useScrollProgress() {
 }
 
 function textBlock(text) {
-  return text
+  return String(text || "")
     .split(/\n{2,}/)
     .map((part) => part.trim())
     .filter(Boolean);
@@ -256,7 +267,6 @@ function App() {
   const progress = useScrollProgress();
   const trackingMode = useTrackingMode();
   const [modal, setModal] = useState(null);
-  const [projectIndex, setProjectIndex] = useState(0);
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -291,24 +301,24 @@ function App() {
     };
   }, []);
 
-  const featured = data.projects[projectIndex];
+  const openPdf = (item, collection, index, collectionLabel) => {
+    setModal({ type: "pdf", item, collection, index, collectionLabel });
+  };
+  const openProject = (item) => setModal({ type: "project", item });
 
   return (
     <>
       <SiteChrome progress={progress} />
       <main>
         <Hero />
-        <About />
-        <SlideShowcase onOpen={(slide, index) => setModal({ type: "pdf", item: slide, collection: data.slides, index, collectionLabel: "Scientific Deck" })} />
-        <ProjectLab
-          project={featured}
-          projectIndex={projectIndex}
-          setProjectIndex={setProjectIndex}
-        />
-        <ArticleStudio onOpen={(article) => setModal({ type: "article", item: article })} />
-        <DesignGallery />
-        <VideoRoom />
-        <CertificateMarquee onOpen={(cert, index) => setModal({ type: cert.kind === "pdf" ? "pdf" : "image", item: cert, collection: data.certificates, index, collectionLabel: "Certificate" })} />
+        <HiringFitSnapshot />
+        <MedicalAffairsReadiness />
+        <CaseStudies openPdf={openPdf} openProject={openProject} />
+        <AIEvidenceWorkflow />
+        <ScientificDecks openPdf={openPdf} />
+        <ArticlesSection onOpen={(article) => setModal({ type: "article", item: article })} />
+        <MedicalCommunicationLab />
+        <CredentialsSection onOpen={(cert, index, collection) => setModal({ type: cert.kind === "pdf" ? "pdf" : "image", item: cert, collection, index, collectionLabel: "Certificate" })} />
         <ContactSection />
         {trackingMode ? <TrackingSnapshot /> : null}
       </main>
@@ -322,7 +332,7 @@ function SiteChrome({ progress }) {
     <header className="site-chrome">
       <a className="wordmark" href="#top" aria-label="Back to top">
         <span>M</span>
-        Marcho
+        <strong>Marcho</strong>
       </a>
       <nav aria-label="Primary navigation">
         {nav.map(([label, id]) => (
@@ -339,206 +349,157 @@ function SiteChrome({ progress }) {
 }
 
 function Hero() {
-  const roles = ["Medical Scientific", "Product Trainer", "Medical Affairs", "Healthcare Content", "Market Insight"];
-  const kineticWords = ["Evidence", "Training", "Strategy", "Medical Affairs", "Articles", "Design", "Video", "AI Workflow"];
+  const strip = data.profile.credibilityStrip || [
+    "Medical Doctor",
+    "Medical Scientific & Product Trainer",
+    "12+ Scientific Decks",
+    "AI-assisted Evidence Workflow",
+    "Jakarta, Indonesia",
+  ];
+
   return (
-    <section className="hero section-band" id="top">
+    <section className="hero section-band" id="top" aria-labelledby="hero-title">
       <div className="hero-copy" data-reveal>
-        <h1>Marcho</h1>
-        <p className="hero-lead">{data.profile.headline}</p>
-        <div className="kinetic-line" aria-hidden="true">
-          <div>
-            {[...kineticWords, ...kineticWords].map((word, index) => (
-              <span key={`${word}-${index}`}>{word}</span>
-            ))}
-          </div>
-        </div>
-        <div className="hero-actions">
-          <a className="button primary" href="#projects" {...trackingAttrs("hero-view-work", "Hero: View Work")}>
-            <PanelsTopLeft size={18} />
-            View Work
+        <p className="eyebrow">{data.profile.heroTitle || data.profile.positioning}</p>
+        <h1 id="hero-title">Marcho</h1>
+        <p className="hero-lead">{data.profile.heroHeadline || data.profile.headline}</p>
+        <p className="hero-support">{data.profile.heroSupport || data.profile.summary}</p>
+        <div className="hero-actions" aria-label="Primary actions">
+          <a className="button primary" href="#case-studies" {...trackingAttrs("hero-case-studies", "Hero: View Medical Case Studies")}>
+            <FileSearch size={18} />
+            View Medical Case Studies
           </a>
-          <a className="button secondary" href={`mailto:${data.profile.email}`} {...trackingAttrs("hero-contact", "Hero: Contact")}>
+          <a className="button secondary" href="#decks" {...trackingAttrs("hero-decks", "Hero: View Scientific Decks")}>
+            <Presentation size={18} />
+            View Scientific Decks
+          </a>
+          <a className="button ghost" href={`mailto:${data.profile.email}`} {...trackingAttrs("hero-contact", "Hero: Contact Me")}>
             <Mail size={18} />
-            Contact
+            Contact Me
           </a>
         </div>
-      </div>
-      <div className="signal-panel" data-reveal>
-        <div className="signal-top">
-          <div className="signal-line">
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-        <div className="role-stack">
-          {roles.map((role) => (
-            <span key={role}>{role}</span>
+        <div className="credibility-strip" aria-label="Portfolio credibility strip">
+          {strip.map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
-        <div className="proof-row">
-          <Proof icon={Presentation} value="100+" label="Scientific decks" />
-          <Proof icon={GalleryHorizontalEnd} value="30+" label="Designs" />
-          <Proof icon={FileText} value="20+" label="Articles" />
-          <Proof icon={Award} value="10" label="Certificates" />
+      </div>
+      <div className="hero-system" data-reveal aria-label="Medical evidence workflow visual">
+        <div className="orbit-grid" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="clinical-signal">
+          <div className="signal-bars" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+            <i />
+          </div>
+          <div className="signal-copy">
+            <span>Evidence to field readiness</span>
+            <strong>Clinical reasoning, scientific narrative, product training, and AI-assisted validation.</strong>
+          </div>
+        </div>
+        <div className="metric-stack">
+          {(data.careerMetrics || []).map((metric) => (
+            <article key={metric.label}>
+              <strong>{metric.value}</strong>
+              <span>{metric.label}</span>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Proof({ icon: Icon, value, label }) {
-  return (
-    <div className="proof">
-      <Icon size={18} />
-      <strong>{value}</strong>
-      <span>{label}</span>
-    </div>
-  );
-}
-
-function SectionHeader({ number, title, text, icon: Icon }) {
+function SectionHeader({ kicker, title, text, icon: Icon }) {
   return (
     <div className="section-header" data-reveal>
-      <div className="section-index">
-        <span>{number}</span>
-        {Icon ? <Icon size={22} /> : null}
+      <div className="section-kicker">
+        {Icon ? <Icon size={20} /> : null}
+        <span>{kicker}</span>
       </div>
       <h2>{title}</h2>
-      <p>{text}</p>
+      {text ? <p>{text}</p> : null}
     </div>
   );
 }
 
-function About() {
-  const competencies = data.profile.coreCompetencies.map((skill, index) => ({
-    skill,
-    Icon: competencyIcons[index % competencyIcons.length],
-  }));
+function HiringFitSnapshot() {
+  const fit = data.hiringFit || fallbackHiringFit;
+  const portrait = data.profileMedia?.portrait;
+
   return (
-    <section className="section-band about" id="about">
+    <section className="section-band fit-section" id="fit" aria-labelledby="fit-title">
       <SectionHeader
-        number="01"
-        icon={Stethoscope}
-        title="I turn clinical depth into business-ready clarity."
-        text={data.profile.summary}
+        kicker="Hiring Fit Snapshot"
+        icon={Target}
+        title="Where I Fit Best"
+        text="The portfolio is organized around roles where my clinical background, scientific communication, product training, and AI-assisted workflow can create practical value."
       />
-      <div className="about-grid">
-        <ProfileSnapshot />
-        <div className="competency-panel" data-reveal>
-          <div className="panel-title">
-            <span>Core Competencies</span>
-            <h3>What I bring into medical, product, and commercial teams.</h3>
-          </div>
-          <div className="competency-grid">
-            {competencies.map(({ skill, Icon }) => (
-              <article className="competency" key={skill}>
-                <Icon size={22} />
-                <span>{skill}</span>
+      <div className="fit-layout">
+        <div className="fit-grid" data-reveal>
+          {fit.map((item, index) => {
+            const Icon = fitIcons[index % fitIcons.length];
+            return (
+              <article className="fit-card" key={item.title}>
+                <Icon size={24} />
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
               </article>
-            ))}
+            );
+          })}
+        </div>
+        <aside className="at-glance-card" data-reveal>
+          {portrait ? <img src={assetUrl(portrait.preview || portrait.file)} alt="Marcho professional portrait" loading="lazy" {...protectedMediaProps} /> : null}
+          <div>
+            <span>At a glance</span>
+            <h3>{data.profile.currentRole}</h3>
+            <p>I bring a physician's clinical lens into evidence interpretation, HCP education support, and practical internal scientific enablement.</p>
           </div>
-          <div className="expertise-note">
-            <HeartPulse size={22} />
-            <p>The through-line is simple: clinical reasoning, product clarity, and communication that helps field teams move with confidence.</p>
-          </div>
-        </div>
-        <SkillMatrix />
-        <AIWorkflow />
-        <div className="expertise-rail" data-reveal>
-          {[
-            ["Evidence", "I turn journals, disease burden, and clinical nuance into messages teams can use in the field.", BrainCircuit],
-            ["Market", "I connect product claims, competitor movement, and customer reality into practical positioning.", Target],
-            ["Enablement", "I build decks, objection handling, and evidence summaries that make execution easier.", BriefcaseBusiness],
-            ["Healthcare", "I keep the message grounded in clinical judgment, ethics, and patient relevance.", HeartPulse],
-          ].map(([title, body, Icon]) => (
-            <article className="expertise" key={title}>
-              <Icon size={24} />
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
-        <div className="timeline" data-reveal>
-          {data.profile.experience.map((item) => (
-            <article key={`${item.role}-${item.company}`} className="timeline-item">
-              <div>
-                <span>{item.period}</span>
-                <h3>{item.role}</h3>
-                <p>{item.company}</p>
-              </div>
-              <ul>
-                {item.focus.map((focus) => (
-                  <li key={focus}>{focus}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+          <dl>
+            <div>
+              <dt>Base</dt>
+              <dd>Medical Doctor</dd>
+            </div>
+            <div>
+              <dt>Current</dt>
+              <dd>Medical Scientific & Product Trainer</dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>{data.profile.location}</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
-      {data.profileMedia?.fieldMoments?.length ? (
-        <div className="moments-grid" data-reveal>
-          {data.profileMedia.fieldMoments.map((moment) => (
-            <article className="moment-card" key={moment.title}>
-              <img src={assetUrl(moment.preview || moment.file)} alt={moment.title} loading="lazy" {...protectedMediaProps} />
-              <span>{moment.title}</span>
-            </article>
-          ))}
-        </div>
-      ) : null}
-      <div className="skills-strip" data-reveal>
-        {data.profile.skills.map((skill) => (
-          <span key={skill}>{skill}</span>
-        ))}
-      </div>
+      <SkillEvidence />
     </section>
   );
 }
 
-function ProfileSnapshot() {
-  const portrait = data.profileMedia?.portrait;
+function SkillEvidence() {
+  const groupIcons = [Stethoscope, Presentation, PenTool, BrainCircuit, UsersRound];
   return (
-    <aside className="profile-snapshot" data-reveal>
-      {portrait ? <img src={assetUrl(portrait.preview || portrait.file)} alt="Marcho formal portrait" loading="lazy" {...protectedMediaProps} /> : null}
+    <div className="skill-evidence" data-reveal>
       <div>
-        <span>At a Glance</span>
-        <h3>{data.profile.currentRole}</h3>
-        <p>I bring clinical credibility, field communication, and product thinking into one practical working style.</p>
-      </div>
-      <dl>
-        <div>
-          <dt>Base</dt>
-          <dd>Medical Doctor</dd>
-        </div>
-        <div>
-          <dt>Focus</dt>
-          <dd>Medical Affairs, Product Training, Healthcare Content</dd>
-        </div>
-        <div>
-          <dt>Languages</dt>
-          <dd>Bahasa Indonesia, English</dd>
-        </div>
-      </dl>
-    </aside>
-  );
-}
-
-function SkillMatrix() {
-  const groupIcons = [Stethoscope, Rocket, PenTool, LineChart, UsersRound];
-  return (
-    <div className="skill-matrix" data-reveal>
-      <div className="matrix-title">
-        <span>Skills From My CV</span>
-        <h3>Hard skills, soft skills, and tools I can bring into the job from day one.</h3>
+        <span>Skills From CV</span>
+        <h3>Clinical reasoning, communication, digital fluency, and operational discipline.</h3>
       </div>
       <div className="skill-group-grid">
-        {data.profile.skillGroups.map((group, index) => {
+        {(data.profile.skillGroups || []).map((group, index) => {
           const Icon = groupIcons[index % groupIcons.length];
           return (
             <article className="skill-group" key={group.title}>
-              <Icon size={24} />
+              <Icon size={22} />
               <h4>{group.title}</h4>
               <p>{group.pitch}</p>
               <ul>
@@ -550,8 +511,8 @@ function SkillMatrix() {
           );
         })}
       </div>
-      <div className="soft-skill-row">
-        {data.profile.softSkills.map((skill) => (
+      <div className="soft-skill-row" aria-label="Soft skills">
+        {(data.profile.softSkills || []).map((skill) => (
           <span key={skill}>{skill}</span>
         ))}
       </div>
@@ -559,145 +520,217 @@ function SkillMatrix() {
   );
 }
 
-function AIWorkflow() {
+function MedicalAffairsReadiness() {
+  const pillars = data.medicalAffairsReadiness || [];
+  const fieldMoments = data.profileMedia?.fieldMoments || [];
+
+  return (
+    <section className="section-band readiness-section" id="readiness" aria-labelledby="readiness-title">
+      <SectionHeader
+        kicker="Medical Affairs Readiness"
+        icon={ShieldCheck}
+        title="A serious, evidence-first working style for medical teams."
+        text="I am positioning my work around scientific exchange, evidence interpretation, claim discipline, and cross-functional support rather than broad creative output."
+      />
+      <div className="readiness-grid" data-reveal>
+        {pillars.map((pillar, index) => {
+          const Icon = readinessIcons[index % readinessIcons.length];
+          return (
+            <article className="readiness-card" key={pillar.title}>
+              <Icon size={22} />
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+            </article>
+          );
+        })}
+      </div>
+      {fieldMoments.length ? (
+        <div className="field-proof-grid" data-reveal>
+          {fieldMoments.map((moment) => (
+            <article className="field-proof" key={moment.title}>
+              <img src={assetUrl(moment.preview || moment.file)} alt={moment.title} loading="lazy" {...protectedMediaProps} />
+              <span>{moment.title}</span>
+            </article>
+          ))}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+function CaseStudies({ openPdf, openProject }) {
+  const cases = useMemo(
+    () => [
+      ...data.slides.map((item, index) => ({ ...item, caseKind: "deck", caseIndex: index })),
+      ...data.projects.map((item, index) => ({ ...item, caseKind: "project", caseIndex: index })),
+    ],
+    [],
+  );
+
+  const openCase = (item) => {
+    if (item.caseKind === "deck") {
+      openPdf(item, data.slides, item.caseIndex, "Scientific Deck");
+      return;
+    }
+    openProject(item);
+  };
+
+  return (
+    <section className="section-band case-section" id="case-studies" aria-labelledby="case-title">
+      <SectionHeader
+        kicker="Selected Medical & Scientific Case Studies"
+        icon={FileSearch}
+        title="Evidence work presented as case studies, not just a file gallery."
+        text="Each selected work is framed by objective, likely contribution, therapeutic area, and medical value. Impact is described carefully without unsupported business claims."
+      />
+      <div className="case-grid" data-reveal>
+        {cases.map((item) => (
+          <article className={`case-card ${item.featured ? "is-featured" : ""}`} key={`${item.caseKind}-${item.file}`}>
+            <div className="case-media">
+              {item.thumb ? <img src={assetUrl(item.thumb)} alt={`${item.title} preview`} loading="lazy" {...protectedMediaProps} /> : <PanelsTopLeft size={42} />}
+              {item.featured ? <span className="featured-tag">Featured</span> : null}
+            </div>
+            <div className="case-body">
+              <div className="case-meta">
+                <span>{item.type || "Case Study"}</span>
+                <span>{item.therapeuticArea || "Medical education"}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <dl>
+                <div>
+                  <dt>Objective</dt>
+                  <dd>{item.objective || "Created to translate medical evidence into an educational asset."}</dd>
+                </div>
+                <div>
+                  <dt>My likely contribution</dt>
+                  <dd>{item.contribution || "Evidence review, structure, scientific narrative, and education flow."}</dd>
+                </div>
+                <div>
+                  <dt>Medical value</dt>
+                  <dd>{item.medicalValue || "Designed to support clear, practical, and medically responsible communication."}</dd>
+                </div>
+              </dl>
+              <button
+                className="button small"
+                onClick={() => openCase(item)}
+                {...trackingAttrs(`${item.caseKind === "deck" ? "deck" : "project"}-${slugifyLabel(item.title)}`, `${item.type}: ${item.title}`)}
+              >
+                {item.caseKind === "deck" ? <Presentation size={16} /> : <PanelsTopLeft size={16} />}
+                {item.caseKind === "deck" ? "View Deck" : "Open Case"}
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AIEvidenceWorkflow() {
   const workflow = data.profile.aiWorkflow;
   if (!workflow) return null;
 
-  const stepIcons = [BrainCircuit, FileText, Microscope, Rocket];
-
   return (
-    <div className="ai-workflow" data-reveal>
-      <div className="ai-workflow-copy">
-        <span>{workflow.eyebrow}</span>
-        <h3>{workflow.title}</h3>
-        <p>{workflow.summary}</p>
-        <div className="ai-tool-row">
-          {workflow.tools.map((tool) => (
-            <span key={tool}>{tool}</span>
-          ))}
-        </div>
-      </div>
-      <div className="ai-workflow-steps">
+    <section className="section-band ai-section" id="ai-workflow" aria-labelledby="ai-title">
+      <SectionHeader
+        kicker={workflow.eyebrow}
+        icon={BrainCircuit}
+        title={workflow.title}
+        text={workflow.summary}
+      />
+      <div className="ai-workflow-grid" data-reveal>
         {workflow.steps.map((step, index) => {
-          const Icon = stepIcons[index % stepIcons.length];
+          const Icon = aiIcons[index % aiIcons.length];
           return (
-            <article key={step.label}>
-              <Icon size={22} />
-              <h4>{step.label}</h4>
+            <article className="ai-step" key={step.label}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <Icon size={24} />
+              <h3>{step.label}</h3>
+              {step.tools ? <p className="tool-line">{step.tools}</p> : null}
               <p>{step.text}</p>
             </article>
           );
         })}
       </div>
-    </div>
+      <div className="compliance-note" data-reveal>
+        <ShieldCheck size={24} />
+        <p>{workflow.complianceNote}</p>
+      </div>
+    </section>
   );
 }
 
-function SlideShowcase({ onOpen }) {
+function ScientificDecks({ openPdf }) {
+  const [query, setQuery] = useState("");
+  const [area, setArea] = useState("All");
+  const areas = useMemo(() => ["All", ...Array.from(new Set(data.slides.map((slide) => slide.therapeuticArea || "Medical education")))], []);
+  const filteredSlides = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    return data.slides.filter((slide) => {
+      const matchesArea = area === "All" || slide.therapeuticArea === area;
+      const haystack = `${slide.title} ${slide.therapeuticArea} ${slide.outputType}`.toLowerCase();
+      return matchesArea && (!needle || haystack.includes(needle));
+    });
+  }, [area, query]);
+
   return (
-    <section className="section-band slides-section" id="slides">
+    <section className="section-band decks-section" id="decks" aria-labelledby="decks-title">
       <SectionHeader
-        number="02"
+        kicker="Scientific Decks"
         icon={Presentation}
-        title="I build scientific decks that make evidence easier to act on."
-        text="These 12 selected decks represent a wider library of more than 100 scientific decks I have built across gastroenterology, renal care, pediatrics, liver disease, pain management, and therapeutic strategy."
+        title="Twelve featured decks from a 100+ scientific-deck working library."
+        text="Use search or therapeutic-area filters, then open each PDF directly in the browser with page navigation and zoom. Descriptions are intentionally concise so the work speaks through the deck itself."
       />
-      <div className="deck-grid" data-reveal>
-        {data.slides.map((slide, index) => (
-          <button
-            className="deck-card"
-            key={slide.file}
-            onClick={() => onOpen(slide, index)}
-            {...trackingAttrs(`deck-${slugifyLabel(slide.title)}`, `Scientific deck: ${slide.title}`)}
-          >
-            <img src={assetUrl(slide.thumb)} alt="" loading="lazy" {...protectedMediaProps} />
-            <h3>{slide.title}</h3>
-          </button>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function ProjectLab({ project, projectIndex, setProjectIndex }) {
-  const [projectHtml, setProjectHtml] = useState("");
-
-  useEffect(() => {
-    let cancelled = false;
-    const projectUrl = assetUrl(project.file);
-    setProjectHtml("");
-
-    fetch(projectUrl, { cache: "force-cache" })
-      .then((response) => {
-        if (!response.ok) throw new Error(`Project failed to load (${response.status})`);
-        return response.text();
-      })
-      .then((html) => {
-        if (cancelled) return;
-        setProjectHtml(prepareProjectSrcDoc(html));
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setProjectHtml("<!doctype html><html><body></body></html>");
-        }
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [project.file]);
-
-  return (
-    <section className="section-band project-section" id="projects">
-      <SectionHeader
-        number="03"
-        icon={PanelsTopLeft}
-        title="I make health explainers people can experience, not just read."
-        text="These interactive HTML projects are embedded with their original animation, motion, references, and presentation rhythm intact."
-      />
-      <div className="project-tabs" data-reveal>
-        {data.projects.map((item, index) => (
-          <button
-            key={item.file}
-            className={index === projectIndex ? "is-active" : ""}
-            onClick={() => setProjectIndex(index)}
-            {...trackingAttrs(`project-tab-${slugifyLabel(item.title)}`, `Project tab: ${item.title}`)}
-          >
-            {item.title}
-          </button>
-        ))}
-      </div>
-      <div className="iframe-shell" data-reveal>
-        <div className="iframe-toolbar">
-          <span>{project.title}</span>
-          <span className="iframe-dots" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </span>
+      <div className="deck-tools" data-reveal>
+        <label className="search-field">
+          <Search size={18} />
+          <span className="sr-only">Search scientific decks</span>
+          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search deck title or area" />
+        </label>
+        <div className="filter-pills" aria-label="Filter by therapeutic area">
+          <Filter size={18} />
+          {areas.map((item) => (
+            <button key={item} className={item === area ? "is-active" : ""} onClick={() => setArea(item)}>
+              {item}
+            </button>
+          ))}
         </div>
-        <iframe
-          key={project.file}
-          title={project.title}
-          srcDoc={projectHtml}
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
-          referrerPolicy="no-referrer"
-          {...protectedMediaProps}
-        />
       </div>
+      <div className="deck-grid" data-reveal>
+        {filteredSlides.map((slide) => {
+          const index = data.slides.findIndex((item) => item.file === slide.file);
+          return (
+            <button
+              className={`deck-card ${slide.featured ? "is-featured" : ""}`}
+              key={slide.file}
+              onClick={() => openPdf(slide, data.slides, index, "Scientific Deck")}
+              {...trackingAttrs(`deck-${slugifyLabel(slide.title)}`, `Scientific deck: ${slide.title}`)}
+            >
+              <img src={assetUrl(slide.thumb)} alt={`${slide.title} deck preview`} loading="lazy" {...protectedMediaProps} />
+              <div>
+                <span>{slide.outputType || "Scientific deck"}</span>
+                {slide.featured ? <em>Featured</em> : null}
+              </div>
+              <h3>{slide.title}</h3>
+              <p>{slide.therapeuticArea}</p>
+              <small>{slide.pages} pages</small>
+            </button>
+          );
+        })}
+      </div>
+      {!filteredSlides.length ? <p className="empty-state">No deck matches that filter yet.</p> : null}
     </section>
   );
 }
 
-function ArticleStudio({ onOpen }) {
+function ArticlesSection({ onOpen }) {
   return (
-    <section className="section-band articles-section" id="articles">
+    <section className="section-band articles-section" id="articles" aria-labelledby="articles-title">
       <SectionHeader
-        number="04"
+        kicker="Evidence-Based Healthcare Articles"
         icon={FileText}
-        title="I write health articles that make complex topics feel human."
-        text="The selected articles combine clinical accuracy, public-friendly language, and poster-led storytelling. They represent a broader collection of more than 20 articles."
+        title="Public education writing with medical accuracy and readable language."
+        text="Public-facing medical articles written to translate scientific evidence into practical, safe, and understandable health education."
       />
       <div className="article-grid" data-reveal>
         {data.articles.map((article) => (
@@ -707,11 +740,12 @@ function ArticleStudio({ onOpen }) {
             onClick={() => onOpen(article)}
             {...trackingAttrs(`article-${slugifyLabel(article.title)}`, `Article: ${article.title}`)}
           >
-            <img src={assetUrl(article.posterPreview)} alt="" loading="lazy" {...protectedMediaProps} />
+            <img src={assetUrl(article.posterPreview || article.poster)} alt={`${article.title} poster`} loading="lazy" {...protectedMediaProps} />
             <div>
-              <span>{article.pages} pages</span>
+              <span>{article.topic || "Health education"}</span>
               <h3>{article.title}</h3>
-              <p>{article.excerpt}</p>
+              <p>{article.audience}</p>
+              <small>{article.evidenceStyle || "Review-backed"}</small>
             </div>
           </button>
         ))}
@@ -720,11 +754,14 @@ function ArticleStudio({ onOpen }) {
   );
 }
 
-function DesignGallery() {
+function MedicalCommunicationLab() {
   const design = data.designs.find((item) => item.kind === "pdf") || data.designs[0];
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(design?.pages || 1);
   const [zoom, setZoom] = useState(1);
+  const [activeVideo, setActiveVideo] = useState(0);
+  const [videoUnlocked, setVideoUnlocked] = useState(false);
+  const video = data.videos[activeVideo];
 
   useEffect(() => {
     setPage(1);
@@ -736,194 +773,201 @@ function DesignGallery() {
     if (page > pageCount) setPage(pageCount);
   }, [page, pageCount]);
 
-  if (!design) return null;
-
+  if (!design && !video) return null;
   const zoomPercent = Math.round(zoom * 100);
 
   return (
-    <section className="section-band design-section" id="design">
+    <section className="section-band lab-section" id="lab" aria-labelledby="lab-title">
       <SectionHeader
-        number="05"
+        kicker="Medical Communication Lab"
         icon={GalleryHorizontalEnd}
-        title="I design data carousels that make public health easier to scan."
-        text="This four-page bulletin carousel is shown directly as a high-resolution PDF canvas, with page-by-page navigation and zoom for sharper reading."
+        title="Secondary communication experiments for public education."
+        text="This section keeps design and video visible, but positions them as supporting medical communication experiments rather than the main hiring narrative."
       />
-      <div className="design-pdf-stage" data-reveal>
-        <div className="design-pdf-toolbar">
-          <div>
-            <span>Data Bulletin Carousel</span>
-            <h3>{design.title}</h3>
-          </div>
-          <div className="pdf-controls compact">
-            <button
-              onClick={() => setPage((value) => Math.max(1, value - 1))}
-              disabled={page <= 1}
-              {...trackingAttrs("design-pdf-prev-page", "Design PDF: previous page")}
-            >
-              <ChevronLeft size={18} />
-              Page
-            </button>
-            <span>
-              {page} / {pageCount}
-            </span>
-            <button
-              onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
-              disabled={page >= pageCount}
-              {...trackingAttrs("design-pdf-next-page", "Design PDF: next page")}
-            >
-              Page
-              <ChevronRight size={18} />
-            </button>
-            <button
-              onClick={() => setZoom((value) => Math.max(0.75, value - 0.25))}
-              disabled={zoom <= 0.75}
-              aria-label="Zoom out"
-              {...trackingAttrs("design-pdf-zoom-out", "Design PDF: zoom out")}
-            >
-              <Minus size={18} />
-            </button>
-            <span>{zoomPercent}%</span>
-            <button
-              onClick={() => setZoom((value) => Math.min(2.5, value + 0.25))}
-              disabled={zoom >= 2.5}
-              aria-label="Zoom in"
-              {...trackingAttrs("design-pdf-zoom-in", "Design PDF: zoom in")}
-            >
-              <Plus size={18} />
-            </button>
-          </div>
-        </div>
-        <PdfCanvas file={design.file} page={page} zoom={zoom} maxWidth={980} minHeight={320} lazy onPageCount={setPageCount} />
-        <div className="pdf-page-strip" aria-label="Carousel pages">
-          {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
-            <button
-              key={pageNumber}
-              className={pageNumber === page ? "is-active" : ""}
-              onClick={() => setPage(pageNumber)}
-              {...trackingAttrs(`design-pdf-page-${pageNumber}`, `Design PDF: page ${pageNumber}`)}
-            >
-              {pageNumber}
-            </button>
-          ))}
-        </div>
+      <div className="lab-grid">
+        {design ? (
+          <article className="design-lab" data-reveal>
+            <div className="lab-panel-heading">
+              <div>
+                <span>{design.outputType || "Public education carousel"}</span>
+                <h3>{design.title}</h3>
+              </div>
+              <BadgeCheck size={22} />
+            </div>
+            <div className="pdf-controls compact">
+              <button onClick={() => setPage((value) => Math.max(1, value - 1))} disabled={page <= 1} {...trackingAttrs("design-pdf-prev-page", "Design PDF: previous page")}>
+                <ChevronLeft size={18} />
+                Page
+              </button>
+              <span>{page} / {pageCount}</span>
+              <button onClick={() => setPage((value) => Math.min(pageCount, value + 1))} disabled={page >= pageCount} {...trackingAttrs("design-pdf-next-page", "Design PDF: next page")}>
+                Page
+                <ChevronRight size={18} />
+              </button>
+              <button onClick={() => setZoom((value) => Math.max(0.75, value - 0.25))} disabled={zoom <= 0.75} aria-label="Zoom out" {...trackingAttrs("design-pdf-zoom-out", "Design PDF: zoom out")}>
+                <Minus size={18} />
+              </button>
+              <span>{zoomPercent}%</span>
+              <button onClick={() => setZoom((value) => Math.min(2.5, value + 0.25))} disabled={zoom >= 2.5} aria-label="Zoom in" {...trackingAttrs("design-pdf-zoom-in", "Design PDF: zoom in")}>
+                <Plus size={18} />
+              </button>
+            </div>
+            <PdfCanvas file={design.file} page={page} zoom={zoom} maxWidth={980} minHeight={320} lazy onPageCount={setPageCount} />
+            <div className="pdf-page-strip" aria-label="Carousel pages">
+              {Array.from({ length: pageCount }, (_, index) => index + 1).map((pageNumber) => (
+                <button key={pageNumber} className={pageNumber === page ? "is-active" : ""} onClick={() => setPage(pageNumber)} {...trackingAttrs(`design-pdf-page-${pageNumber}`, `Design PDF: page ${pageNumber}`)}>
+                  {pageNumber}
+                </button>
+              ))}
+            </div>
+          </article>
+        ) : null}
+        {video ? (
+          <article className="video-lab" data-reveal>
+            <div className="lab-panel-heading">
+              <div>
+                <span>Medical education video</span>
+                <h3>{video.title}</h3>
+              </div>
+              <Video size={22} />
+            </div>
+            <div className="video-list" aria-label="Select video">
+              {data.videos.map((item, index) => (
+                <button
+                  key={item.file}
+                  className={index === activeVideo ? "is-active" : ""}
+                  onClick={() => {
+                    setActiveVideo(index);
+                    setVideoUnlocked(false);
+                  }}
+                  {...trackingAttrs(`video-${slugifyLabel(item.title)}`, `Video: ${item.title}`)}
+                >
+                  <CirclePlay size={20} />
+                  <span>{item.title}</span>
+                </button>
+              ))}
+            </div>
+            <div className="video-frame">
+              {videoUnlocked ? (
+                <video
+                  key={video.file}
+                  src={assetUrl(video.file)}
+                  controls
+                  controlsList="nodownload noplaybackrate noremoteplayback"
+                  disablePictureInPicture
+                  disableRemotePlayback
+                  preload="none"
+                  playsInline
+                  {...protectedMediaProps}
+                />
+              ) : (
+                <button className="video-placeholder" onClick={() => setVideoUnlocked(true)} {...trackingAttrs(`video-play-${slugifyLabel(video.title)}`, `Video play: ${video.title}`)}>
+                  <CirclePlay size={46} />
+                  <span>Load and play</span>
+                  <strong>{video.title}</strong>
+                </button>
+              )}
+            </div>
+          </article>
+        ) : null}
       </div>
     </section>
   );
 }
 
-function CertificateMarquee({ onOpen }) {
-  const loop = [...data.certificates, ...data.certificates];
+function CredentialsSection({ onOpen }) {
+  const featured = data.certificates.filter((cert) => cert.group === "featured");
+  const additional = data.certificates.filter((cert) => cert.group !== "featured");
+  const all = data.certificates;
+
   return (
-    <section className="section-band certificate-section" id="certificates">
+    <section className="section-band credentials-section" id="credentials" aria-labelledby="credentials-title">
       <SectionHeader
-        number="07"
+        kicker="Credentials"
         icon={Award}
-        title="I keep stacking credentials around the work I want to do better."
-        text="My certificates span clinical care, occupational safety, data analytics, digital marketing, product management, business, and AI, because I like building breadth that still connects back to healthcare."
+        title="Credentials that support clinical, data, AI, product, and communication work."
+        text="The most relevant certificates are prioritized first, while every certificate remains accessible in a carousel/modal viewer."
       />
-      <div className="marquee" data-reveal>
-        <div className="marquee-track">
-          {loop.map((cert, index) => (
-            <button
-              className="certificate-card"
-              key={`${cert.file}-${index}`}
-              onClick={() => onOpen(cert, index % data.certificates.length)}
-              {...trackingAttrs(`certificate-${slugifyLabel(cert.title)}`, `Certificate: ${cert.title}`)}
-            >
-              <img src={assetUrl(cert.preview)} alt={cert.title} loading="lazy" {...protectedMediaProps} />
-              <span>{cert.title}</span>
+      <div className="featured-credentials" data-reveal>
+        <article className="credential-card education-card">
+          <GraduationCap size={28} />
+          <span>Featured Credential</span>
+          <h3>Medical Doctor / Medical Education</h3>
+          <p>Faculty of Medicine, clinical clerkship, and GP experience form the clinical base behind the portfolio.</p>
+        </article>
+        {featured.map((cert) => {
+          const index = all.findIndex((item) => item.file === cert.file);
+          return (
+            <button className="credential-card" key={cert.file} onClick={() => onOpen(cert, index, all)} {...trackingAttrs(`certificate-${slugifyLabel(cert.title)}`, `Certificate: ${cert.title}`)}>
+              <img src={assetUrl(cert.preview)} alt={`${cert.title} certificate preview`} loading="lazy" {...protectedMediaProps} />
+              <span>{cert.credentialFocus}</span>
+              <h3>{cert.title}</h3>
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    </section>
-  );
-}
-
-function VideoRoom() {
-  const [active, setActive] = useState(0);
-  const video = data.videos[active];
-  return (
-    <section className="section-band video-section" id="videos">
-      <SectionHeader
-        number="06"
-        icon={Video}
-        title="I create healthcare videos that teach without overcomplicating."
-        text="These video pieces around hyperphosphatemia are built for clear patient and public education, with playback directly on the page."
-      />
-      <div className="video-layout" data-reveal>
-        <div className="video-list">
-          {data.videos.map((item, index) => (
-            <button
-              key={item.file}
-              className={index === active ? "is-active" : ""}
-              onClick={() => setActive(index)}
-              {...trackingAttrs(`video-${slugifyLabel(item.title)}`, `Video: ${item.title}`)}
-            >
-              <CirclePlay size={22} />
-              <span>{item.title}</span>
-            </button>
-          ))}
+      {additional.length ? (
+        <div className="additional-credentials" data-reveal>
+          <div>
+            <span>Additional Certifications</span>
+            <p>Occupational safety, business, accounting, and other supporting credentials.</p>
+          </div>
+          <div className="credential-rail">
+            {additional.map((cert) => {
+              const index = all.findIndex((item) => item.file === cert.file);
+              return (
+                <button className="mini-cert-card" key={cert.file} onClick={() => onOpen(cert, index, all)} {...trackingAttrs(`certificate-${slugifyLabel(cert.title)}`, `Certificate: ${cert.title}`)}>
+                  <img src={assetUrl(cert.preview)} alt={`${cert.title} certificate preview`} loading="lazy" {...protectedMediaProps} />
+                  <span>{cert.title}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <div className="video-frame">
-          <video
-            key={video.file}
-            src={assetUrl(video.file)}
-            controls
-            controlsList="nodownload noplaybackrate noremoteplayback"
-            disablePictureInPicture
-            disableRemotePlayback
-            preload="metadata"
-            playsInline
-            {...protectedMediaProps}
-          />
-          <h3>{video.title}</h3>
-        </div>
-      </div>
+      ) : null}
     </section>
   );
 }
 
 function ContactSection() {
-  const qrCode = data.tracking?.qrCode;
+  const qrCode = data.tracking?.qrCodePng || data.tracking?.qrCode;
   const qrUrl = data.tracking?.qrUrl || "https://zenwaku.github.io/marcho-portfolio/";
+  const whatsapp = data.profile.phone?.replace(/^0/, "62") || "";
 
   return (
     <footer className="section-band contact-section" id="contact">
       <div data-reveal>
-        <h2>I am ready for Medical Affairs, product, and healthcare content roles.</h2>
+        <p className="eyebrow">Contact</p>
+        <h2>Open to Medical Scientific, Medical Affairs, Healthcare Content, and AI Medical Workflow roles.</h2>
         <p>
-          I combine physician-level clinical reasoning with product storytelling, stakeholder communication, market awareness, and AI-enabled workflow speed.
+          I am ready to contribute to pharma and healthcare teams that need clinical reasoning, evidence-based communication, product training, KOL/HCP engagement support, and faster AI-assisted research workflows.
         </p>
       </div>
       <div className="contact-side" data-reveal>
         <div className="contact-actions">
           <a className="button primary" href={`mailto:${data.profile.email}`} {...trackingAttrs("contact-email", "Contact: email")}>
             <Mail size={18} />
-            {data.profile.email}
+            Email Me
           </a>
-          <a className="button secondary" href={`tel:${data.profile.phone}`} {...trackingAttrs("contact-phone", "Contact: phone")}>
+          <a className="button secondary" href={`https://wa.me/${whatsapp}`} target="_blank" rel="noreferrer" {...trackingAttrs("contact-whatsapp", "Contact: WhatsApp")}>
             <Phone size={18} />
-            {data.profile.phone}
+            WhatsApp Me
           </a>
-          <button
-            className="button ghost"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            {...trackingAttrs("contact-back-to-top", "Contact: back to top")}
-          >
+          <button className="button ghost" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} {...trackingAttrs("contact-back-to-top", "Contact: back to top")}>
             <Sparkles size={18} />
             Back to Top
           </button>
         </div>
         {qrCode ? (
           <a className="qr-card" href={qrUrl} aria-label="Open QR campaign link" {...trackingAttrs("contact-qr-card", "Contact: QR card")}>
-            <img src={assetUrl(qrCode)} alt="QR code for Marcho portfolio" loading="lazy" />
+            <img src={assetUrl(qrCode)} alt="Trackable QR code for Marcho portfolio" loading="lazy" />
             <div>
               <span>
                 <QrCode size={16} />
-                Scan Portfolio
+                Trackable CV QR
               </span>
-              <strong>QR campaign link</strong>
+              <strong>Portfolio link for recruiters</strong>
+              <p>Designed to be placed inside the CV and read with basic scan/click tracking.</p>
             </div>
           </a>
         ) : null}
@@ -982,7 +1026,7 @@ function TrackingSnapshot() {
   return (
     <section className="section-band tracking-section" id="tracking">
       <SectionHeader
-        number="QR"
+        kicker="QR Tracking"
         icon={QrCode}
         title="Tracking snapshot for the portfolio QR and key clicks."
         text="This lightweight view reads public counters for the GitHub Pages portfolio, including visits from the QR campaign URL and the highest-signal click areas."
@@ -990,7 +1034,7 @@ function TrackingSnapshot() {
       <div className="tracking-panel" data-reveal>
         {status ? <p className="viewer-status">{status}</p> : null}
         <div className="tracking-cards">
-          {stats.slice(0, 7).map((item) => (
+          {stats.slice(0, 8).map((item) => (
             <article key={item.key}>
               <span>{item.label}</span>
               {item.value === null ? (
@@ -1038,13 +1082,15 @@ function MediaModal({ modal, onClose, setModal }) {
 
   if (!modal) return null;
 
+  const label = modal.type === "pdf" ? "PDF Viewer" : modal.type === "article" ? "Article Reader" : modal.type === "project" ? "Interactive Case" : "Media Viewer";
+
   return (
-    <div className="modal-backdrop" role="dialog" aria-modal="true">
+    <div className="modal-backdrop" role="dialog" aria-modal="true" aria-label={label}>
       <button className="modal-scrim" onClick={onClose} aria-label="Close modal" />
       <div className={`modal-panel ${modal.type}`}>
         <div className="modal-topbar">
           <div>
-            <span>{modal.type === "pdf" ? "PDF Viewer" : modal.type === "article" ? "Article Reader" : "Media Viewer"}</span>
+            <span>{label}</span>
             <h2>{modal.item.title}</h2>
           </div>
           <button onClick={onClose} aria-label="Close">
@@ -1055,10 +1101,59 @@ function MediaModal({ modal, onClose, setModal }) {
           <PdfViewer modal={modal} setModal={setModal} />
         ) : modal.type === "article" ? (
           <ArticleReader article={modal.item} />
+        ) : modal.type === "project" ? (
+          <ProjectViewer project={modal.item} />
         ) : (
           <ImageViewer item={modal.item} />
         )}
       </div>
+    </div>
+  );
+}
+
+function ProjectViewer({ project }) {
+  const [projectHtml, setProjectHtml] = useState("");
+  const [status, setStatus] = useState("Loading interactive case...");
+
+  useEffect(() => {
+    let cancelled = false;
+    setProjectHtml("");
+    setStatus("Loading interactive case...");
+
+    fetch(assetUrl(project.file), { cache: "force-cache" })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Project failed to load (${response.status})`);
+        return response.text();
+      })
+      .then((html) => {
+        if (cancelled) return;
+        setProjectHtml(prepareProjectSrcDoc(html));
+        setStatus("");
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setProjectHtml("<!doctype html><html><body></body></html>");
+          setStatus(`Interactive project could not be loaded. ${error.message}`);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [project.file]);
+
+  return (
+    <div className="project-viewer">
+      {status ? <p className="viewer-status">{status}</p> : null}
+      <iframe
+        key={project.file}
+        title={project.title}
+        srcDoc={projectHtml}
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin"
+        referrerPolicy="no-referrer"
+        {...protectedMediaProps}
+      />
     </div>
   );
 }
@@ -1166,55 +1261,35 @@ function PdfViewer({ modal, setModal }) {
     if (page > pageCount) setPage(pageCount);
   }, [page, pageCount]);
 
-  const canGoPrevDeck = modal.collection && modal.index > 0;
-  const canGoNextDeck = modal.collection && modal.index < modal.collection.length - 1;
+  const canGoPrevItem = modal.collection && modal.index > 0;
+  const canGoNextItem = modal.collection && modal.index < modal.collection.length - 1;
   const collectionLabel = modal.collectionLabel || "Item";
   const zoomPercent = Math.round(zoom * 100);
 
   return (
     <div className="pdf-viewer">
       <div className="pdf-controls">
-        <button
-          onClick={() => setPage((value) => Math.max(1, value - 1))}
-          disabled={page <= 1}
-          {...trackingAttrs("pdf-prev-page", "PDF viewer: previous page")}
-        >
+        <button onClick={() => setPage((value) => Math.max(1, value - 1))} disabled={page <= 1} {...trackingAttrs("pdf-prev-page", "PDF viewer: previous page")}>
           <ChevronLeft size={18} />
           Page
         </button>
-        <span>
-          {page} / {pageCount}
-        </span>
-        <button
-          onClick={() => setPage((value) => Math.min(pageCount, value + 1))}
-          disabled={page >= pageCount}
-          {...trackingAttrs("pdf-next-page", "PDF viewer: next page")}
-        >
+        <span>{page} / {pageCount}</span>
+        <button onClick={() => setPage((value) => Math.min(pageCount, value + 1))} disabled={page >= pageCount} {...trackingAttrs("pdf-next-page", "PDF viewer: next page")}>
           Page
           <ChevronRight size={18} />
         </button>
-        <button
-          onClick={() => setZoom((value) => Math.max(0.75, value - 0.25))}
-          disabled={zoom <= 0.75}
-          aria-label="Zoom out"
-          {...trackingAttrs("pdf-zoom-out", "PDF viewer: zoom out")}
-        >
+        <button onClick={() => setZoom((value) => Math.max(0.75, value - 0.25))} disabled={zoom <= 0.75} aria-label="Zoom out" {...trackingAttrs("pdf-zoom-out", "PDF viewer: zoom out")}>
           <Minus size={18} />
         </button>
         <span>{zoomPercent}%</span>
-        <button
-          onClick={() => setZoom((value) => Math.min(2.5, value + 0.25))}
-          disabled={zoom >= 2.5}
-          aria-label="Zoom in"
-          {...trackingAttrs("pdf-zoom-in", "PDF viewer: zoom in")}
-        >
+        <button onClick={() => setZoom((value) => Math.min(2.5, value + 0.25))} disabled={zoom >= 2.5} aria-label="Zoom in" {...trackingAttrs("pdf-zoom-in", "PDF viewer: zoom in")}>
           <Plus size={18} />
         </button>
         {modal.collection ? (
           <>
             <button
               onClick={() => setModal({ type: "pdf", item: modal.collection[modal.index - 1], collection: modal.collection, index: modal.index - 1, collectionLabel })}
-              disabled={!canGoPrevDeck}
+              disabled={!canGoPrevItem}
               {...trackingAttrs(`pdf-prev-${slugifyLabel(collectionLabel)}`, `PDF viewer: previous ${collectionLabel}`)}
             >
               <ChevronLeft size={18} />
@@ -1222,7 +1297,7 @@ function PdfViewer({ modal, setModal }) {
             </button>
             <button
               onClick={() => setModal({ type: "pdf", item: modal.collection[modal.index + 1], collection: modal.collection, index: modal.index + 1, collectionLabel })}
-              disabled={!canGoNextDeck}
+              disabled={!canGoNextItem}
               {...trackingAttrs(`pdf-next-${slugifyLabel(collectionLabel)}`, `PDF viewer: next ${collectionLabel}`)}
             >
               {collectionLabel}
@@ -1240,8 +1315,9 @@ function ArticleReader({ article }) {
   const paragraphs = textBlock(article.body);
   return (
     <div className="article-reader">
-      {article.poster ? <img src={assetUrl(article.poster)} alt="" {...protectedMediaProps} /> : null}
+      {article.poster ? <img src={assetUrl(article.poster)} alt={`${article.title} poster`} {...protectedMediaProps} /> : null}
       <article>
+        <p className="reader-meta">{article.topic} | {article.evidenceStyle}</p>
         <h3>{article.title}</h3>
         {paragraphs.map((paragraph, index) => (
           <p key={`${paragraph}-${index}`}>{paragraph}</p>

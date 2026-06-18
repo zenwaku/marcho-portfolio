@@ -174,6 +174,201 @@ def find_poster_for_article(pdf: Path, posters: list[Path]) -> Path | None:
     return None
 
 
+def deck_case_fields(title: str) -> dict[str, object]:
+    key = title.lower()
+    common_contribution = (
+        "Evidence review, deck structure, scientific narrative, claim framing, training support, "
+        "and competitor or positioning insight."
+    )
+    rules: list[tuple[str, dict[str, object]]] = [
+        (
+            "tropisetron",
+            {
+                "therapeuticArea": "Oncology supportive care / antiemetic",
+                "objective": "Created to support evidence-based discussion on antiemetic use in oncology supportive care.",
+                "medicalValue": "Helps field and medical teams connect mechanism, clinical use case, and practical education points.",
+                "featured": True,
+            },
+        ),
+        (
+            "ibuprofen",
+            {
+                "therapeuticArea": "Pediatrics / fever & pain",
+                "objective": "Built to clarify pediatric fever and pain management options with responsible safety framing.",
+                "medicalValue": "Supports clearer internal training and practical HCP education around antipyretic and analgesic choices.",
+                "featured": True,
+            },
+        ),
+        (
+            "thalassemia",
+            {
+                "therapeuticArea": "Pediatrics / hematology",
+                "objective": "Designed to communicate adherence challenges and education needs in pediatric thalassemia care.",
+                "medicalValue": "Turns a chronic-care topic into patient-aware scientific messaging for healthcare audiences.",
+                "featured": False,
+            },
+        ),
+        (
+            "lacto",
+            {
+                "therapeuticArea": "Pediatrics / probiotic / GI",
+                "objective": "Created to organize probiotic and gastrointestinal evidence into a training-ready scientific deck.",
+                "medicalValue": "Helps connect product education with pediatric GI relevance and responsible evidence interpretation.",
+                "featured": False,
+            },
+        ),
+        (
+            "udca",
+            {
+                "therapeuticArea": "Hepatology / fatty liver",
+                "objective": "Built to frame UDCA strategies in fatty liver disease through evidence and clinical context.",
+                "medicalValue": "Supports structured discussion of hepatology evidence, limitations, and clinical positioning.",
+                "featured": True,
+            },
+        ),
+        (
+            "l-ornithine",
+            {
+                "therapeuticArea": "Hepatology / chronic liver disease",
+                "objective": "Designed to explain LOLA mechanism and efficacy in chronic liver disease management.",
+                "medicalValue": "Translates liver-disease evidence into practical scientific education for internal and HCP-facing use.",
+                "featured": True,
+            },
+        ),
+        (
+            "nalfurafine",
+            {
+                "therapeuticArea": "Nephrology / hepatology pruritus",
+                "objective": "Created to compare therapeutic options and positioning logic for pruritus-related clinical education.",
+                "medicalValue": "Supports balanced competitor mapping and claim framing without overstating comparative value.",
+                "featured": True,
+            },
+        ),
+        (
+            "somatostatin",
+            {
+                "therapeuticArea": "GI bleeding / pancreatitis",
+                "objective": "Built to connect acute GI bleeding and pancreatitis use cases with mechanism-led scientific education.",
+                "medicalValue": "Helps teams explain complex acute-care topics with clearer clinical structure.",
+                "featured": False,
+            },
+        ),
+        (
+            "pantoprazole",
+            {
+                "therapeuticArea": "Gastroenterology / cardiovascular comorbidity",
+                "objective": "Designed to frame PPI use for audiences considering cardiovascular comorbidity and GI protection.",
+                "medicalValue": "Supports nuanced discussion of gastroprotection, risk context, and treatment relevance.",
+                "featured": True,
+            },
+        ),
+        (
+            "zoledronic",
+            {
+                "therapeuticArea": "Bone health / oncology supportive care",
+                "objective": "Created to organize zoledronic acid evidence for bone health and supportive-care education.",
+                "medicalValue": "Helps translate mechanism, indication context, and clinical education into a coherent deck.",
+                "featured": False,
+            },
+        ),
+        (
+            "sulfasalazine",
+            {
+                "therapeuticArea": "Gastroenterology / IBD",
+                "objective": "Built to revisit sulfasalazine evidence within the era of advanced IBD therapy.",
+                "medicalValue": "Supports balanced scientific discussion on established therapy, modern context, and clinical relevance.",
+                "featured": True,
+            },
+        ),
+        (
+            "nsaid",
+            {
+                "therapeuticArea": "Gastroenterology / drug safety",
+                "objective": "Designed to explain NSAID-induced lower GI injury through a safety-oriented evidence lens.",
+                "medicalValue": "Strengthens drug-safety education and practical interpretation of gastrointestinal risk.",
+                "featured": True,
+            },
+        ),
+    ]
+    for needle, fields in rules:
+        if needle in key:
+            return {
+                "type": "Scientific Deck",
+                "outputType": "Scientific deck",
+                "contribution": common_contribution,
+                **fields,
+            }
+    return {
+        "type": "Scientific Deck",
+        "outputType": "Scientific deck",
+        "therapeuticArea": "Medical scientific education",
+        "objective": "Created to translate medical evidence into a structured scientific education asset.",
+        "contribution": common_contribution,
+        "medicalValue": "Supports clearer evidence interpretation, training discussion, and compliance-aware communication.",
+        "featured": False,
+    }
+
+
+def project_case_fields(title: str) -> dict[str, object]:
+    key = title.lower()
+    if "dha" in key or "epa" in key:
+        area = "Pediatrics / nutrition"
+        value = "Shows how clinical nutrition topics can become interactive, parent-friendly education."
+    elif "perut" in key or "anak" in key:
+        area = "Pediatrics / probiotic / GI"
+        value = "Turns gut-health education into a more engaging and practical learning experience."
+    else:
+        area = "Preventive health / public education"
+        value = "Demonstrates interactive education for public-facing health literacy."
+    return {
+        "type": "Interactive Education",
+        "outputType": "Interactive HTML education",
+        "therapeuticArea": area,
+        "objective": "Built as an interactive education experience with motion, references, and a guided reading flow.",
+        "contribution": "Content structure, scientific framing, interaction flow, and web-based education presentation.",
+        "medicalValue": value,
+        "featured": False,
+    }
+
+
+def article_fields(title: str) -> dict[str, str]:
+    key = title.lower()
+    topic = "General health education"
+    if "fatty liver" in key or "curcuma" in key:
+        topic = "Hepatology / fatty liver"
+    elif "maag" in key or "ppi" in key:
+        topic = "Gastroenterology / acid-related symptoms"
+    elif "zinc" in key:
+        topic = "Pediatrics / micronutrients"
+    elif "kalsium" in key:
+        topic = "Pediatrics / bone health"
+    elif "gabus" in key:
+        topic = "Nutrition / wound recovery"
+    elif "delima" in key:
+        topic = "Nutrition / antioxidant education"
+    return {
+        "type": "Article",
+        "topic": topic,
+        "audience": "Public readers, patients, and caregivers",
+        "evidenceStyle": "Review-backed",
+    }
+
+
+def certificate_fields(title: str) -> dict[str, str]:
+    key = title.lower()
+    if "acls" in key:
+        return {"group": "featured", "credentialFocus": "Clinical emergency foundation"}
+    if "analitik data" in key or "data" in key:
+        return {"group": "featured", "credentialFocus": "Data analytics"}
+    if "artificial intelligence" in key:
+        return {"group": "featured", "credentialFocus": "AI literacy"}
+    if "product management" in key or "purwadhika" in key:
+        return {"group": "featured", "credentialFocus": "Product management"}
+    if "digital marketing" in key or "e-commerce" in key:
+        return {"group": "featured", "credentialFocus": "Digital marketing & e-commerce"}
+    return {"group": "additional", "credentialFocus": "Additional professional credential"}
+
+
 def main() -> None:
     if PUBLIC_ROOT.exists():
         shutil.rmtree(PUBLIC_ROOT)
@@ -205,24 +400,27 @@ def main() -> None:
 
     projects = []
     for src in sorted((SOURCE_ROOT / "Project").glob("*.html")):
+        title = clean_title(src)
         projects.append(
             {
-                "title": clean_title(src),
+                "title": title,
                 "file": copy_asset(src, PUBLIC_ROOT / "projects"),
                 "size": src.stat().st_size,
-                "type": "Interactive HTML Deck",
+                **project_case_fields(title),
             }
         )
 
     slides = []
     for src in sorted((SOURCE_ROOT / "Showcase Scientific Slides").glob("*.pdf")):
+        title = clean_title(src)
         pages = pdf_pages(src)
         slides.append(
             {
-                "title": clean_title(src),
+                "title": title,
                 "file": copy_asset(src, PUBLIC_ROOT / "slides"),
                 "thumb": pdf_thumb(src, PUBLIC_ROOT / "thumbs" / "slides"),
                 "pages": pages,
+                **deck_case_fields(title),
             }
         )
 
@@ -244,6 +442,7 @@ def main() -> None:
                 "pages": pdf_pages(src),
                 "body": text,
                 "excerpt": text[:520],
+                **article_fields(title),
             }
         )
 
@@ -258,7 +457,11 @@ def main() -> None:
                 "size": extra_design_pdf.stat().st_size,
                 "pages": pdf_pages(extra_design_pdf),
                 "kind": "pdf",
-                "summary": "A multi-page data bulletin carousel designed for public education, built to make health information feel clear, visual, and shareable.",
+                "type": "Design",
+                "outputType": "Public education carousel",
+                "therapeuticArea": "Public health education",
+                "audience": "General public",
+                "summary": "A four-page data bulletin carousel designed to make health information clear, visual, and easier to understand.",
             },
         )
 
@@ -280,6 +483,7 @@ def main() -> None:
                 "preview": preview,
                 "pages": pages,
                 "kind": src.suffix.lower().lstrip("."),
+                **certificate_fields(clean_title(src)),
             }
         )
 
@@ -301,6 +505,10 @@ def main() -> None:
                 "file": external_url or copy_asset(src, PUBLIC_ROOT / "videos"),
                 "size": src.stat().st_size,
                 "delivery": "github-release" if external_url else "local",
+                "type": "Video",
+                "outputType": "Medical education video",
+                "therapeuticArea": "Nephrology / hyperphosphatemia education",
+                "audience": "Public education viewers",
             }
         )
 
@@ -327,7 +535,7 @@ def main() -> None:
             )
 
     data = {
-        "generatedAt": "2026-06-16",
+        "generatedAt": "2026-06-18",
         "sourceRoot": None,
         "concept": concept_url,
         "tracking": {
@@ -336,51 +544,122 @@ def main() -> None:
             "qrCodePng": qr_png_url,
             "goatcounterUrl": os.environ.get("VITE_GOATCOUNTER_URL"),
         },
+        "careerMetrics": [
+            {"value": "100+", "label": "Scientific decks built"},
+            {"value": "30+", "label": "Medical communication designs"},
+            {"value": "20+", "label": "Evidence-based articles"},
+            {"value": "10", "label": "Professional certificates"},
+        ],
+        "hiringFit": [
+            {
+                "title": "Medical Scientific / Product Trainer",
+                "text": "Evidence review, product training, scientific deck development, objection-handling frameworks, and internal field education.",
+            },
+            {
+                "title": "Medical Affairs Officer / Associate",
+                "text": "Medical communication, KOL/HCP engagement support, evidence-based claim review, medical insight synthesis, and compliance-aware scientific materials.",
+            },
+            {
+                "title": "Healthcare Content / Medical Reviewer",
+                "text": "Evidence-based articles, public education, medical accuracy review, patient-friendly communication, and citation-backed content.",
+            },
+            {
+                "title": "AI-assisted Medical Workflow Specialist",
+                "text": "Literature search workflow, evidence table generation, citation audit, AI output validation, and repeatable research systems.",
+            },
+        ],
+        "medicalAffairsReadiness": [
+            {
+                "title": "Scientific Exchange Mindset",
+                "text": "I prioritize balanced, evidence-based discussion that respects clinical context and compliance boundaries.",
+            },
+            {
+                "title": "Evidence Interpretation",
+                "text": "I read clinical literature with attention to study design, claim strength, limitations, and practical relevance.",
+            },
+            {
+                "title": "KOL & HCP Engagement Support",
+                "text": "I can help prepare scientific materials, discussion points, and educational support for field medical interactions.",
+            },
+            {
+                "title": "Medical Insight & Competitor Mapping",
+                "text": "I synthesize field context, product claims, competitor movement, and therapeutic-area signals into usable insight.",
+            },
+            {
+                "title": "Claim Review & Compliance Awareness",
+                "text": "I frame claims carefully, separate evidence from interpretation, and avoid unsupported business-impact language.",
+            },
+            {
+                "title": "Cross-functional Collaboration",
+                "text": "I work across medical, product, marketing, sales, and operations while keeping the scientific standard visible.",
+            },
+            {
+                "title": "AI-assisted Evidence Workflow",
+                "text": "I use AI to accelerate search and synthesis, then verify citations, clinical logic, and source quality before use.",
+            },
+        ],
         "profile": {
             "name": "Marcho",
             "location": "Jakarta, Indonesia",
             "email": "marchoict@gmail.com",
             "phone": "081311993778",
-            "positioning": "Medical Scientific x Product Strategy",
-            "headline": "I turn clinical evidence into clear product stories, useful market insight, and healthcare education that people can actually act on.",
-            "summary": "I am a medical doctor and Master of Management candidate working at the intersection of Medical Affairs, product training, healthcare content, market intelligence, and AI-assisted research productivity. My edge is simple: I can read the science, understand the field reality, use modern tools to move faster, and still validate the output with clinical judgment.",
+            "positioning": "Medical Doctor | Medical Scientific & Product Trainer | Medical Affairs Candidate",
+            "headline": "I translate clinical evidence into compliant scientific narratives, HCP education materials, product training, market insight, and AI-assisted evidence workflows for pharma and healthcare teams.",
+            "summary": "My edge combines physician-level clinical reasoning, field communication, KOL/HCP engagement support, product training, and modern AI-assisted research productivity while keeping final medical judgment human-led.",
+            "heroTitle": "Medical Doctor | Medical Scientific & Product Trainer | Medical Affairs Candidate",
+            "heroHeadline": "I translate clinical evidence into compliant scientific narratives, HCP education materials, product training, market insight, and AI-assisted evidence workflows for pharma and healthcare teams.",
+            "heroSupport": "My edge combines physician-level clinical reasoning, field communication, KOL/HCP engagement support, product training, and modern AI-assisted research productivity while keeping final medical judgment human-led.",
+            "credibilityStrip": [
+                "Medical Doctor",
+                "Medical Scientific & Product Trainer",
+                "12+ Scientific Decks",
+                "AI-assisted Evidence Workflow",
+                "Jakarta, Indonesia",
+            ],
             "currentRole": "Medical Scientific & Product Trainer - PT Novell Pharmaceutical Laboratories",
             "coreCompetencies": [
                 "Medical Affairs",
                 "Product Training",
                 "Scientific Communication",
-                "KOL & stakeholder engagement",
+                "KOL/HCP engagement support",
                 "Scientific deck development",
                 "Evidence interpretation",
-                "Market & competitor intelligence",
-                "Product strategy",
-                "Sales enablement",
-                "Healthcare content writing",
+                "Medical insight synthesis",
+                "Market & competitor mapping",
+                "Claim review & compliance awareness",
+                "Field medical education",
+                "Evidence-based healthcare communication",
                 "Public education carousel design",
-                "AI-assisted medical literature workflow",
-                "AI output validation",
+                "AI-assisted evidence workflow",
+                "Citation audit & source validation",
                 "Simple workflow automation",
+                "Cross-functional medical support",
             ],
             "aiWorkflow": {
-                "eyebrow": "AI-Assisted, Clinically Validated",
-                "title": "I use AI to accelerate research, not to replace medical judgment.",
-                "summary": "My workflow uses AI as a productivity layer for medical literature search, evidence synthesis, scientific writing, strategic research, and simple automation. The final thinking stays human-led: I validate sources, compare claims across tools, check for hallucination, and translate the result into usable medical or product communication.",
+                "eyebrow": "AI-Assisted Evidence Workflow",
+                "title": "AI-Assisted Evidence Workflow, Clinically Validated",
+                "summary": "I use AI as a productivity layer for medical literature search, evidence synthesis, scientific writing, strategic research, and simple automation. The final thinking stays human-led: I verify sources, compare claims across tools, audit citations, and translate validated evidence into clear, practical, and medically responsible communication.",
+                "complianceNote": "AI accelerates the workflow, but medical judgment, source verification, and final claim responsibility remain human-led.",
                 "steps": [
                     {
-                        "label": "Search",
-                        "text": "Perplexity, Elicit, Consensus, Gemini, and Claude help me map literature, questions, and competing claims faster.",
+                        "label": "Search & Map",
+                        "tools": "Perplexity, Elicit, Consensus, Gemini, Claude, ChatGPT",
+                        "text": "Map research questions, guidelines, systematic reviews, RCTs, and competing claims.",
                     },
                     {
-                        "label": "Structure",
-                        "text": "Codex, ChatGPT, and Claude help turn raw findings into outlines, evidence tables, decks, articles, scripts, and research workflows.",
+                        "label": "Structure & Synthesize",
+                        "tools": "ChatGPT, Claude, Codex",
+                        "text": "Convert findings into outlines, evidence tables, decks, articles, scripts, and research workflows.",
                     },
                     {
-                        "label": "Validate",
-                        "text": "I cross-check citations, clinical logic, journal quality, claim strength, and hallucination risk before using AI-assisted output.",
+                        "label": "Validate & Audit",
+                        "tools": "Clinical judgment, citation checks, source hierarchy",
+                        "text": "Check citations, AI output accuracy, source hierarchy, claim strength, clinical logic, and journal quality.",
                     },
                     {
-                        "label": "Automate",
-                        "text": "Make and repeatable templates help reduce manual work for task breakdown, content planning, data organization, and follow-up workflows.",
+                        "label": "Translate & Execute",
+                        "tools": "Decks, articles, HCP education, internal training",
+                        "text": "Transform validated evidence into HCP education, internal training, medical content, and strategic insight.",
                     },
                 ],
                 "tools": ["ChatGPT", "Codex", "Gemini", "Claude Cowork", "Perplexity", "Elicit", "Consensus", "Make"],
@@ -388,36 +667,36 @@ def main() -> None:
             "skillGroups": [
                 {
                     "title": "Clinical & Medical Affairs",
-                    "pitch": "I bring physician-level judgment into evidence review, claims, field discussion, and ethical healthcare communication.",
+                    "pitch": "I bring physician-level judgment into evidence review, claim framing, field discussion, and ethical healthcare communication.",
                     "items": [
                         "General consultation & treatment",
                         "Emergency triage",
                         "BLS/ACLS foundation",
                         "Clinical communication",
                         "Evidence interpretation",
-                        "Regulatory-compliant product claims",
-                        "KOL scientific liaison",
+                        "Compliance-aware claim framing",
+                        "KOL/HCP engagement support",
                     ],
                 },
                 {
-                    "title": "Product, Market & Commercial",
-                    "pitch": "I can connect the science with business reality, then turn it into field-ready assets for sales, marketing, and medical teams.",
+                    "title": "Product Training & Medical Insight",
+                    "pitch": "I connect the science with field reality, then turn it into internal scientific enablement for medical, product, and training teams.",
                     "items": [
                         "Product Training",
-                        "Product strategy",
-                        "GTM asset development",
-                        "Sales enablement",
+                        "Internal scientific enablement",
+                        "Field medical education",
                         "Market & competitor mapping",
                         "Claim and positioning analysis",
-                        "Stakeholder engagement",
+                        "Stakeholder communication",
+                        "Medical insight synthesis",
                     ],
                 },
                 {
-                    "title": "Content, Design & Education",
-                    "pitch": "I build the communication layer: decks, articles, carousels, videos, and visuals that make health topics easier to understand.",
+                    "title": "Medical Communication",
+                    "pitch": "I build decks, articles, carousels, videos, and visuals that make health topics clearer without losing clinical responsibility.",
                     "items": [
                         "Scientific deck development",
-                        "Healthcare article writing",
+                        "Evidence-based healthcare communication",
                         "Public education carousel design",
                         "Poster and bulletin design",
                         "Educational video scripting",
@@ -437,7 +716,7 @@ def main() -> None:
                         "ChatGPT, Codex, Gemini",
                         "Claude Cowork, Perplexity",
                         "Elicit, Consensus, Make",
-                        "AI-assisted hallucination checking",
+                        "AI output verification and citation audit",
                     ],
                 },
                 {
@@ -470,7 +749,13 @@ def main() -> None:
                     "role": "Medical Scientific & Product Trainer",
                     "company": "PT Novell Pharmaceutical Laboratories",
                     "period": "May 2024 - Now",
-                    "focus": ["KOL engagement", "Scientific narrative", "GTM assets", "Market intelligence", "Regulatory-compliant claims"],
+                    "focus": [
+                        "KOL/HCP engagement support",
+                        "Compliant scientific narratives",
+                        "Internal scientific enablement",
+                        "Medical insight",
+                        "Compliance-aware claims",
+                    ],
                 },
                 {
                     "role": "Company Doctor & Administration",
@@ -509,12 +794,13 @@ def main() -> None:
                 "Medical & scientific communication",
                 "Evidence interpretation",
                 "Product strategy",
-                "KOL engagement",
+                "KOL/HCP engagement support",
                 "Stakeholder communication",
                 "Market and competitor analysis",
-                "GTM and sales enablement assets",
+                "Internal scientific enablement",
+                "Field medical education",
                 "Scientific deck development",
-                "Healthcare article writing",
+                "Evidence-based healthcare communication",
                 "Public health education design",
                 "Digital marketing and analytics",
                 "Google Analytics, Metricool, Business Suite",
@@ -525,7 +811,7 @@ def main() -> None:
                 "Basic accounting and finance support",
                 "PC assembly and troubleshooting",
                 "AI-assisted medical literature review",
-                "AI research validation and hallucination checking",
+                "AI output verification and citation audit",
                 "Simple automation with Make",
             ],
             "languages": ["Bahasa Indonesia - Native", "English - Working proficiency"],
