@@ -90,6 +90,13 @@ function assetUrl(path) {
   return `${normalizedBase}${path.replace(/^\/+/, "")}`;
 }
 
+function emailHref() {
+  const email = data.profile.email || "marchoict@gmail.com";
+  const subject = "Portfolio Inquiry - Medical Scientific / Medical Affairs";
+  const body = "Hi Marcho,\n\nI saw your portfolio and would like to discuss a potential opportunity.\n\nBest regards,";
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 function trackingAttrs(name, title = name) {
   return {
     "data-goatcounter-click": name,
@@ -121,9 +128,6 @@ const TRACKING_SUMMARY = [
   ...data.projects.map((item) => [`click-project-${slugifyLabel(item.title)}`, `Project: ${item.title}`]),
   ...data.articles.map((item) => [`click-article-${slugifyLabel(item.title)}`, `Article: ${item.title}`]),
   ...(data.infographics || []).map((item) => [`click-infographic-${slugifyLabel(item.title)}`, `Infographic: ${item.title}`]),
-  ...(data.socialPosts || []).map((item) => [`click-social-post-${slugifyLabel(item.title)}`, `Social post: ${item.title}`]),
-  ...(data.socialStories || []).map((item) => [`click-social-story-${slugifyLabel(item.title)}`, `Social story: ${item.title}`]),
-  ...(data.reels || []).map((item) => [`click-reel-${slugifyLabel(item.title)}`, `Reel: ${item.title}`]),
   ...data.videos.map((item) => [`click-video-${slugifyLabel(item.title)}`, `Video: ${item.title}`]),
 ];
 
@@ -322,7 +326,6 @@ function App() {
         <ArticlesSection onOpen={(article) => setModal({ type: "article", item: article })} />
         <MedicalCommunicationLab
           onOpenImage={(item, collection, index, collectionLabel) => setModal({ type: "image", item, collection, index, collectionLabel })}
-          onOpenProject={openProject}
         />
         <CredentialsSection onOpen={(cert, index, collection) => setModal({ type: cert.kind === "pdf" ? "pdf" : "image", item: cert, collection, index, collectionLabel: "Certificate" })} />
         <ContactSection />
@@ -379,7 +382,7 @@ function Hero() {
             <Presentation size={18} />
             View Scientific Decks
           </a>
-          <a className="button ghost" href={`mailto:${data.profile.email}`} {...trackingAttrs("hero-contact", "Hero: Contact Me")}>
+          <a className="button ghost" href={emailHref()} {...trackingAttrs("hero-contact", "Hero: Contact Me")}>
             <Mail size={18} />
             Contact Me
           </a>
@@ -758,7 +761,7 @@ function ArticlesSection({ onOpen }) {
   );
 }
 
-function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
+function MedicalCommunicationLab({ onOpenImage }) {
   const design = data.designs.find((item) => item.kind === "pdf") || data.designs[0];
   const [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(design?.pages || 1);
@@ -767,9 +770,6 @@ function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
   const [videoUnlocked, setVideoUnlocked] = useState(false);
   const video = data.videos[activeVideo];
   const infographics = data.infographics || [];
-  const socialPosts = data.socialPosts || [];
-  const socialStories = data.socialStories || [];
-  const reels = data.reels || [];
 
   useEffect(() => {
     setPage(1);
@@ -781,7 +781,7 @@ function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
     if (page > pageCount) setPage(pageCount);
   }, [page, pageCount]);
 
-  if (!design && !video && !infographics.length && !socialPosts.length && !socialStories.length && !reels.length) return null;
+  if (!design && !video && !infographics.length) return null;
   const zoomPercent = Math.round(zoom * 100);
 
   return (
@@ -790,7 +790,7 @@ function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
         kicker="Medical Communication Lab"
         icon={GalleryHorizontalEnd}
         title="Secondary communication experiments for public education."
-        text="This section keeps design and video visible, but positions them as supporting medical communication experiments rather than the main hiring narrative."
+        text="This section keeps public education carousel, infographics, and video visible as supporting medical communication work rather than the main hiring narrative."
       />
       <div className="lab-grid">
         {design ? (
@@ -878,9 +878,8 @@ function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
             </div>
           </article>
         ) : null}
-      </div>
-      <div className="communication-library" data-reveal>
         <CommunicationCollection
+          className="infographic-lab"
           title="Evidence-Based Infographics"
           text="Large-format public education visuals for emergency signs, first aid, fever pattern recognition, sunscreen, and nutrition limits."
           items={infographics}
@@ -889,66 +888,16 @@ function MedicalCommunicationLab({ onOpenImage, onOpenProject }) {
           trackingPrefix="infographic"
           onOpen={onOpenImage}
         />
-        <CommunicationCollection
-          title="Social Media Single Image Posts"
-          text="Square posts designed for quick health awareness, clinic education, and clear visual hooks on feed-based platforms."
-          items={socialPosts}
-          shape="post"
-          collectionLabel="Post"
-          trackingPrefix="social-post"
-          onOpen={onOpenImage}
-        />
-        <CommunicationCollection
-          title="Mobile Story Assets"
-          text="Vertical story-format education pieces for mobile-first communication and fast public-health recall."
-          items={socialStories}
-          shape="story"
-          collectionLabel="Story"
-          trackingPrefix="social-story"
-          onOpen={onOpenImage}
-        />
-        {reels.length ? (
-          <article className="communication-panel reels-panel">
-            <div className="communication-panel-copy">
-              <span>Interactive HTML Reels</span>
-              <h3>Motion-led education concept for social media.</h3>
-              <p>HTML-based reels work presented directly in the browser, keeping motion and interaction available without requiring a download.</p>
-            </div>
-            <div className="reel-grid">
-              {reels.map((reel) => (
-                <button
-                  className="reel-card"
-                  key={reel.file}
-                  onClick={() => onOpenProject(reel)}
-                  {...trackingAttrs(`reel-${slugifyLabel(reel.title)}`, `Reel: ${reel.title}`)}
-                >
-                  <iframe
-                    src={assetUrl(reel.file)}
-                    title={`${reel.title} preview`}
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin"
-                    referrerPolicy="no-referrer"
-                    tabIndex="-1"
-                    aria-hidden="true"
-                    {...protectedMediaProps}
-                  />
-                  <span>{reel.outputType || "Interactive HTML reel"}</span>
-                  <strong>{reel.title}</strong>
-                </button>
-              ))}
-            </div>
-          </article>
-        ) : null}
       </div>
     </section>
   );
 }
 
-function CommunicationCollection({ title, text, items, shape, collectionLabel, trackingPrefix, onOpen }) {
+function CommunicationCollection({ title, text, items, shape, collectionLabel, trackingPrefix, onOpen, className = "" }) {
   if (!items?.length) return null;
 
   return (
-    <article className={`communication-panel ${shape ? `is-${shape}` : ""}`}>
+    <article className={`communication-panel ${shape ? `is-${shape}` : ""} ${className}`} data-reveal>
       <div className="communication-panel-copy">
         <span>{collectionLabel}</span>
         <h3>{title}</h3>
@@ -1040,7 +989,7 @@ function ContactSection() {
       </div>
       <div className="contact-side" data-reveal>
         <div className="contact-actions">
-          <a className="button primary" href={`mailto:${data.profile.email}`} {...trackingAttrs("contact-email", "Contact: email")}>
+          <a className="button primary" href={emailHref()} {...trackingAttrs("contact-email", "Contact: email")}>
             <Mail size={18} />
             Email Me
           </a>
